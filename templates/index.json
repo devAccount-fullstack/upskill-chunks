@@ -9,76 +9,71 @@
  */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "custom_hero_XYJDje": {
+      "type": "custom-hero",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "custom_scattered_image_VkpBDX": {
+          "type": "custom_scattered_image",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "image": "shopify://shop_images/ChatGPT_Image_Jul_30_2025_09_50_11_PM_3.png",
+            "top_image": 43,
+            "left_image": 2,
+            "rotation_image": 83,
+            "item_size": 200
           }
         },
-        "button": {
-          "type": "buttons",
+        "custom_scattered_image_jpG3Rc": {
+          "type": "custom_scattered_image",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "image": "shopify://shop_images/ChatGPT_Image_Jul_30_2025_09_36_45_PM_2.png",
+            "top_image": 1,
+            "left_image": -3,
+            "rotation_image": 21,
+            "item_size": 150
+          }
+        },
+        "custom_scattered_image_BqYgtq": {
+          "type": "custom_scattered_image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jul_30_2025_09_38_42_PM_1.png",
+            "top_image": 1,
+            "left_image": 92,
+            "rotation_image": 32,
+            "item_size": 120
+          }
+        },
+        "custom_scattered_image_9j49nn": {
+          "type": "custom_scattered_image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jul_30_2025_09_38_42_PM_4.png",
+            "top_image": 43,
+            "left_image": 75,
+            "rotation_image": 21,
+            "item_size": 130
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "custom_scattered_image_VkpBDX",
+        "custom_scattered_image_jpG3Rc",
+        "custom_scattered_image_BqYgtq",
+        "custom_scattered_image_9j49nn"
       ],
+      "name": "Default Custom Hero",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
-      }
-    },
-    "featured_collection": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "title": "Bite-size Clusters, Supersized taste",
+        "floating_button_text": "FIND STORE",
+        "floating_button_url": "",
+        "floating_button_image": "shopify://shop_images/Star_7.png",
+        "product_image": "shopify://shop_images/Group_21.png",
+        "button1_text": "SHOP NOW",
+        "button1_url": "",
+        "button2_text": "SHOP BUNDLE",
+        "button2_url": ""
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "custom_hero_XYJDje"
   ]
 }
