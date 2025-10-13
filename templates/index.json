@@ -83,7 +83,8 @@
           "type": "product_card",
           "settings": {
             "card_size": "large",
-            "product_image": "shopify://shop_images/PBC_-_Pouch.png",
+            "product_image": "shopify://shop_images/Updated_PB_C_2.webp",
+            "product_image_hover": "shopify://shop_images/PBC_4.25oz_4c5ecf17-0849-4b20-a4f9-b6846dc64eb4.webp",
             "product_title": "Peanut Butter & Chocolate Bundle",
             "product_description": "Each cluster is handmade with quality ingredients and that homemade touch you can truly taste.",
             "product_price": "$120",
@@ -97,6 +98,7 @@
           "settings": {
             "card_size": "regular",
             "product_image": "shopify://shop_images/e91d03a52c7f0a324c172081f87efa58571089d3.png",
+            "product_image_hover": "shopify://shop_images/Toffee_4.25oz_9a10f1d6-fc5e-4cbb-addf-7244c3c4fc20.webp",
             "product_title": "Toffee Snack Pack Bundle",
             "product_description": "Each cluster is handmade with quality ingredients and that homemade touch you can truly taste.",
             "product_price": "$85",
@@ -110,6 +112,7 @@
           "settings": {
             "card_size": "regular",
             "product_image": "shopify://shop_images/b09754feba65f9a54604c87338ca10dc8ae92c24.png",
+            "product_image_hover": "shopify://shop_images/APL_CIN_4.25oz_0550d401-a087-4362-923e-a0c40615d169.webp",
             "product_title": "Apple Cinnamon Snack Pack Bundle",
             "product_description": "Each cluster is handmade with quality ingredients and that homemade touch you can truly taste.",
             "product_price": "$85",
@@ -123,6 +126,7 @@
           "settings": {
             "card_size": "regular",
             "product_image": "shopify://shop_images/605fe674a897f1c4353f09e1c8174f899e321d69.png",
+            "product_image_hover": "shopify://shop_images/S_MORES_4.25oz_180c81a8-911c-4b96-832a-075fe0b94114.webp",
             "product_title": "S'mores Snack Pack Bundle",
             "product_description": "Each cluster is handmade with quality ingredients and that homemade touch you can truly taste.",
             "product_price": "$85",
@@ -136,6 +140,7 @@
           "settings": {
             "card_size": "regular",
             "product_image": "shopify://shop_images/745c320badbed141aedbc8cc7070ee7bb181b038.png",
+            "product_image_hover": "shopify://shop_images/STRAWBERRY_4.25oz_27f5105e-70d2-4b92-984b-811e53a66a70.webp",
             "product_title": "Strawberry Snack Pack Bundle",
             "product_description": "Each cluster is handmade with quality ingredients and that homemade touch you can truly taste.",
             "product_price": "$85",
