@@ -9,71 +9,368 @@
  */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "ingredients_section_ibg89T": {
+      "type": "ingredients-section",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "product_UGyXt4": {
+          "type": "product",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "product_name": "Vanilla",
+            "product_icon": "shopify://shop_images/Vanilla-Bag.png",
+            "center_image": "shopify://shop_images/ChatGPT_Image_Jul_30_2025_09_50_11_PM_2.png",
+            "flavor_name": "vanilla"
           }
         },
-        "button": {
-          "type": "buttons",
+        "ingredient_fnj3Ln": {
+          "type": "ingredient",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "parent_product": "product_UGyXt4",
+            "ingredient_image": "shopify://shop_images/ChatGPT_Image_Aug_19_2025_07_51_43_PM_2.png",
+            "ingredient_name": "Crunchy Pretzels"
+          }
+        },
+        "ingredient_cyinKD": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_UGyXt4",
+            "ingredient_image": "shopify://shop_images/ChatGPT_Image_Aug_19_2025_07_51_43_PM_3.png",
+            "ingredient_name": "White Chocolate Coating"
+          }
+        },
+        "ingredient_DzH9nb": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_UGyXt4",
+            "ingredient_image": "shopify://shop_images/ChatGPT_Image_Aug_19_2025_07_51_43_PM_1.png",
+            "ingredient_name": "Salty Peanuts"
+          }
+        },
+        "ingredient_3CyztD": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_UGyXt4",
+            "ingredient_image": "shopify://shop_images/ChatGPT_Image_Aug_19_2025_07_51_43_PM_3_1.png",
+            "ingredient_name": "Corn Squares"
+          }
+        },
+        "product_96zmKN": {
+          "type": "product",
+          "settings": {
+            "product_name": "PEANUT BUTTER & CHOCOLATE",
+            "product_icon": "shopify://shop_images/Peanut_Butter-Bag.png",
+            "center_image": "shopify://shop_images/ChatGPT_Image_Jul_30_2025_09_43_04_PM_2_bdc6b7cf-bc50-4737-89f8-3a7f7c77be09.png",
+            "flavor_name": "PEANUT BUTTER & CHOCOLATE"
+          }
+        },
+        "ingredient_kebKyW": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_96zmKN",
+            "ingredient_image": "shopify://shop_images/ChatGPT_Image_Aug_19_2025_08_34_20_PM_1.png",
+            "ingredient_name": "MILK CHOCOLATE DRIZZLE"
+          }
+        },
+        "ingredient_Nti83D": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_96zmKN",
+            "ingredient_image": "shopify://shop_images/ChatGPT_Image_Aug_19_2025_07_51_43_PM_2.png",
+            "ingredient_name": "Pretzels"
+          }
+        },
+        "ingredient_WhYfkF": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_96zmKN",
+            "ingredient_image": "shopify://shop_images/ChatGPT_Image_Aug_19_2025_07_51_43_PM_3_1.png",
+            "ingredient_name": "Corn Squares"
+          }
+        },
+        "ingredient_j79jJm": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_96zmKN",
+            "ingredient_image": "shopify://shop_images/ChatGPT_Image_Aug_19_2025_07_55_54_PM_4.png",
+            "ingredient_name": "Peanut Butter"
+          }
+        },
+        "ingredient_Nz8iN8": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_96zmKN",
+            "ingredient_image": "shopify://shop_images/ChatGPT_Image_Aug_19_2025_07_51_43_PM_1.png",
+            "ingredient_name": "Salty Peanuts"
+          }
+        },
+        "product_CAANYg": {
+          "type": "product",
+          "settings": {
+            "product_name": "APPLE CINNAMON",
+            "product_icon": "shopify://shop_images/Apple_Cinnamon-Bag.png",
+            "center_image": "shopify://shop_images/ChatGPT_Image_Jul_30_2025_09_52_09_PM_1_6fac9866-f4d8-422b-ace8-59bd85815180.png",
+            "flavor_name": "APPLE CINNAMON"
+          }
+        },
+        "ingredient_RRTyD6": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_CAANYg",
+            "ingredient_image": "shopify://shop_images/ChatGPT_Image_Aug_19_2025_07_51_43_PM_3_1.png",
+            "ingredient_name": "Corn Squares"
+          }
+        },
+        "ingredient_zWVH4R": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_CAANYg",
+            "ingredient_image": "shopify://shop_images/ChatGPT_Image_Aug_19_2025_07_51_43_PM_3.png",
+            "ingredient_name": "white chocolate coating"
+          }
+        },
+        "ingredient_GpFBGz": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_CAANYg",
+            "ingredient_image": "shopify://shop_images/ChatGPT_Image_Aug_19_2025_07_51_43_PM_2.png",
+            "ingredient_name": "CRUNCHY PRETZELS"
+          }
+        },
+        "ingredient_4Eet8m": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_CAANYg",
+            "ingredient_image": "shopify://shop_images/ChatGPT_Image_Aug_19_2025_07_55_54_PM_3.png",
+            "ingredient_name": "FREEZE DRIED APPLES"
+          }
+        },
+        "ingredient_cp8ETU": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_CAANYg",
+            "ingredient_image": "shopify://shop_images/ChatGPT_Image_Aug_19_2025_08_25_17_PM_2.png",
+            "ingredient_name": "GROUND CINNAMON"
+          }
+        },
+        "product_kzmp76": {
+          "type": "product",
+          "settings": {
+            "product_name": "s’mores",
+            "product_icon": "shopify://shop_images/Smores-Bag.png",
+            "center_image": "shopify://shop_images/ChatGPT_Image_Jul_30_2025_09_38_42_PM_2_349d00ee-d2c2-4ca9-b570-737841ea3145.png",
+            "flavor_name": "s’mores"
+          }
+        },
+        "ingredient_7pUqJB": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_kzmp76",
+            "ingredient_image": "shopify://shop_images/ChatGPT_Image_Aug_19_2025_07_51_43_PM_3_1.png",
+            "ingredient_name": "CORN SQUARES"
+          }
+        },
+        "ingredient_6X7ab9": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_kzmp76",
+            "ingredient_image": "shopify://shop_images/Graham_Crakers.png",
+            "ingredient_name": "GRAHAM CRACKERS"
+          }
+        },
+        "ingredient_9AAbqK": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_kzmp76",
+            "ingredient_image": "shopify://shop_images/ChatGPT_Image_Aug_19_2025_07_51_43_PM_2.png",
+            "ingredient_name": "CRUNCHY PRETZELS"
+          }
+        },
+        "ingredient_f6W3Ha": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_kzmp76",
+            "ingredient_image": "shopify://shop_images/Mini_Marshmallows.png",
+            "ingredient_name": "MINI MARSHMALLOWS"
+          }
+        },
+        "ingredient_QgGWij": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_kzmp76",
+            "ingredient_image": "shopify://shop_images/Chocolate_Drizzle.png",
+            "ingredient_name": "Chocolate Drizzle"
+          }
+        },
+        "product_QkYQGa": {
+          "type": "product",
+          "settings": {
+            "product_name": "strawberry",
+            "product_icon": "shopify://shop_images/Strawberry-Bag.png",
+            "center_image": "shopify://shop_images/Group_27.png",
+            "flavor_name": "strawberry"
+          }
+        },
+        "ingredient_JLwzGp": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_QkYQGa",
+            "ingredient_image": "shopify://shop_images/ChatGPT_Image_Aug_19_2025_07_51_43_PM_2.png",
+            "ingredient_name": "Crunchy Pretzels"
+          }
+        },
+        "ingredient_j833F4": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_QkYQGa",
+            "ingredient_image": "shopify://shop_images/ChatGPT_Image_Aug_19_2025_07_51_43_PM_3.png",
+            "ingredient_name": "white chocolate coating"
+          }
+        },
+        "ingredient_tYPygC": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_QkYQGa",
+            "ingredient_image": "shopify://shop_images/Dehydrated_Strawberries.png",
+            "ingredient_name": "dehydrated strawberries"
+          }
+        },
+        "ingredient_h6mJD3": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_QkYQGa",
+            "ingredient_image": "shopify://shop_images/ChatGPT_Image_Aug_19_2025_07_51_43_PM_3_1.png",
+            "ingredient_name": "corn squares"
+          }
+        },
+        "product_cqmgXY": {
+          "type": "product",
+          "settings": {
+            "product_name": "toffee",
+            "product_icon": "shopify://shop_images/Toffee-Bag.png",
+            "center_image": "shopify://shop_images/TOFFEE.png",
+            "flavor_name": "toffee"
+          }
+        },
+        "ingredient_nJxPdC": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_cqmgXY",
+            "ingredient_image": "shopify://shop_images/Toffee_Bits.png",
+            "ingredient_name": "TOFFEE BITS"
+          }
+        },
+        "ingredient_xqcF7E": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_cqmgXY",
+            "ingredient_image": "shopify://shop_images/ChatGPT_Image_Aug_19_2025_07_51_43_PM_3.png",
+            "ingredient_name": "white chocolate coating"
+          }
+        },
+        "ingredient_m8e936": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_cqmgXY",
+            "ingredient_image": "shopify://shop_images/ChatGPT_Image_Aug_19_2025_07_51_43_PM_2.png",
+            "ingredient_name": "CRUNCHY PRETZELS"
+          }
+        },
+        "ingredient_g7zqzP": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_cqmgXY",
+            "ingredient_image": "shopify://shop_images/ChatGPT_Image_Aug_19_2025_07_51_43_PM_3_1.png",
+            "ingredient_name": "corn squares"
+          }
+        },
+        "product_T7Mjhd": {
+          "type": "product",
+          "settings": {
+            "product_name": "peppermint",
+            "product_icon": "shopify://shop_images/Peppermint-Bag.png",
+            "center_image": "shopify://shop_images/peppermint.webp",
+            "flavor_name": "peppermint"
+          }
+        },
+        "ingredient_BnBDMf": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_T7Mjhd",
+            "ingredient_image": "shopify://shop_images/ChatGPT_Image_Aug_19_2025_07_51_43_PM_3.png",
+            "ingredient_name": "white chocolate coating"
+          }
+        },
+        "ingredient_wckKE7": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_T7Mjhd",
+            "ingredient_image": "shopify://shop_images/Peppermint_Bits.png",
+            "ingredient_name": "Peppermint Bits"
+          }
+        },
+        "ingredient_AqrD6h": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_T7Mjhd",
+            "ingredient_image": "shopify://shop_images/ChatGPT_Image_Aug_19_2025_07_51_43_PM_2.png",
+            "ingredient_name": "CRUNCHY PRETZELS"
+          }
+        },
+        "ingredient_QqpRVd": {
+          "type": "ingredient",
+          "settings": {
+            "parent_product": "product_T7Mjhd",
+            "ingredient_image": "shopify://shop_images/ChatGPT_Image_Aug_19_2025_07_51_43_PM_3_1.png",
+            "ingredient_name": "corn squares"
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "product_UGyXt4",
+        "ingredient_fnj3Ln",
+        "ingredient_cyinKD",
+        "ingredient_DzH9nb",
+        "ingredient_3CyztD",
+        "product_96zmKN",
+        "ingredient_kebKyW",
+        "ingredient_Nti83D",
+        "ingredient_WhYfkF",
+        "ingredient_j79jJm",
+        "ingredient_Nz8iN8",
+        "product_CAANYg",
+        "ingredient_RRTyD6",
+        "ingredient_zWVH4R",
+        "ingredient_GpFBGz",
+        "ingredient_4Eet8m",
+        "ingredient_cp8ETU",
+        "product_kzmp76",
+        "ingredient_7pUqJB",
+        "ingredient_6X7ab9",
+        "ingredient_9AAbqK",
+        "ingredient_f6W3Ha",
+        "ingredient_QgGWij",
+        "product_QkYQGa",
+        "ingredient_JLwzGp",
+        "ingredient_j833F4",
+        "ingredient_tYPygC",
+        "ingredient_h6mJD3",
+        "product_cqmgXY",
+        "ingredient_nJxPdC",
+        "ingredient_xqcF7E",
+        "ingredient_m8e936",
+        "ingredient_g7zqzP",
+        "product_T7Mjhd",
+        "ingredient_BnBDMf",
+        "ingredient_wckKE7",
+        "ingredient_AqrD6h",
+        "ingredient_QqpRVd"
       ],
+      "name": "Ingredients Showcase",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "image_behavior": "none",
-        "desktop_content_position": "bottom-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "scheme-3",
-        "stack_images_on_mobile": false,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
-      }
-    },
-    "featured_collection": {
-      "type": "featured-collection",
-      "settings": {
-        "collection": "all",
-        "products_to_show": 8,
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 4,
-        "enable_desktop_slider": false,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 44,
-        "padding_bottom": 36
+        "section_title": "Simple and recognizable ingredients",
+        "container_width": 1400,
+        "bg_color": "#fef3f3",
+        "title_color": "#9b3462",
+        "wave_color": "#fde8e6"
       }
     },
     "product_bundles_G6yDni": {
@@ -175,8 +472,7 @@
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection",
+    "ingredients_section_ibg89T",
     "product_bundles_G6yDni"
   ]
 }
