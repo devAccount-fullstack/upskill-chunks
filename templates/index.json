@@ -38,33 +38,32 @@
       "settings": {
         "image_overlay_opacity": 40,
         "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
         "image_behavior": "none",
+        "desktop_content_position": "bottom-center",
         "desktop_content_alignment": "center",
+        "show_text_box": false,
         "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
         "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
         "show_text_below": false
       }
     },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
+        "collection": "all",
+        "products_to_show": 8,
         "title": "Featured products",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
         "columns_desktop": 4,
-        "color_scheme": "scheme-1",
+        "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
+        "color_scheme": "scheme-1",
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
@@ -72,13 +71,112 @@
         "show_rating": false,
         "quick_add": "none",
         "columns_mobile": "2",
+        "swipe_on_mobile": false,
         "padding_top": 44,
         "padding_bottom": 36
+      }
+    },
+    "product_bundles_G6yDni": {
+      "type": "product-bundles",
+      "blocks": {
+        "product_card_KCHBqN": {
+          "type": "product_card",
+          "settings": {
+            "card_size": "large",
+            "product_image": "shopify://shop_images/Updated_PB_C_2.webp",
+            "product_image_hover": "shopify://shop_images/PBC_4.25oz_4c5ecf17-0849-4b20-a4f9-b6846dc64eb4.webp",
+            "product_title": "Peanut Butter & Chocolate Bundle",
+            "product_description": "Each cluster is handmade with quality ingredients and that homemade touch you can truly taste.",
+            "product_price": "$120",
+            "product_url": "",
+            "show_rating": true,
+            "rating_value": 4.5
+          }
+        },
+        "product_card_4gB8cC": {
+          "type": "product_card",
+          "settings": {
+            "card_size": "regular",
+            "product_image": "shopify://shop_images/e91d03a52c7f0a324c172081f87efa58571089d3.png",
+            "product_image_hover": "shopify://shop_images/Toffee_4.25oz_9a10f1d6-fc5e-4cbb-addf-7244c3c4fc20.webp",
+            "product_title": "Toffee Snack Pack Bundle",
+            "product_description": "Each cluster is handmade with quality ingredients and that homemade touch you can truly taste.",
+            "product_price": "$85",
+            "product_url": "",
+            "show_rating": true,
+            "rating_value": 4.5
+          }
+        },
+        "product_card_YENCmA": {
+          "type": "product_card",
+          "settings": {
+            "card_size": "regular",
+            "product_image": "shopify://shop_images/b09754feba65f9a54604c87338ca10dc8ae92c24.png",
+            "product_image_hover": "shopify://shop_images/APL_CIN_4.25oz_0550d401-a087-4362-923e-a0c40615d169.webp",
+            "product_title": "Apple Cinnamon Snack Pack Bundle",
+            "product_description": "Each cluster is handmade with quality ingredients and that homemade touch you can truly taste.",
+            "product_price": "$85",
+            "product_url": "",
+            "show_rating": true,
+            "rating_value": 4.5
+          }
+        },
+        "product_card_LncHXF": {
+          "type": "product_card",
+          "settings": {
+            "card_size": "regular",
+            "product_image": "shopify://shop_images/605fe674a897f1c4353f09e1c8174f899e321d69.png",
+            "product_image_hover": "shopify://shop_images/S_MORES_4.25oz_180c81a8-911c-4b96-832a-075fe0b94114.webp",
+            "product_title": "S'mores Snack Pack Bundle",
+            "product_description": "Each cluster is handmade with quality ingredients and that homemade touch you can truly taste.",
+            "product_price": "$85",
+            "product_url": "",
+            "show_rating": true,
+            "rating_value": 4.5
+          }
+        },
+        "product_card_x9DEJG": {
+          "type": "product_card",
+          "settings": {
+            "card_size": "regular",
+            "product_image": "shopify://shop_images/745c320badbed141aedbc8cc7070ee7bb181b038.png",
+            "product_image_hover": "shopify://shop_images/STRAWBERRY_4.25oz_27f5105e-70d2-4b92-984b-811e53a66a70.webp",
+            "product_title": "Strawberry Snack Pack Bundle",
+            "product_description": "Each cluster is handmade with quality ingredients and that homemade touch you can truly taste.",
+            "product_price": "$85",
+            "product_url": "",
+            "show_rating": true,
+            "rating_value": 4
+          }
+        }
+      },
+      "block_order": [
+        "product_card_KCHBqN",
+        "product_card_4gB8cC",
+        "product_card_YENCmA",
+        "product_card_LncHXF",
+        "product_card_x9DEJG"
+      ],
+      "name": "Product Bundles",
+      "settings": {
+        "section_title": "Shop by Bundle",
+        "container_width": 1200,
+        "padding_top": 128,
+        "padding_bottom": 96,
+        "padding_horizontal": 0,
+        "bg_gradient_start": "#fed2d7",
+        "bg_gradient_end": "#fef3f3",
+        "title_color": "#9b3462",
+        "text_color": "#9b3462",
+        "card_bg_color": "#fde8e6",
+        "image_bg_color": "#fee7e9",
+        "content_bg_color": "#fef3f3"
       }
     }
   },
   "order": [
     "image_banner",
-    "featured_collection"
+    "featured_collection",
+    "product_bundles_G6yDni"
   ]
 }

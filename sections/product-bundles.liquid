@@ -1,0 +1,848 @@
+<section class="product-bundle-section">
+  <div class="content-container">
+    {% if section.settings.section_title != blank %}
+      <h2 class="section-title">{{ section.settings.section_title }}</h2>
+    {% endif %}
+
+    <div class="products-grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'product_card' and block.settings.card_size == 'large' %}
+          <div class="product-card product-card--large" {{ block.shopify_attributes }}>
+            {% if block.settings.product_url != blank %}
+              <a href="{{ block.settings.product_url }}" class="product-card__link">
+            {% endif %}
+
+            <div class="product-card__image-wrapper">
+              {% if block.settings.product_image %}
+                {{
+                  block.settings.product_image
+                  | image_url: width: 800
+                  | image_tag:
+                    class: 'product-card__image product-card__image--default',
+                    loading: 'lazy',
+                    alt: block.settings.product_title
+                }}
+              {% else %}
+                <div class="product-card__placeholder">
+                  {{ 'product-1' | placeholder_svg_tag }}
+                </div>
+              {% endif %}
+
+              {% if block.settings.product_image_hover %}
+                {{
+                  block.settings.product_image_hover
+                  | image_url: width: 800
+                  | image_tag:
+                    class: 'product-card__image product-card__image--hover',
+                    loading: 'lazy',
+                    alt: block.settings.product_title
+                }}
+              {% endif %}
+            </div>
+
+            <div class="product-card__content">
+              <div class="content-wave">
+                <svg width="288" height="16" viewBox="0 0 288 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M-456 3.69224C-448 -1.23075 -440 -1.23075 -432 3.69224C-424 8.61522 -416 8.61522 -408 3.69225C-400 -1.23073 -392 -1.23073 -384 3.69225C-376 8.61522 -368 8.61522 -360 3.69226C-352 -1.23072 -344 -1.23072 -336 3.69226C-328 8.61522 -320 8.61522 -312 3.69226C-304 -1.23072 -296 -1.23071 -288 3.69227C-280 8.61522 -272 8.61522 -264 3.69227C-256 -1.23071 -248 -1.2307 -240 3.69228C-232 8.61522 -224 8.61522 -216 3.69228C-208 -1.2307 -200 -1.2307 -192 3.69229C-184 8.61522 -176 8.61522 -168 3.69229C-160 -1.23069 -152 -1.23069 -144 3.69229C-136 8.61532 -128 8.61532 -120 3.6923C-112 -1.23068 -104 -1.23068 -96 3.6923C-88 8.61532 -80 8.61532 -72 3.6923C-64 -1.23067 -56 -1.23067 -48 3.69231C-40 8.61532 -32 8.61532 -24 3.69231C-16 -1.23066 -8 -1.23066 0 3.69232C8 8.61532 16 8.61532 24 3.69232C32 -1.23066 40 -1.23066 48 3.69233C56 8.61532 64 8.61532 72 3.69233C80 -1.23065 88 -1.23065 96 3.69233C104 8.61532 112 8.61532 120 3.69234C128 -1.23064 136 -1.23064 144 3.69234C152 8.61532 160 8.61532 168 3.69235C176 -1.23063 184 -1.23063 192 3.69235C200 8.61532 208 8.61532 216 3.69236C224 -1.23062 232 -1.23062 240 3.69236C248 8.61532 256 8.61532 264 3.69236C272 -1.23062 280 -1.23062 288 3.69237C296 8.61532 304 8.61532 312 3.69237C320 -1.23061 328 -1.23061 336 3.69239C344 8.61532 352 8.61532 360 3.69239C368 -1.2306 376 -1.2306 384 3.69239C392 8.61532 400 8.61532 408 3.6924C416 -1.23059 424 -1.23059 432 3.6924C440 8.61543 448 8.61543 456 3.69241C464 -1.23057 472 -1.23057 480 3.69241C488 8.61543 496 8.61543 504 3.69241C512 -1.23057 520 -1.23056 528 3.69242C536 8.61543 544 8.61543 552 3.69242C560 -1.23056 568 -1.23055 576 3.69243C584 8.61543 592 8.61543 600 3.69243C608 -1.23055 616 -1.23055 624 3.69244C632 8.61543 640 8.61543 648 3.69244C656 -1.23054 664 -1.23054 672 3.69244C680 8.61543 688 8.61543 696 3.69245C704 -1.23053 712 -1.23053 720 3.69245C728 8.61543 736 8.61543 744 3.69246V16H-456V3.69224Z" fill="#FEF3F3"/>
+                </svg>
+              </div>
+              <div class="product-card__header">
+                <h3 class="product-card__title">{{ block.settings.product_title }}</h3>
+
+                {% if block.settings.show_rating %}
+                  <div class="product-card__rating">
+                    <div class="star-rating">
+                      {% assign rating = block.settings.rating_value %}
+                      {% assign full_stars = rating | floor %}
+
+                      {% for i in (1..full_stars) %}
+                        <span class="star star--full">★</span>
+                      {% endfor %}
+
+                      {% assign decimal_part = rating | modulo: 1 %}
+                      {% if decimal_part >= 0.5 %}
+                        <span class="star star--half">
+                          <span class="star-half-inner">★</span>
+                          <span class="star-empty-bg">★</span>
+                        </span>
+                      {% endif %}
+
+                      {% assign total_filled = full_stars %}
+                      {% if decimal_part >= 0.5 %}
+                        {% assign total_filled = total_filled | plus: 1 %}
+                      {% endif %}
+                      {% assign empty_stars = 5 | minus: total_filled %}
+
+                      {% for i in (1..empty_stars) %}
+                        <span class="star star--empty">★</span>
+                      {% endfor %}
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="product-card__footer">
+                {% if block.settings.product_description != blank %}
+                  <p class="product-card__description">{{ block.settings.product_description }}</p>
+                {% endif %}
+
+                {% if block.settings.product_price != blank %}
+                  <div class="product-card__price">
+                    <span class="price">{{ block.settings.product_price }}</span>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            {% if block.settings.product_url != blank %}
+              </a>
+            {% endif %}
+          </div>
+          {% break %}
+        {% endif %}
+      {% endfor %}
+
+      <div class="products-grid-right">
+        {% for block in section.blocks %}
+          {% if block.type == 'product_card' and block.settings.card_size != 'large' %}
+            <div class="product-card" {{ block.shopify_attributes }}>
+              {% if block.settings.product_url != blank %}
+                <a href="{{ block.settings.product_url }}" class="product-card__link">
+              {% endif %}
+
+              <div class="product-card__image-wrapper">
+                {% if block.settings.product_image %}
+                  {{
+                    block.settings.product_image
+                    | image_url: width: 400
+                    | image_tag:
+                      class: 'product-card__image product-card__image--default',
+                      loading: 'lazy',
+                      alt: block.settings.product_title
+                  }}
+                {% else %}
+                  <div class="product-card__placeholder">
+                    {{ 'product-1' | placeholder_svg_tag }}
+                  </div>
+                {% endif %}
+
+                {% if block.settings.product_image_hover %}
+                  {{
+                    block.settings.product_image_hover
+                    | image_url: width: 400
+                    | image_tag:
+                      class: 'product-card__image product-card__image--hover',
+                      loading: 'lazy',
+                      alt: block.settings.product_title
+                  }}
+                {% endif %}
+              </div>
+
+              <div class="product-card__content">
+                <div class="content-wave">
+                  <svg width="288" height="16" viewBox="0 0 288 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M-456 3.69224C-448 -1.23075 -440 -1.23075 -432 3.69224C-424 8.61522 -416 8.61522 -408 3.69225C-400 -1.23073 -392 -1.23073 -384 3.69225C-376 8.61522 -368 8.61522 -360 3.69226C-352 -1.23072 -344 -1.23072 -336 3.69226C-328 8.61522 -320 8.61522 -312 3.69226C-304 -1.23072 -296 -1.23071 -288 3.69227C-280 8.61522 -272 8.61522 -264 3.69227C-256 -1.23071 -248 -1.2307 -240 3.69228C-232 8.61522 -224 8.61522 -216 3.69228C-208 -1.2307 -200 -1.2307 -192 3.69229C-184 8.61522 -176 8.61522 -168 3.69229C-160 -1.23069 -152 -1.23069 -144 3.69229C-136 8.61532 -128 8.61532 -120 3.6923C-112 -1.23068 -104 -1.23068 -96 3.6923C-88 8.61532 -80 8.61532 -72 3.6923C-64 -1.23067 -56 -1.23067 -48 3.69231C-40 8.61532 -32 8.61532 -24 3.69231C-16 -1.23066 -8 -1.23066 0 3.69232C8 8.61532 16 8.61532 24 3.69232C32 -1.23066 40 -1.23066 48 3.69233C56 8.61532 64 8.61532 72 3.69233C80 -1.23065 88 -1.23065 96 3.69233C104 8.61532 112 8.61532 120 3.69234C128 -1.23064 136 -1.23064 144 3.69234C152 8.61532 160 8.61532 168 3.69235C176 -1.23063 184 -1.23063 192 3.69235C200 8.61532 208 8.61532 216 3.69236C224 -1.23062 232 -1.23062 240 3.69236C248 8.61532 256 8.61532 264 3.69236C272 -1.23062 280 -1.23062 288 3.69237C296 8.61532 304 8.61532 312 3.69237C320 -1.23061 328 -1.23061 336 3.69239C344 8.61532 352 8.61532 360 3.69239C368 -1.2306 376 -1.2306 384 3.69239C392 8.61532 400 8.61532 408 3.6924C416 -1.23059 424 -1.23059 432 3.6924C440 8.61543 448 8.61543 456 3.69241C464 -1.23057 472 -1.23057 480 3.69241C488 8.61543 496 8.61543 504 3.69241C512 -1.23057 520 -1.23056 528 3.69242C536 8.61543 544 8.61543 552 3.69242C560 -1.23056 568 -1.23055 576 3.69243C584 8.61543 592 8.61543 600 3.69243C608 -1.23055 616 -1.23055 624 3.69244C632 8.61543 640 8.61543 648 3.69244C656 -1.23054 664 -1.23054 672 3.69244C680 8.61543 688 8.61543 696 3.69245C704 -1.23053 712 -1.23053 720 3.69245C728 8.61543 736 8.61543 744 3.69246V16H-456V3.69224Z" fill="#FEF3F3"/>
+                  </svg>
+                </div>
+                <div class="product-card__header">
+                  <h3 class="product-card__title">{{ block.settings.product_title }}</h3>
+
+                  {% if block.settings.show_rating %}
+                    <div class="product-card__rating">
+                      <div class="star-rating">
+                        {% assign rating = block.settings.rating_value %}
+                        {% assign full_stars = rating | floor %}
+
+                        {% for i in (1..full_stars) %}
+                          <span class="star star--full">★</span>
+                        {% endfor %}
+
+                        {% assign decimal_part = rating | modulo: 1 %}
+                        {% if decimal_part >= 0.5 %}
+                          <span class="star star--half">
+                            <span class="star-half-inner">★</span>
+                            <span class="star-empty-bg">★</span>
+                          </span>
+                        {% endif %}
+
+                        {% assign total_filled = full_stars %}
+                        {% if decimal_part >= 0.5 %}
+                          {% assign total_filled = total_filled | plus: 1 %}
+                        {% endif %}
+                        {% assign empty_stars = 5 | minus: total_filled %}
+
+                        {% for i in (1..empty_stars) %}
+                          <span class="star star--empty">★</span>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="product-card__footer">
+                  {% if block.settings.product_description != blank %}
+                    <p class="product-card__description">{{ block.settings.product_description }}</p>
+                  {% endif %}
+
+                  {% if block.settings.product_price != blank %}
+                    <div class="product-card__price">
+                      <span class="price">{{ block.settings.product_price }}</span>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+
+              {% if block.settings.product_url != blank %}
+                </a>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% style %}
+  .product-bundle-section {
+    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_horizontal }}px {{ section.settings.padding_bottom }}px;
+    background: linear-gradient(180deg, {{ section.settings.bg_gradient_start }} 0%, {{ section.settings.bg_gradient_end }} 100%);
+  }
+
+  .content-container {
+    max-width: {{ section.settings.container_width }}px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .section-title {
+    font-family: 'True North Black', 'Arial Black', Impact, sans-serif;
+    font-weight: 900;
+    font-size: 72px;
+    line-height: 90%;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    color: {{ section.settings.title_color }};
+    text-align: center;
+    margin: 0;
+  }
+
+  .products-grid {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+  }
+  .product-card {
+    cursor: pointer;
+  }
+
+  .product-card--large {
+    width: 592px;
+    height: 789px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    background: {{ section.settings.card_bg_color }};
+    box-shadow: 0px 8px 20px rgba(75, 10, 6, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .products-grid-right {
+    display: grid;
+    grid-template-columns: 285px 285px;
+    grid-template-rows: 386.5px 386.5px;
+    gap: 16px;
+  }
+
+  .products-grid-right .product-card {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    background: {{ section.settings.card_bg_color }};
+    box-shadow: 0px 8px 20px rgba(75, 10, 6, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .product-card:hover,
+  .product-card--large:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 12px 28px rgba(75, 10, 6, 0.15);
+  }
+
+  .product-card__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .product-card__image-wrapper {
+    position: relative;
+    width: 100%;
+    background: {{ section.settings.image_bg_color }};
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .products-grid-right .product-card__image-wrapper {
+    height: calc(100% - 60px);
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .product-card--large .product-card__image-wrapper {
+    height: calc(100% - 60px);
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .products-grid-right .product-card:hover .product-card__image-wrapper {
+    height: calc(100% - 235px);
+  }
+
+  .product-card--large:hover .product-card__image-wrapper {
+    height: calc(100% - 130px);
+  }
+
+  .product-card__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.6s ease, transform 0.5s ease;
+  }
+
+  .product-card__image--default {
+    opacity: 1;
+    z-index: 1;
+    transform: scale(1);
+  }
+
+  .product-card__image--hover {
+    opacity: 0;
+    z-index: 2;
+    transform: scale(1);
+  }
+
+  .product-card:hover .product-card__image--default,
+  .product-card--large:hover .product-card__image--default {
+    opacity: 0;
+  }
+
+  .product-card:hover .product-card__image--hover,
+  .product-card--large:hover .product-card__image--hover {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  .product-card:hover .product-card__image--default:only-child,
+  .product-card--large:hover .product-card__image--default:only-child {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  .product-card:hover .product-card__image,
+  .product-card--large:hover .product-card__image {
+    transform: scale(1.05);
+  }
+
+  .product-card__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-card__content {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    gap: 12px;
+    background: {{ section.settings.content_bg_color }};
+    flex-shrink: 0;
+    overflow: visible;
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+  }
+
+  .content-wave {
+    position: absolute;
+    top: -12px;
+    left: 0;
+    width: 100%;
+    height: 16px;
+    z-index: 1;
+    overflow: visible;
+  }
+
+  .content-wave svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .product-card--large .content-wave {
+    top: -20px;
+    height: 20px;
+  }
+
+  .products-grid-right .product-card:hover .product-card__content {
+    height: 235px;
+  }
+
+  .product-card--large .product-card__content {
+    height: 60px;
+    padding: 16px 16px 24px;
+  }
+
+  .product-card--large:hover .product-card__content {
+    height: 130px;
+  }
+
+  .product-card__header {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .product-card--large .product-card__header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .product-card__title {
+    font-family: 'True North Black', 'Arial Black', Impact, sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: {{ section.settings.title_color }};
+    margin: 0;
+    margin-top: -8px;
+  }
+
+  .product-card--large .product-card__title {
+    flex: 1;
+  }
+
+  .product-card:hover .product-card__title,
+  .product-card--large:hover .product-card__title {
+    text-decoration: underline;
+  }
+
+  .product-card__rating {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
+    flex-shrink: 0;
+  }
+
+  .product-card:hover .product-card__rating,
+  .product-card--large:hover .product-card__rating {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .star-rating {
+    display: flex;
+    gap: 5.31px;
+  }
+
+  .star {
+    width: 18.49px;
+    height: 18.49px;
+    color: #FFC633;
+    font-size: 18.49px;
+    line-height: 1;
+  }
+
+  .star--full {
+    color: #FFC633;
+  }
+
+  .star--empty {
+    color: #FFC633;
+    opacity: 0.25;
+  }
+
+  .star--half {
+    position: relative;
+    color: #FFC633;
+  }
+
+  .star-half-inner {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    overflow: hidden;
+  }
+
+  .star-empty-bg {
+    color: #FFC633;
+    opacity: 0.25;
+  }
+
+  .product-card__footer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease 0.2s, transform 0.3s ease 0.2s;
+  }
+
+  .product-card--large .product-card__footer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .product-card:hover .product-card__footer,
+  .product-card--large:hover .product-card__footer {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .product-card__description {
+    font-family: 'Open Sauce Sans', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    color: {{ section.settings.text_color }};
+    margin: 0;
+  }
+
+  .product-card--large .product-card__description {
+    flex: 1;
+  }
+
+  .product-card__price {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .price {
+    font-family: 'Open Sauce Sans', sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 32px;
+    color: {{ section.settings.title_color }};
+  }
+
+  @media screen and (max-width: 1200px) {
+    .products-grid {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .product-card--large {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .products-grid-right {
+      grid-template-columns: repeat(2, 1fr);
+      width: 100%;
+      max-width: 600px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .section-title {
+      font-size: 42px;
+    }
+
+    .products-grid-right {
+      grid-template-columns: 1fr;
+    }
+
+    .product-card__content {
+      height: auto !important;
+    }
+
+    .product-card__image-wrapper {
+      height: 250px !important;
+    }
+
+    .product-card__rating,
+    .product-card__footer {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .product-card--large .product-card__header,
+    .product-card--large .product-card__footer {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Product Bundles",
+  "tag": "section",
+  "class": "section-product-bundles",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Content"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Shop by Bundle"
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "min": 1000,
+      "max": 1440,
+      "step": 20,
+      "unit": "px",
+      "label": "Container Max Width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 8,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 128
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 8,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Horizontal",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Color Settings"
+    },
+    {
+      "type": "color",
+      "id": "bg_gradient_start",
+      "label": "Background Gradient Start",
+      "default": "#FED2D7"
+    },
+    {
+      "type": "color",
+      "id": "bg_gradient_end",
+      "label": "Background Gradient End",
+      "default": "#FEF3F3"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#9B3462"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#9B3462"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card Background Color",
+      "default": "#FDE8E6"
+    },
+    {
+      "type": "color",
+      "id": "image_bg_color",
+      "label": "Image Background Color",
+      "default": "#FEE7E9"
+    },
+    {
+      "type": "color",
+      "id": "content_bg_color",
+      "label": "Content Background Color",
+      "default": "#FEF3F3"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_card",
+      "name": "Product Card",
+      "settings": [
+        {
+          "type": "select",
+          "id": "card_size",
+          "label": "Card Size",
+          "options": [
+            {
+              "value": "regular",
+              "label": "Regular (4 columns)"
+            },
+            {
+              "value": "large",
+              "label": "Large Featured (6 columns)"
+            }
+          ],
+          "default": "regular",
+          "info": "Large cards take up 6 columns, regular cards take 4 columns"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_image_hover",
+          "label": "Product Image (Hover)",
+          "info": "Optional: Image shown on hover"
+        },
+        {
+          "type": "text",
+          "id": "product_title",
+          "label": "Product Title",
+          "default": "Product Bundle Name"
+        },
+        {
+          "type": "textarea",
+          "id": "product_description",
+          "label": "Product Description",
+          "default": "Each cluster is handmade with quality ingredients and that homemade touch you can truly taste.",
+          "info": "Keep it brief, 2-3 lines maximum"
+        },
+        {
+          "type": "text",
+          "id": "product_price",
+          "label": "Product Price",
+          "default": "$120",
+          "info": "Include currency symbol"
+        },
+        {
+          "type": "url",
+          "id": "product_url",
+          "label": "Product URL",
+          "info": "Link to product page"
+        },
+        {
+          "type": "header",
+          "content": "Rating Settings"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_rating",
+          "label": "Show Star Rating",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "rating_value",
+          "min": 0,
+          "max": 5,
+          "step": 0.5,
+          "label": "Rating Value",
+          "default": 4,
+          "info": "Star rating out of 5"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Bundles",
+      "category": "Products",
+      "blocks": [
+        {
+          "type": "product_card",
+          "settings": {
+            "card_size": "large",
+            "product_title": "Peanut Butter & Chocolate Bundle",
+            "product_description": "Each cluster is handmade with quality ingredients and that homemade touch you can truly taste.",
+            "product_price": "$120",
+            "rating_value": 4
+          }
+        },
+        {
+          "type": "product_card",
+          "settings": {
+            "product_title": "Toffee Snack Pack Bundle",
+            "product_description": "Each cluster is handmade with quality ingredients and that homemade touch you can truly taste.",
+            "product_price": "$85",
+            "rating_value": 4
+          }
+        },
+        {
+          "type": "product_card",
+          "settings": {
+            "product_title": "Apple Cinnamon Snack Pack Bundle",
+            "product_description": "Delicious apple cinnamon flavor in every bite.",
+            "product_price": "$85",
+            "rating_value": 4.5
+          }
+        },
+        {
+          "type": "product_card",
+          "settings": {
+            "product_title": "S'mores Snack Pack Bundle",
+            "product_description": "Classic campfire flavor you'll love.",
+            "product_price": "$85",
+            "rating_value": 4.5
+          }
+        },
+        {
+          "type": "product_card",
+          "settings": {
+            "product_title": "Strawberry Snack Pack Bundle",
+            "product_description": "Sweet strawberry goodness in every cluster.",
+            "product_price": "$85",
+            "rating_value": 4
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
