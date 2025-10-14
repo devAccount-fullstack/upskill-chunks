@@ -386,6 +386,23 @@
         "title_color": "#9b3462"
       }
     },
+    "cta_story_JcEJB4": {
+      "type": "cta-story",
+      "name": "Story Section",
+      "settings": {
+        "background_text": "behind every great recipe, there’s a grandmother",
+        "story_title": "Behind every great recipe, there is a grandma",
+        "story_text": "We call ours \"Cuddy\". Cuddy came up with a unique blend of gourmet ingredients that forms the foundation of these delightful snack clusters. Today, as a testament to our commitment to quality, we take pride in being a family-owned business, handcrafting each batch of our delicious snacks with utmost care and devotion.\n\nIt all began with holiday cheer, tummies full of homemade goods, and one heck of a great recipe. Brad and Katie Cocklin founded Chunk Nibbles in 2018 based on their passion to spread joy and to share a secret family recipe with the rest of the world.",
+        "story_image": "shopify://shop_images/a1393204a51ada0b886827700fe6c13569f8bdd3.png",
+        "button_text": "Read more",
+        "button_url": "shopify://pages/about",
+        "bg_color": "#ffb1bb",
+        "card_bg_color": "#fde8e6",
+        "text_color": "#9b3462",
+        "background_text_color": "#fde8e6",
+        "wave_color": "#fed2d7"
+      }
+    },
     "product_bundles_G6yDni": {
       "type": "product-bundles",
       "blocks": {
@@ -486,6 +503,7 @@
   },
   "order": [
     "ingredients_section_ibg89T",
+    "cta_story_JcEJB4",
     "product_bundles_G6yDni"
   ]
 }
