@@ -1,0 +1,757 @@
+<section class="ingredients-section">
+  <div class="ingredients-container">
+    {% if section.settings.section_title != blank %}
+      <h2 class="ingredients-title">{{ section.settings.section_title }}</h2>
+    {% endif %}
+
+    <div class="ingredients-content">
+      <div class="ingredients-nav-wrapper">
+        <div class="ingredients-nav">
+          {% for block in section.blocks %}
+            {% if block.type == 'product' %}
+              <button
+                class="ingredient-nav-item {% if forloop.first %}active{% endif %}"
+                data-product="{{ block.id }}"
+                data-gradient-start="{{ block.settings.gradient_start }}"
+                data-gradient-end="{{ block.settings.gradient_end }}"
+                {{ block.shopify_attributes }}
+              >
+                <span class="ingredient-nav-circle">
+                  {% if block.settings.product_icon %}
+                    {{
+                      block.settings.product_icon
+                      | image_url: width: 100
+                      | image_tag: class: 'ingredient-icon', alt: block.settings.product_name
+                    }}
+                  {% endif %}
+                </span>
+              </button>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="products-wrapper">
+        {% for block in section.blocks %}
+          {% if block.type == 'product' %}
+            <div class="product-content {% if forloop.first %}active{% endif %}" data-product-content="{{ block.id }}">
+              <div class="ingredients-layout">
+                <div class="ingredients-grid">
+                  {% assign ingredient_count = 0 %}
+
+                  {% for ingredient_block in section.blocks %}
+                    {% if ingredient_block.type == 'ingredient'
+                      and ingredient_block.settings.parent_product == block.id
+                    %}
+                      {% assign ingredient_count = ingredient_count | plus: 1 %}
+                    {% endif %}
+                  {% endfor %}
+
+                  {% assign current_index = 0 %}
+
+                  {% for ingredient_block in section.blocks %}
+                    {% if ingredient_block.type == 'ingredient'
+                      and ingredient_block.settings.parent_product == block.id
+                    %}
+                      {% assign current_index = current_index | plus: 1 %}
+                      {% assign position = 'left' %}
+
+                      {% if ingredient_count == 4 %}
+                        {% assign is_even = current_index | modulo: 2 %}
+                        {% if is_even == 0 %}
+                          {% assign position = 'right' %}
+                        {% endif %}
+                      {% elsif ingredient_count == 5 %}
+                        {% if current_index == 2 or current_index == 4 %}
+                          {% assign position = 'right' %}
+                        {% elsif current_index == 5 %}
+                          {% assign position = 'bottom-right' %}
+                        {% endif %}
+                      {% else %}
+                        {% assign is_even = current_index | modulo: 2 %}
+                        {% if is_even == 0 %}
+                          {% assign position = 'right' %}
+                        {% endif %}
+                      {% endif %}
+
+                      <div
+                        class="ingredient-item ingredient-item--{{ position }}"
+                        data-position="{{ current_index }}"
+                        {{ ingredient_block.shopify_attributes }}
+                      >
+                        <div class="ingredient-icon-wrapper">
+                          {% if ingredient_block.settings.ingredient_image %}
+                            {{
+                              ingredient_block.settings.ingredient_image
+                              | image_url: width: 72
+                              | image_tag: class: 'ingredient-image', alt: ingredient_block.settings.ingredient_name
+                            }}
+                          {% else %}
+                            <span class="ingredient-placeholder">🌾</span>
+                          {% endif %}
+                        </div>
+
+                        <h3 class="ingredient-name">{{ ingredient_block.settings.ingredient_name }}</h3>
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+
+                {% if block.settings.center_image %}
+                  <div class="ingredients-center-image">
+                    {{
+                      block.settings.center_image
+                      | image_url: width: 800
+                      | image_tag: loading: 'lazy', alt: block.settings.product_name
+                    }}
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="ingredients-flavor">
+                <h3 class="flavor-name">{{ block.settings.flavor_name | default: block.settings.product_name }}</h3>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="ingredients-wave ingredients-wave--top">
+    <svg width="1440" height="24" viewBox="0 0 1440 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 18.4616C9.6 25.8461 19.2 25.8461 28.8 18.4616C38.4 11.0772 48 11.0772 57.6 18.4616C67.2 25.8461 76.8 25.8461 86.4 18.4616C96 11.0772 105.6 11.0772 115.2 18.4616C124.8 25.8461 134.4 25.8461 144 18.4616C153.6 11.0772 163.2 11.0772 172.8 18.4616C182.4 25.8461 192 25.8461 201.6 18.4616C211.2 11.0772 220.8 11.0772 230.4 18.4616C240 25.8461 249.6 25.8461 259.2 18.4616C268.8 11.0772 278.4 11.0772 288 18.4616C297.6 25.8461 307.2 25.8461 316.8 18.4616C326.4 11.0772 336 11.0772 345.6 18.4616C355.2 25.846 364.8 25.846 374.4 18.4616C384 11.077 393.6 11.077 403.2 18.4615C412.8 25.846 422.4 25.846 432 18.4615C441.6 11.077 451.2 11.077 460.8 18.4615C470.4 25.846 480 25.846 489.6 18.4615C499.2 11.077 508.8 11.077 518.4 18.4615C528 25.846 537.6 25.846 547.2 18.4615C556.8 11.077 566.4 11.077 576 18.4615C585.6 25.846 595.2 25.846 604.8 18.4615C614.4 11.077 624 11.077 633.6 18.4615C643.2 25.846 652.8 25.846 662.4 18.4615C672 11.077 681.6 11.077 691.2 18.4615C700.8 25.846 710.4 25.846 720 18.4615C729.6 11.077 739.2 11.077 748.8 18.4615C758.4 25.8459 768 25.8459 777.6 18.4615C787.2 11.077 796.8 11.077 806.4 18.4615C816 25.8459 825.6 25.8459 835.2 18.4615C844.8 11.077 854.4 11.077 864 18.4615C873.6 25.8459 883.2 25.8459 892.8 18.4614C902.4 11.077 912 11.077 921.6 18.4614C931.2 25.8459 940.8 25.8459 950.4 18.4614C960 11.077 969.6 11.077 979.2 18.4614C988.8 25.8459 998.4 25.8459 1008 18.4614C1017.6 11.077 1027.2 11.077 1036.8 18.4614C1046.4 25.8459 1056 25.8459 1065.6 18.4614C1075.2 11.0769 1084.8 11.0769 1094.4 18.4614C1104 25.8459 1113.6 25.8459 1123.2 18.4614C1132.8 11.0769 1142.4 11.0769 1152 18.4614C1161.6 25.8459 1171.2 25.8458 1180.8 18.4614C1190.4 11.0769 1200 11.0769 1209.6 18.4614C1219.2 25.8458 1228.8 25.8458 1238.4 18.4614C1248 11.0769 1257.6 11.0769 1267.2 18.4614C1276.8 25.8458 1286.4 25.8458 1296 18.4613C1305.6 11.0769 1315.2 11.0769 1324.8 18.4613C1334.4 25.8458 1344 25.8458 1353.6 18.4613C1363.2 11.0769 1372.8 11.0769 1382.4 18.4613C1392 25.8458 1401.6 25.8458 1411.2 18.4613C1420.8 11.0769 1430.4 11.0769 1440 18.4613V0H0V18.4616Z" fill="#FDE8E6"/>
+    </svg>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const navItems = document.querySelectorAll('.ingredient-nav-item');
+    const productContents = document.querySelectorAll('.product-content');
+    const navWrapper = document.querySelector('.ingredients-nav-wrapper');
+
+    function updateNavStyles() {
+      navItems.forEach((nav) => {
+        const circle = nav.querySelector('.ingredient-nav-circle');
+
+        if (nav.classList.contains('active')) {
+          const gradientStart = nav.getAttribute('data-gradient-start') || '#FDE8E6';
+          const gradientEnd = nav.getAttribute('data-gradient-end') || '#FEF3F3';
+          circle.style.background = `linear-gradient(314.58deg, ${gradientStart} 0.36%, ${gradientEnd} 99.64%)`;
+        } else {
+          circle.style.background = '#FDE8E6';
+        }
+      });
+    }
+
+    function scrollToActive() {
+      if (window.innerWidth <= 768 && navWrapper) {
+        const activeItem = document.querySelector('.ingredient-nav-item.active');
+        if (activeItem) {
+          const scrollLeft = activeItem.offsetLeft - navWrapper.offsetWidth / 2 + activeItem.offsetWidth / 2;
+          navWrapper.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+        }
+      }
+    }
+
+    updateNavStyles();
+    scrollToActive();
+
+    navItems.forEach((nav) => {
+      nav.addEventListener('click', function () {
+        const productId = this.getAttribute('data-product');
+
+        navItems.forEach((n) => n.classList.remove('active'));
+        productContents.forEach((p) => p.classList.remove('active'));
+
+        this.classList.add('active');
+        const targetContent = document.querySelector(`[data-product-content="${productId}"]`);
+        if (targetContent) {
+          targetContent.classList.add('active');
+        }
+
+        updateNavStyles();
+        scrollToActive();
+      });
+    });
+  });
+</script>
+
+{% style %}
+  .ingredients-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 96px 24px 128px;
+    width: 100%;
+    background: {{ section.settings.bg_color }};
+    isolation: isolate;
+  }
+
+  .ingredients-container {
+    max-width: {{ section.settings.container_width }}px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 64px;
+  }
+
+  .ingredients-title {
+    font-family: 'True North Black', 'Arial Black', Impact, sans-serif;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 90%;
+    text-align: center;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    color: {{ section.settings.title_color }};
+    margin: 0;
+    max-width: 502px;
+  }
+
+  .ingredients-content {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 96px;
+  }
+
+  .ingredients-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+
+  .ingredient-nav-item {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    width: 82px;
+    height: 82px;
+    border: 2px solid transparent;
+    border-radius: 100px;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .ingredient-nav-item.active {
+    border-color: {{ section.settings.title_color }};
+  }
+
+  .ingredient-nav-item:hover {
+    border-color: {{ section.settings.title_color }};
+    opacity: 0.8;
+  }
+
+  .ingredient-nav-circle {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: #FDE8E6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    transition: background 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .ingredient-nav-item.active .ingredient-nav-circle {
+  }
+
+  .ingredient-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding-top: 8px;
+    padding-left: 8px;
+  }
+
+  .products-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 750px;
+  }
+
+  .product-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .product-content.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    position: relative;
+  }
+
+  .ingredients-layout {
+    position: relative;
+    width: 100%;
+    padding: 0 64px;
+  }
+
+  .ingredients-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 16px;
+    row-gap: 64px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .ingredient-item {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px 16px 24px;
+    border-bottom: 1px dashed {{ section.settings.title_color }};
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .ingredient-item--left {
+    align-items: flex-start;
+    text-align: left;
+    grid-column: 1;
+  }
+
+  .ingredient-item--right {
+    align-items: flex-end;
+    text-align: right;
+    grid-column: 2;
+  }
+
+  .ingredient-item--bottom-right {
+    align-items: flex-end;
+    text-align: right;
+    grid-column: 2;
+  }
+
+  .ingredient-icon-wrapper {
+    width: 72px;
+    height: 72px;
+    background: #FEF3F3;
+    border: 1px solid #FCDCDA;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .ingredient-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 12px;
+  }
+
+  .ingredient-placeholder {
+    font-size: 32px;
+  }
+
+  .ingredient-name {
+    font-family: 'True North Black', 'Arial Black', Impact, sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    color: {{ section.settings.title_color }};
+    margin: 0;
+    max-width: 252px;
+    word-wrap: break-word;
+  }
+
+  .ingredients-center-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 584px;
+    max-width: 90%;
+    height: auto;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .ingredients-center-image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.1));
+    transition: transform 0.3s ease;
+    animation: spin 4s linear infinite paused;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg) scale(1.05);
+    }
+    to {
+      transform: rotate(360deg) scale(1.05);
+    }
+  }
+
+  .product-content:hover .ingredients-center-image img {
+    transform: scale(1.02);
+    animation-play-state: running;
+  }
+
+  .ingredients-flavor {
+    text-align: center;
+    width: 100%;
+    margin-top: 64px;
+  }
+
+  .flavor-name {
+    font-family: 'True North Black', 'Arial Black', Impact, sans-serif;
+    font-weight: 400;
+    font-size: 56px;
+    line-height: 90%;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    color: {{ section.settings.title_color }};
+    margin: 0;
+  }
+
+  .ingredients-wave {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 24px;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .ingredients-wave svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .ingredients-wave--top {
+    top: 0;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .ingredients-section {
+      padding: 80px 24px 100px;
+    }
+
+    .ingredients-title {
+      font-size: 40px;
+    }
+
+    .ingredients-layout {
+      padding: 0 32px;
+    }
+
+    .ingredients-grid {
+      row-gap: 48px;
+    }
+
+    .ingredients-center-image {
+      width: 400px;
+    }
+
+    .flavor-name {
+      font-size: 42px;
+    }
+
+    .products-wrapper {
+      min-height: 650px;
+    }
+  }
+
+  .ingredients-nav-wrapper {
+    width: 100%;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ingredients-section {
+      padding: 48px 16px 64px;
+    }
+
+    .ingredients-container {
+      gap: 32px;
+    }
+
+    .ingredients-title {
+      font-size: 32px;
+    }
+
+    .ingredients-content {
+      gap: 32px;
+    }
+
+    .ingredients-nav-wrapper {
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .ingredients-nav-wrapper::-webkit-scrollbar {
+      display: none;
+    }
+
+    .ingredients-nav {
+      justify-content: flex-start;
+      flex-wrap: nowrap;
+      gap: 8px;
+      margin-bottom: 0;
+    }
+
+    .ingredient-nav-item {
+      flex-shrink: 0;
+      width: 70px;
+      height: 70px;
+      padding: 4px;
+    }
+
+    .ingredient-nav-circle {
+      width: 62px;
+      height: 62px;
+    }
+
+    .ingredients-layout {
+      padding: 0 16px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ingredients-center-image {
+      order: -1;
+      position: static;
+      transform: none;
+      width: 280px;
+      margin: 0 auto 24px;
+    }
+
+    .ingredients-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .ingredient-item {
+      padding: 12px 0 16px;
+    }
+
+    .ingredient-item--right,
+    .ingredient-item--bottom-right {
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .products-wrapper {
+      min-height: auto;
+    }
+
+    .ingredients-flavor {
+      margin-top: 24px;
+    }
+
+    .flavor-name {
+      font-size: 32px;
+    }
+
+    .ingredients-wave {
+      height: 16px;
+    }
+
+    .ingredients-wave--top {
+      top: -1px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .ingredients-section {
+      padding: 48px 12px 64px;
+    }
+
+    .ingredients-title {
+      font-size: 28px;
+      max-width: 100%;
+    }
+
+    .ingredient-nav-item {
+      width: 75px;
+      height: 75px;
+    }
+
+    .ingredient-nav-circle {
+      width: 67px;
+      height: 67px;
+    }
+
+    .ingredient-icon-wrapper {
+      width: 56px;
+      height: 56px;
+    }
+
+    .ingredient-name {
+      font-size: 18px;
+    }
+
+    .ingredients-center-image {
+      width: 220px;
+    }
+
+    .flavor-name {
+      font-size: 28px;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Ingredients Showcase",
+  "tag": "section",
+  "class": "section-ingredients",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Simple and recognizable ingredients"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "min": 1000,
+      "max": 1440,
+      "step": 20,
+      "unit": "px",
+      "label": "Container Width",
+      "default": 1400
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FEF3F3"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Text Color",
+      "default": "#9B3462"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "limit": 7,
+      "settings": [
+        {
+          "type": "text",
+          "id": "product_name",
+          "label": "Product Name",
+          "default": "Vanilla"
+        },
+        {
+          "type": "color",
+          "id": "gradient_end",
+          "label": "Gradient End Color",
+          "default": "#FEF3F3",
+          "info": "Top-right color of the gradient"
+        },
+        {
+          "type": "color",
+          "id": "gradient_start",
+          "label": "Gradient Start Color",
+          "default": "#C36761",
+          "info": "Bottom-left color of the gradient"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_icon",
+          "label": "Product Icon (Navigation)",
+          "info": "Small icon shown in circular navigation"
+        },
+        {
+          "type": "image_picker",
+          "id": "center_image",
+          "label": "Center Product Image",
+          "info": "Large image displayed in center"
+        },
+        {
+          "type": "text",
+          "id": "flavor_name",
+          "label": "Flavor Name",
+          "default": "vanilla",
+          "info": "Displayed at bottom"
+        }
+      ]
+    },
+    {
+      "type": "ingredient",
+      "name": "Ingredient",
+      "settings": [
+        {
+          "type": "text",
+          "id": "parent_product",
+          "label": "Parent Product ID",
+          "info": "Copy the block ID from the product block above. Find it by clicking the product block and looking at the URL."
+        },
+        {
+          "type": "image_picker",
+          "id": "ingredient_image",
+          "label": "Ingredient Image"
+        },
+        {
+          "type": "text",
+          "id": "ingredient_name",
+          "label": "Ingredient Name",
+          "default": "Crunchy Pretzels"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ingredients Showcase"
+    }
+  ]
+}
+{% endschema %}

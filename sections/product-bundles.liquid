@@ -571,32 +571,99 @@
   }
 
   @media screen and (max-width: 768px) {
+    .product-bundle-section {
+      padding: 64px 16px;
+    }
+
+    .content-container {
+      gap: 32px;
+    }
+
     .section-title {
       font-size: 42px;
     }
 
-    .products-grid-right {
-      grid-template-columns: 1fr;
+    .products-grid {
+      flex-direction: column;
+      gap: 16px;
     }
 
-    .product-card__content {
-      height: auto !important;
+    .product-card--large {
+      width: 100%;
+      height: auto;
+    }
+
+    .products-grid-right {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      gap: 16px;
+    }
+
+    .products-grid-right .product-card {
+      height: auto;
+      min-height: auto;
     }
 
     .product-card__image-wrapper {
       height: 250px !important;
+      flex-shrink: 0;
+    }
+
+   .product-card__content {
+      height: auto !important;
+      padding: 16px 16px 24px;
+    }
+    .product-card--large .product-card__image-wrapper {
+      height: 300px !important;
     }
 
     .product-card__rating,
     .product-card__footer {
-      opacity: 1;
-      transform: translateY(0);
+      opacity: 1 !important;
+      transform: translateY(0) !important;
     }
 
-    .product-card--large .product-card__header,
+    .product-card--large .product-card__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
     .product-card--large .product-card__footer {
       flex-direction: column;
       align-items: flex-start;
+      gap: 12px;
+    }
+
+    .product-card__image--hover {
+      display: none;
+    }
+
+    .product-card__image--default {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    .price {
+      font-size: 24px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .section-title {
+      font-size: 32px;
+    }
+
+    .product-card__image-wrapper {
+      height: 200px !important;
+    }
+
+    .product-card--large .product-card__image-wrapper {
+      height: 250px !important;
+    }
+
+    .product-card__title {
+      font-size: 18px;
     }
   }
 {% endstyle %}
