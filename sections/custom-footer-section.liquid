@@ -1,0 +1,366 @@
+<section class="chunk-footer-section">
+  <!-- Wave divider -->
+  <div class="chunk-wave" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg"
+         viewBox="0 0 1000 100"
+         preserveAspectRatio="none"
+         width="100%"
+         height="80">
+      <path 
+        fill="{{ section.settings.wave_color | default: '#FFB1BB' }}"
+        d="M0 100
+           V40
+           c9 0 18 3 25 10
+           13 14 36 14 50 0s36-14 50 0c13 14 36 14 50 0s36-14 50 0c13 14 36 14 50 0s36-14 50 0
+           c13 14 36 14 50 0s36-14 50 0c13 14 36 14 50 0s36-14 50 0c13 14 36 14 50 0s36-14 50 0
+           c13 14 36 14 50 0s36-14 50 0c13 14 36 14 50 0s36-14 50 0c13 14 36 14 50 0s36-14 50 0
+           c13 14 36 14 50 0s37-13 50 0c14 14 37 14 50 0
+           c7-7 16-10 25-10
+           V100
+           Z" />
+    </svg>
+  </div>
+
+  <!-- Footer content -->
+  <div 
+    class="chunk-footer"
+    style="background: linear-gradient(to bottom, {{ section.settings.gradient_top | default: '#FFB3C3' }} 0%, {{ section.settings.gradient_bottom | default: '#FF819B' }} 100%);"
+  >
+    <div 
+      class="chunk-footer-inner"
+      style="
+        padding-top: {{ section.settings.footer_top_padding | default: 20 }}px;
+        padding-bottom: {{ section.settings.footer_padding | default: 44 }}px;
+      "
+    >
+      {% if section.settings.footer_logo != blank %}
+        <img
+          src="{{ section.settings.footer_logo | image_url: width: section.settings.logo_width | default: 250 }}"
+          width="{{ section.settings.logo_width | default: 250 }}"
+          height="{{ section.settings.footer_logo.height | default: 100 }}"
+          style="width: {{ section.settings.logo_width | default: 250 }}px; height: auto;"
+          alt="{{ section.settings.footer_logo.alt | default: 'Footer Logo' }}"
+          class="chunk-footer-logo"
+        />
+      {% endif %}
+
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'footer_nav' %}
+            <nav class="footer-nav" style="
+              color: {{ block.settings.nav_color | default: '#FFFFFF' }};
+              font-size: {{ block.settings.nav_font_size | default: 15 }}px;
+              line-height: {{ block.settings.nav_line_height | default: 1.4 }};
+              letter-spacing: {{ block.settings.nav_letter_spacing | default: 1 }}px;
+              font-weight: {{ block.settings.nav_font_weight | default: '600' }};
+              text-transform: {{ block.settings.nav_transform | default: 'uppercase' }};
+              font-family: {{ block.settings.nav_font | default: "'True North Black', 'Arial Black', Impact, sans-serif" }};
+            ">
+              <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/collections/all">Shop</a></li>
+                <li><a href="/pages/about">About</a></li>
+                <li><a href="/pages/wholesale">Wholesale</a></li>
+                <li><a href="/pages/stores">Stores</a></li>
+                <li><a href="/pages/faq">FAQ</a></li>
+                <li><a href="/pages/rewards">Rewards</a></li>
+              </ul>
+            </nav>
+        {% endcase %}
+      {% endfor %}
+
+      <!-- Social icons -->
+      <div class="footer-links">
+        {% for block in section.blocks %}
+          {% if block.type == 'footer_link' %}
+            <a href="{{ block.settings.link_url }}" target="_blank" class="footer-link" {{ block.shopify_attributes }}>
+              <img 
+                src="{{ block.settings.link_image | image_url: width: 30 }}" 
+                alt="{{ block.settings.link_image.alt | default: 'Footer Icon' }}"
+                width="{{ block.settings.link_image.width | default: 30 }}" 
+                height="{{ block.settings.link_image.height | default: 30 }}"  
+              />
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <!-- Footer Text -->
+      <p class="chunk-footer-copy"
+        style="
+          color: {{ section.settings.copy_color | default: '#FFFFFF' }};
+          font-size: {{ section.settings.copy_font_size | default: 16 }}px;
+          font-family: {{ section.settings.copy_font | default: 'Open Sauce Sans, sans-serif' }};
+        ">
+        {% if section.settings.footer_text != blank %}
+          {{ section.settings.footer_text }}
+        {% else %}
+          © {{ 'now' | date: "%Y" }} {{ shop.name }} | All Rights Reserved
+        {% endif %}
+      </p>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+.chunk-footer-section {
+  position: relative;
+  width: 100%;
+  background-color: #FFFCF4;
+}
+
+.chunk-wave {
+  position: relative;
+  width: 100%;
+  height: 80px;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.chunk-wave svg {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.chunk-footer {
+  margin-top: -6px;
+}
+
+.chunk-footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.chunk-footer-logo {
+  margin-bottom: -20px;
+  height: auto;
+}
+
+/* --- footer nav --- */
+.footer-nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.footer-nav a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.footer-nav a:hover {
+  opacity: 0.8;
+}
+
+/* --- social/footer link icons --- */
+.footer-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 4px;
+  margin-bottom: -4px;
+}
+
+.footer-link img {
+  width: 28px;
+  height: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+  display: inline-block;
+}
+
+.footer-link img:hover {
+  opacity: 1;
+}
+
+.chunk-footer-copy {
+  font-weight: 500;
+  letter-spacing: 0%;
+  line-height: 160%;
+  margin: 0;
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Custom Footer",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "footer_logo",
+      "label": "Footer Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "Footer Logo Width",
+      "default": 250,
+      "min": 50,
+      "max": 600,
+      "step": 10
+    },
+    {
+      "type": "color",
+      "id": "wave_color",
+      "label": "Wave Color",
+      "default": "#FFB1BB"
+    },
+    {
+      "type": "color",
+      "id": "gradient_top",
+      "label": "Gradient Top Color",
+      "default": "#FFB3C3"
+    },
+    {
+      "type": "color",
+      "id": "gradient_bottom",
+      "label": "Gradient Bottom Color",
+      "default": "#FF819B"
+    },
+    {
+      "type": "color",
+      "id": "copy_color",
+      "label": "Footer Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "copy_font_size",
+      "label": "Footer Text Size",
+      "default": 16,
+      "min": 10,
+      "max": 30,
+      "step": 1
+    },
+    {
+      "type": "text",
+      "id": "footer_text",
+      "label": "Footer Text",
+      "default": "© 2025 Hamster Haven | All Rights Reserved"
+    },
+    {
+      "type": "range",
+      "id": "footer_top_padding",
+      "label": "Footer Top Padding",
+      "default": 20,
+      "min": 0,
+      "max": 100,
+      "step": 2
+    },
+    {
+      "type": "range",
+      "id": "footer_padding",
+      "label": "Footer Bottom Padding",
+      "default": 44,
+      "min": 10,
+      "max": 100,
+      "step": 2
+    }
+  ],
+  "blocks": [
+    {
+      "type": "footer_nav",
+      "name": "Footer Navigation",
+      "settings": [
+        {
+          "type": "color",
+          "id": "nav_color",
+          "label": "Navigation Link Color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "range",
+          "id": "nav_font_size",
+          "label": "Font Size",
+          "default": 15,
+          "min": 10,
+          "max": 30,
+          "step": 1
+        },
+        {
+          "type": "range",
+          "id": "nav_line_height",
+          "label": "Line Height",
+          "default": 1.4,
+          "min": 1,
+          "max": 3,
+          "step": 0.1
+        },
+        {
+          "type": "range",
+          "id": "nav_letter_spacing",
+          "label": "Letter Spacing (px)",
+          "default": 1,
+          "min": 0,
+          "max": 10,
+          "step": 0.5
+        },
+        {
+          "type": "select",
+          "id": "nav_font_weight",
+          "label": "Font Weight",
+          "default": "600",
+          "options": [
+            { "value": "400", "label": "Normal" },
+            { "value": "500", "label": "Medium" },
+            { "value": "600", "label": "Semi-bold" },
+            { "value": "700", "label": "Bold" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "nav_transform",
+          "label": "Text Transform",
+          "default": "uppercase",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "uppercase", "label": "Uppercase" },
+            { "value": "lowercase", "label": "Lowercase" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "nav_font",
+          "label": "Font Family",
+          "default": "'True North Black', 'Arial Black', Impact, sans-serif"
+        }
+      ]
+    },
+    {
+      "type": "footer_link",
+      "name": "Footer Link",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "link_image",
+          "label": "Link Image"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Footer",
+      "category": "Footer"
+    }
+  ]
+}
+{% endschema %}
