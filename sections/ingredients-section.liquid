@@ -5,12 +5,15 @@
     {% endif %}
 
     <div class="ingredients-content">
+      <!-- Navigation -->
       <div class="ingredients-nav">
         {% for block in section.blocks %}
           {% if block.type == 'product' %}
             <button
               class="ingredient-nav-item {% if forloop.first %}active{% endif %}"
               data-product="{{ block.id }}"
+              data-gradient-start="{{ block.settings.gradient_start }}"
+              data-gradient-end="{{ block.settings.gradient_end }}"
               {{ block.shopify_attributes }}
             >
               <span class="ingredient-nav-circle">
@@ -126,6 +129,22 @@
     const navItems = document.querySelectorAll('.ingredient-nav-item');
     const productContents = document.querySelectorAll('.product-content');
 
+    function updateNavStyles() {
+      navItems.forEach((nav) => {
+        const circle = nav.querySelector('.ingredient-nav-circle');
+
+        if (nav.classList.contains('active')) {
+          const gradientStart = nav.getAttribute('data-gradient-start') || '#FDE8E6';
+          const gradientEnd = nav.getAttribute('data-gradient-end') || '#FEF3F3';
+          circle.style.background = `linear-gradient(314.58deg, ${gradientStart} 0.36%, ${gradientEnd} 99.64%)`;
+        } else {
+          circle.style.background = '#FDE8E6';
+        }
+      });
+    }
+
+    updateNavStyles();
+
     navItems.forEach((nav) => {
       nav.addEventListener('click', function () {
         const productId = this.getAttribute('data-product');
@@ -138,6 +157,8 @@
         if (targetContent) {
           targetContent.classList.add('active');
         }
+
+        updateNavStyles();
       });
     });
   });
@@ -224,20 +245,26 @@
   .ingredient-nav-circle {
     width: 72px;
     height: 72px;
-    border-radius: 100px;
-    background: linear-gradient(314.58deg, #FDE8E6 0.36%, #FEF3F3 99.64%);
+    border-radius: 50%;
+    background: #FDE8E6;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     position: relative;
+    transition: background 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .ingredient-nav-item.active .ingredient-nav-circle {
   }
 
   .ingredient-icon {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    padding: 8px;
+    padding-top: 8px;
+    padding-left: 8px;
   }
 
   .products-wrapper {
@@ -612,6 +639,20 @@
           "id": "product_name",
           "label": "Product Name",
           "default": "Vanilla"
+        },
+        {
+          "type": "color",
+          "id": "gradient_end",
+          "label": "Gradient End Color",
+          "default": "#FEF3F3",
+          "info": "Top-right color of the gradient"
+        },
+        {
+          "type": "color",
+          "id": "gradient_start",
+          "label": "Gradient Start Color",
+          "default": "#C36761",
+          "info": "Bottom-left color of the gradient"
         },
         {
           "type": "image_picker",

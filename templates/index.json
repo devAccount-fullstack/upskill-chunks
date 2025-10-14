@@ -16,6 +16,8 @@
           "type": "product",
           "settings": {
             "product_name": "Vanilla",
+            "gradient_end": "#fef3f3",
+            "gradient_start": "#c36761",
             "product_icon": "shopify://shop_images/Vanilla-Bag.png",
             "center_image": "shopify://shop_images/ChatGPT_Image_Jul_30_2025_09_50_11_PM_2.png",
             "flavor_name": "vanilla"
@@ -57,6 +59,8 @@
           "type": "product",
           "settings": {
             "product_name": "PEANUT BUTTER & CHOCOLATE",
+            "gradient_end": "#fef3f3",
+            "gradient_start": "#d05700",
             "product_icon": "shopify://shop_images/Peanut_Butter-Bag.png",
             "center_image": "shopify://shop_images/ChatGPT_Image_Jul_30_2025_09_43_04_PM_2_bdc6b7cf-bc50-4737-89f8-3a7f7c77be09.png",
             "flavor_name": "PEANUT BUTTER & CHOCOLATE"
@@ -106,6 +110,8 @@
           "type": "product",
           "settings": {
             "product_name": "APPLE CINNAMON",
+            "gradient_end": "#fef3f3",
+            "gradient_start": "#74112c",
             "product_icon": "shopify://shop_images/Apple_Cinnamon-Bag.png",
             "center_image": "shopify://shop_images/ChatGPT_Image_Jul_30_2025_09_52_09_PM_1_6fac9866-f4d8-422b-ace8-59bd85815180.png",
             "flavor_name": "APPLE CINNAMON"
@@ -155,6 +161,8 @@
           "type": "product",
           "settings": {
             "product_name": "s’mores",
+            "gradient_end": "#fef3f3",
+            "gradient_start": "#562a1a",
             "product_icon": "shopify://shop_images/Smores-Bag.png",
             "center_image": "shopify://shop_images/ChatGPT_Image_Jul_30_2025_09_38_42_PM_2_349d00ee-d2c2-4ca9-b570-737841ea3145.png",
             "flavor_name": "s’mores"
@@ -204,6 +212,8 @@
           "type": "product",
           "settings": {
             "product_name": "strawberry",
+            "gradient_end": "#fef3f3",
+            "gradient_start": "#e42b2f",
             "product_icon": "shopify://shop_images/Strawberry-Bag.png",
             "center_image": "shopify://shop_images/Group_27.png",
             "flavor_name": "strawberry"
@@ -245,6 +255,8 @@
           "type": "product",
           "settings": {
             "product_name": "toffee",
+            "gradient_end": "#fef3f3",
+            "gradient_start": "#996327",
             "product_icon": "shopify://shop_images/Toffee-Bag.png",
             "center_image": "shopify://shop_images/TOFFEE.png",
             "flavor_name": "toffee"
@@ -286,6 +298,8 @@
           "type": "product",
           "settings": {
             "product_name": "peppermint",
+            "gradient_end": "#fef3f3",
+            "gradient_start": "#009242",
             "product_icon": "shopify://shop_images/Peppermint-Bag.png",
             "center_image": "shopify://shop_images/peppermint.webp",
             "flavor_name": "peppermint"
@@ -369,8 +383,7 @@
         "section_title": "Simple and recognizable ingredients",
         "container_width": 1400,
         "bg_color": "#fef3f3",
-        "title_color": "#9b3462",
-        "wave_color": "#fde8e6"
+        "title_color": "#9b3462"
       }
     },
     "product_bundles_G6yDni": {
