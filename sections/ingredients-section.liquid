@@ -5,29 +5,30 @@
     {% endif %}
 
     <div class="ingredients-content">
-      <!-- Navigation -->
-      <div class="ingredients-nav">
-        {% for block in section.blocks %}
-          {% if block.type == 'product' %}
-            <button
-              class="ingredient-nav-item {% if forloop.first %}active{% endif %}"
-              data-product="{{ block.id }}"
-              data-gradient-start="{{ block.settings.gradient_start }}"
-              data-gradient-end="{{ block.settings.gradient_end }}"
-              {{ block.shopify_attributes }}
-            >
-              <span class="ingredient-nav-circle">
-                {% if block.settings.product_icon %}
-                  {{
-                    block.settings.product_icon
-                    | image_url: width: 100
-                    | image_tag: class: 'ingredient-icon', alt: block.settings.product_name
-                  }}
-                {% endif %}
-              </span>
-            </button>
-          {% endif %}
-        {% endfor %}
+      <div class="ingredients-nav-wrapper">
+        <div class="ingredients-nav">
+          {% for block in section.blocks %}
+            {% if block.type == 'product' %}
+              <button
+                class="ingredient-nav-item {% if forloop.first %}active{% endif %}"
+                data-product="{{ block.id }}"
+                data-gradient-start="{{ block.settings.gradient_start }}"
+                data-gradient-end="{{ block.settings.gradient_end }}"
+                {{ block.shopify_attributes }}
+              >
+                <span class="ingredient-nav-circle">
+                  {% if block.settings.product_icon %}
+                    {{
+                      block.settings.product_icon
+                      | image_url: width: 100
+                      | image_tag: class: 'ingredient-icon', alt: block.settings.product_name
+                    }}
+                  {% endif %}
+                </span>
+              </button>
+            {% endif %}
+          {% endfor %}
+        </div>
       </div>
 
       <div class="products-wrapper">
@@ -128,6 +129,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     const navItems = document.querySelectorAll('.ingredient-nav-item');
     const productContents = document.querySelectorAll('.product-content');
+    const navWrapper = document.querySelector('.ingredients-nav-wrapper');
 
     function updateNavStyles() {
       navItems.forEach((nav) => {
@@ -143,7 +145,18 @@
       });
     }
 
+    function scrollToActive() {
+      if (window.innerWidth <= 768 && navWrapper) {
+        const activeItem = document.querySelector('.ingredient-nav-item.active');
+        if (activeItem) {
+          const scrollLeft = activeItem.offsetLeft - navWrapper.offsetWidth / 2 + activeItem.offsetWidth / 2;
+          navWrapper.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+        }
+      }
+    }
+
     updateNavStyles();
+    scrollToActive();
 
     navItems.forEach((nav) => {
       nav.addEventListener('click', function () {
@@ -159,6 +172,7 @@
         }
 
         updateNavStyles();
+        scrollToActive();
       });
     });
   });
@@ -475,13 +489,17 @@
     }
   }
 
+  .ingredients-nav-wrapper {
+    width: 100%;
+  }
+
   @media screen and (max-width: 768px) {
     .ingredients-section {
-      padding: 64px 16px 80px;
+      padding: 48px 16px 64px;
     }
 
     .ingredients-container {
-      gap: 48px;
+      gap: 32px;
     }
 
     .ingredients-title {
@@ -489,56 +507,87 @@
     }
 
     .ingredients-content {
-      gap: 48px;
+      gap: 32px;
+    }
+
+    .ingredients-nav-wrapper {
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .ingredients-nav-wrapper::-webkit-scrollbar {
+      display: none;
+    }
+
+    .ingredients-nav {
+      justify-content: flex-start;
+      flex-wrap: nowrap;
+      gap: 8px;
+      margin-bottom: 0;
+    }
+
+    .ingredient-nav-item {
+      flex-shrink: 0;
+      width: 70px;
+      height: 70px;
+      padding: 4px;
+    }
+
+    .ingredient-nav-circle {
+      width: 62px;
+      height: 62px;
     }
 
     .ingredients-layout {
       padding: 0 16px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ingredients-center-image {
+      order: -1;
+      position: static;
+      transform: none;
+      width: 280px;
+      margin: 0 auto 24px;
     }
 
     .ingredients-grid {
-      grid-template-columns: 1fr;
-      row-gap: 32px;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .ingredient-item {
+      padding: 12px 0 16px;
     }
 
     .ingredient-item--right,
     .ingredient-item--bottom-right {
       align-items: flex-start;
       text-align: left;
-      grid-column: 1;
-    }
-
-    .ingredients-center-image {
-      position: relative;
-      top: auto;
-      left: auto;
-      transform: none;
-      width: 280px;
-      margin: 32px auto 0;
     }
 
     .products-wrapper {
       min-height: auto;
     }
 
+    .ingredients-flavor {
+      margin-top: 24px;
+    }
+
     .flavor-name {
       font-size: 32px;
-      margin-top: 16px;
     }
 
-    .ingredients-nav {
-      gap: 8px;
+    .ingredients-wave {
+      height: 16px;
     }
 
-    .ingredient-nav-item {
-      width: 60px;
-      height: 60px;
-      padding: 4px;
-    }
-
-    .ingredient-nav-circle {
-      width: 52px;
-      height: 52px;
+    .ingredients-wave--top {
+      top: -1px;
     }
   }
 
@@ -553,22 +602,22 @@
     }
 
     .ingredient-nav-item {
+      width: 75px;
+      height: 75px;
+    }
+
+    .ingredient-nav-circle {
+      width: 67px;
+      height: 67px;
+    }
+
+    .ingredient-icon-wrapper {
       width: 56px;
       height: 56px;
     }
 
-    .ingredient-nav-circle {
-      width: 48px;
-      height: 48px;
-    }
-
-    .ingredient-icon-wrapper {
-      width: 60px;
-      height: 60px;
-    }
-
     .ingredient-name {
-      font-size: 20px;
+      font-size: 18px;
     }
 
     .ingredients-center-image {
