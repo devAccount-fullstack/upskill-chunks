@@ -1,10 +1,21 @@
-<section class="subscribe-section" style="margin: 0px {{ section.settings.section_margin | default: 150 }}px;">
+<section 
+  class="subscribe-section"
+  style="
+    background-color: {{ section.settings.bg_color | default: '#FEF3F3' }};
+    padding-top: {{ section.settings.padding_top | default: 40 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | default: 40 }}px;
+    padding-left: {{ section.settings.section_margin | default: 150 }}px;
+    padding-right: {{ section.settings.section_margin | default: 150 }}px;
+  "
+>
   <div 
     class="subscribe-footer" 
     style="
       background-color: {{ section.settings.footer_bg | default: '#FFB1BB' }};
       padding: 5px 20px 20px 20px;
       border-radius: 20px;
+      width: {{ section.settings.frame_width | default: 100 }}%;
+      margin: 0 auto;
     "
   >
     <p class="subscribe-text" style="
@@ -14,12 +25,14 @@
       font-family: {{ section.settings.title_font | default: 'True North Black, sans-serif' }};
       line-height: {{ section.settings.title_line_height | default: 90 }}%;
       letter-spacing: {{ section.settings.title_letter_spacing | default: -1 }}px;
+      width: {{ section.settings.title_width | default: 450 }}px;
+      margin-left: 5%;
     ">
-      {{ section.settings.title_text }}
+      {{ section.settings.title_text | default: 'STAY UP TO DATE ABOUT OUR LATEST OFFERS' }}
     </p>
 
-    <form action="{{ section.settings.form_action_url }}" method="post" class="subscribe-form">
-      <div class="input-wrapper">
+    <form action="{{ section.settings.form_action_url | default: '/subscribe' }}" method="post" class="subscribe-form" style="width: {{ section.settings.form_width | default: 38 }}%;">
+      <div class="input-wrapper" style="width: {{ section.settings.input_width | default: 100 }}%;">
         <span class="input-icon" style="color: {{ section.settings.icon_color | default: '#9B3462' }};">✉</span>
         <input 
           type="email" 
@@ -40,9 +53,10 @@
           background-color: {{ section.settings.button_bg | default: '#9B3462' }};
           color: {{ section.settings.button_text_color | default: 'white' }};
           font-size: {{ section.settings.button_font_size | default: 14 }}px;
+          width: {{ section.settings.button_width | default: 25 }}%;
         "
       >
-        {{ section.settings.button_text }}
+        {{ section.settings.button_text | default: 'SUBSCRIBE' }}
       </button>
     </form>
   </div>
@@ -50,42 +64,38 @@
 
 {% stylesheet %}
 .subscribe-section {
-    margin: 0px 150px;
+  padding: 0px 150px;
+  background-color: #FEF3F3;
 }
 
 .subscribe-footer {
-    background-color: #FFB1BB; 
-    padding: 5px 20px 20px 20px;
-    border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin: 30px 0;
-    display: flex;
-    justify-content: space-between; 
-    align-items: center;
-    width: 100%; 
+  background-color: #FFB1BB;
+  padding: 5px 20px 20px 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 30px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .subscribe-text {
-    font-size: 32px;
-    font-weight: bold;
-    color: #9B3462;
-    margin-bottom: 15px;
-    margin-left: 5%;
-    justify-content: left;
-    align-items: left;
-    width: 550px;
-    line-height: 90%;
-    letter-spacing: -1px;
-    font-family: "True North Black", sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  color: #9B3462;
+  margin-bottom: 15px;
+  line-height: 90%;
+  letter-spacing: -1px;
+  font-family: "True North Black", sans-serif;
 }
 
 .subscribe-form {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding-top: 10px;
-    width: 38%;
-    margin-right: 5%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 10px;
+  margin-right: 5%;
 }
 
 .input-wrapper {
@@ -114,34 +124,147 @@
 }
 
 .subscribe-input:focus {
-    border-color: #6b1e58;
+  border-color: #6b1e58;
 }
 
 .subscribe-btn {
-    padding: 20px 30px;
-    margin-left: 20px;
-    background-color: #9B3462;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  padding: 20px 30px;
+  margin-left: 20px;
+  background-color: #9B3462;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .subscribe-input::placeholder {
-    color: #9B3462;
+  color: #9B3462;
 }
 
 .subscribe-btn:hover {
-    background-color: #4c123d;
+  background-color: #4c123d;
+}
+
+/* 📱 MOBILE FIX */
+@media (max-width: 768px) {
+  .subscribe-section {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  .subscribe-footer {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .subscribe-text {
+    width: 100% !important;
+    max-width: 350px;
+    text-align: center;
+    margin: 10px 12px 20px 0px;
+    font-size: 22px;
+    line-height: 1.3;
+  }
+
+  .subscribe-form {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100% !important;
+    margin: 0;
+    padding-top: 0;
+  }
+
+  .input-wrapper {
+    width: 100% !important;
+    margin-bottom: 15px;
+  }
+
+  .subscribe-input {
+    width: 100%;
+    padding: 18px 18px 18px 45px;
+    font-size: 14px;
+  }
+
+  .subscribe-btn {
+    width: 100% !important;
+    margin-left: 0;
+    font-size: 14px;
+  }
 }
 {% endstylesheet %}
+
 
 {% schema %}
 {
   "name": "Subscribe Footer",
   "settings": [
+    {
+      "type": "header",
+      "content": "Section Layout"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background Color",
+      "default": "#FEF3F3"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top (px)",
+      "default": 40,
+      "min": 0,
+      "max": 200,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom (px)",
+      "default": 40,
+      "min": 0,
+      "max": 200,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "section_margin",
+      "label": "Section Horizontal Margin (px)",
+      "default": 150,
+      "min": 0,
+      "max": 300,
+      "step": 10
+    },
+
+    {
+      "type": "header",
+      "content": "Frame Background"
+    },
+    {
+      "type": "color",
+      "id": "footer_bg",
+      "label": "Frame Background Color",
+      "default": "#FFB1BB"
+    },
+    {
+      "type": "range",
+      "id": "frame_width",
+      "label": "Frame Width (%)",
+      "default": 90,
+      "min": 50,
+      "max": 100,
+      "step": 1
+    },
+
+    {
+      "type": "header",
+      "content": "Title Settings"
+    },
     {
       "type": "text",
       "id": "title_text",
@@ -188,19 +311,18 @@
       "step": 0.5
     },
     {
-      "type": "color",
-      "id": "footer_bg",
-      "label": "Background Color",
-      "default": "#FFB1BB"
-    },
-    {
       "type": "range",
-      "id": "section_margin",
-      "label": "Section Horizontal Margin (px)",
-      "default": 150,
-      "min": 0,
-      "max": 300,
+      "id": "title_width",
+      "label": "Title Width (px)",
+      "default": 450,
+      "min": 300,
+      "max": 1000,
       "step": 10
+    },
+
+    {
+      "type": "header",
+      "content": "Input Field Settings"
     },
     {
       "type": "color",
@@ -224,6 +346,20 @@
       "step": 1
     },
     {
+      "type": "range",
+      "id": "input_width",
+      "label": "Input Width (%)",
+      "default": 100,
+      "min": 50,
+      "max": 100,
+      "step": 1
+    },
+
+    {
+      "type": "header",
+      "content": "Button Settings"
+    },
+    {
       "type": "color",
       "id": "button_bg",
       "label": "Button Background Color",
@@ -245,6 +381,15 @@
       "step": 1
     },
     {
+      "type": "range",
+      "id": "button_width",
+      "label": "Button Width (%)",
+      "default": 25,
+      "min": 10,
+      "max": 100,
+      "step": 1
+    },
+    {
       "type": "text",
       "id": "button_text",
       "label": "Button Text",
@@ -255,6 +400,15 @@
       "id": "form_action_url",
       "label": "Form Action URL",
       "default": "/subscribe"
+    },
+    {
+      "type": "range",
+      "id": "form_width",
+      "label": "Form Width (%)",
+      "default": 46,
+      "min": 20,
+      "max": 100,
+      "step": 1
     }
   ],
   "presets": [
