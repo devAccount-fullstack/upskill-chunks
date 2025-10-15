@@ -9,7 +9,7 @@
       height="80"
     >
       <path
-        fill="{{ section.settings.wave_color | default: '#FFB1BB' }}"
+        fill="{{ section.settings.wave_color | default: '#FEF3F3' }}"
         d="M0 100
            V40
            c9 0 18 3 25 10
@@ -19,7 +19,8 @@
            c13 14 36 14 50 0s37-13 50 0c14 14 37 14 50 0
            c7-7 16-10 25-10
            V100
-           Z" />
+           Z" 
+           >
     </svg>
   </div>
 
@@ -114,7 +115,7 @@
   .chunk-footer-section {
     position: relative;
     width: 100%;
-    background-color: #fffcf4;
+    background-color: #FEF3F3;
   }
 
   .chunk-wave {
@@ -224,7 +225,7 @@
       "type": "color",
       "id": "wave_color",
       "label": "Wave Color",
-      "default": "#FFB1BB"
+      "default": "#FEF3F3"
     },
     {
       "type": "color",
