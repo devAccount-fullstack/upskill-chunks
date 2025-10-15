@@ -605,35 +605,80 @@
     "custom_customer_review_section_FXXNjt": {
       "type": "custom-customer-review-section",
       "blocks": {
-        "review_Pbc7Cx": {
+        "review_q6T4T4": {
           "type": "review",
           "settings": {
-            "review_text": "This is an amazing product! I highly recommend it.",
-            "reviewer_name": "Jane Doe",
+            "reviewer_image": "shopify://shop_images/0afa7ca600bf557def14dc57f4820435ebd66945.png",
+            "review_text": "“When you try Chunk Nibbles for the first time and it changes your life! Such a yummy snack! Thanks so much for sharing this sweet family recipe!",
+            "reviewer_name": "Jessica W.",
+            "star_count": 5,
+            "show_badge": true
+          }
+        },
+        "review_aJbXTq": {
+          "type": "review",
+          "settings": {
+            "reviewer_image": "shopify://shop_images/1de5206b7783747873d2ed8f84a57f31de0d04c1.jpg",
+            "review_text": "“This is the most delicious homemade snack in convenient pouches of all time. I love the variety of yummy flavors and they are always super fresh!”",
+            "reviewer_name": "Kimberly Handley",
+            "star_count": 5,
+            "show_badge": true
+          }
+        },
+        "review_bik3Gr": {
+          "type": "review",
+          "settings": {
+            "reviewer_image": "shopify://shop_images/e64545f156034d4725ec79d26e11b23a950a00f7.jpg",
+            "review_text": "“This is the second time ordering and I'll keep ordering. Absolutely amazing product. Very tasteful very fulfilling fast service A+ in my book”",
+            "reviewer_name": "Michele Newhouse",
+            "star_count": 5,
+            "show_badge": true
+          }
+        },
+        "review_aggQ7C": {
+          "type": "review",
+          "settings": {
+            "reviewer_image": "shopify://shop_images/5c7165c9415b767524791827449513ef8a04929e.jpg",
+            "review_text": "“When you try Chunk Nibbles for the first time and it changes your life! Such a yummy snack! Thanks so much for sharing this sweet family recipe!",
+            "reviewer_name": "Jessica W.",
+            "star_count": 5,
+            "show_badge": true
+          }
+        },
+        "review_fPRG9E": {
+          "type": "review",
+          "settings": {
+            "reviewer_image": "shopify://shop_images/5e824b56358ea1b91e51465e599233c63faa2db2.jpg",
+            "review_text": "“Ordered about 2 weeks ago, got it before expected date. Ate them a little fast so ordered another order just today. A must try if you haven't treated yourself lately”",
+            "reviewer_name": "Penny Ruth",
             "star_count": 5,
             "show_badge": true
           }
         }
       },
       "block_order": [
-        "review_Pbc7Cx"
+        "review_q6T4T4",
+        "review_aJbXTq",
+        "review_bik3Gr",
+        "review_aggQ7C",
+        "review_fPRG9E"
       ],
       "name": "Custom Customer Review Section",
       "settings": {
         "use_gradient": false,
-        "background_color": "#FEF3F3",
-        "gradient_top": "#FEF3F3",
-        "gradient_bottom": "#FFB1BB",
-        "review_name_color": "#9B3462",
+        "background_color": "#fef3f3",
+        "gradient_top": "#fef3f3",
+        "gradient_bottom": "#ffb1bb",
+        "review_name_color": "#9b3462",
         "review_name_size": 20,
-        "review_text_color": "#9B3462",
+        "review_text_color": "#9b3462",
         "review_text_size": 18,
-        "badge_color": "#9B3462",
+        "badge_color": "#9b3462",
         "title_text": "What Our Customers Say",
         "button_text": "Shop Now",
         "button_link": "",
         "chip_1_image": "shopify://shop_images/bb9922cc2826062708f90ab276a109e568c53929.png",
-        "chip_1_top": "200px",
+        "chip_1_top": "180px",
         "chip_1_left": "0",
         "chip_1_size": "120px",
         "chip_1_rotate": "0deg",
@@ -652,8 +697,8 @@
         "chip_4_right": "-10px",
         "chip_4_size": "200px",
         "chip_4_rotate": "30deg",
-        "wave_color": "#FEF3F3",
-        "card_background_color": "#FEF3F3"
+        "wave_color": "#fef3f3",
+        "card_background_color": "#fef3f3"
       }
     },
     "custom_subscribe_section_JWXkGK": {
