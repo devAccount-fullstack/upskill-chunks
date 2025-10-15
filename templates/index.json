@@ -9,6 +9,58 @@
  */
 {
   "sections": {
+    "custom_marquee_section_7gM9w7": {
+      "type": "custom-marquee-section",
+      "blocks": {
+        "logo_ARnYdq": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/hsn-logo.png",
+            "alt_text": "Media Logo"
+          }
+        },
+        "logo_83hTLb": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/seen-logo.png",
+            "alt_text": "Media Logo"
+          }
+        },
+        "logo_hWF9ef": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/nbc-logo.png",
+            "alt_text": "Media Logo"
+          }
+        },
+        "logo_ddBtaA": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/abc-logo.png",
+            "alt_text": "Media Logo"
+          }
+        },
+        "logo_PrBXLT": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/clickon-logo.png",
+            "alt_text": "Media Logo"
+          }
+        }
+      },
+      "block_order": [
+        "logo_ARnYdq",
+        "logo_83hTLb",
+        "logo_hWF9ef",
+        "logo_ddBtaA",
+        "logo_PrBXLT"
+      ],
+      "name": "As Seen In",
+      "settings": {
+        "heading": "AS SEEN IN",
+        "repeat": 5
+      }
+    },
     "ingredients_section_ibg89T": {
       "type": "ingredients-section",
       "blocks": {
@@ -549,12 +601,36 @@
         "image_bg_color": "#fee7e9",
         "content_bg_color": "#fef3f3"
       }
+    },
+    "custom_subscribe_section_JWXkGK": {
+      "type": "custom-subscribe-section",
+      "name": "Custom Subscribe Section",
+      "settings": {
+        "title_text": "STAY UP TO DATE ABOUT OUR LATEST OFFERS",
+        "title_color": "#9B3462",
+        "title_font_size": 32,
+        "title_font": "True North Black, sans-serif",
+        "title_line_height": 90,
+        "title_letter_spacing": -1,
+        "footer_bg": "#FFB1BB",
+        "section_margin": 150,
+        "icon_color": "#9B3462",
+        "input_text_color": "#9B3462",
+        "input_font_size": 14,
+        "button_bg": "#9B3462",
+        "button_text_color": "#FFFFFF",
+        "button_font_size": 14,
+        "button_text": "SUBSCRIBE",
+        "form_action_url": "/subscribe"
+      }
     }
   },
   "order": [
+    "custom_marquee_section_7gM9w7",
     "ingredients_section_ibg89T",
     "testimonial_7RcaFk",
     "cta_story_JcEJB4",
-    "product_bundles_G6yDni"
+    "product_bundles_G6yDni",
+    "custom_subscribe_section_JWXkGK"
   ]
 }

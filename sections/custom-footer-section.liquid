@@ -1,12 +1,14 @@
 <section class="chunk-footer-section">
   <!-- Wave divider -->
   <div class="chunk-wave" aria-hidden="true">
-    <svg xmlns="http://www.w3.org/2000/svg"
-         viewBox="0 0 1000 100"
-         preserveAspectRatio="none"
-         width="100%"
-         height="80">
-      <path 
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1000 100"
+      preserveAspectRatio="none"
+      width="100%"
+      height="80"
+    >
+      <path
         fill="{{ section.settings.wave_color | default: '#FFB1BB' }}"
         d="M0 100
            V40
@@ -22,11 +24,11 @@
   </div>
 
   <!-- Footer content -->
-  <div 
+  <div
     class="chunk-footer"
     style="background: linear-gradient(to bottom, {{ section.settings.gradient_top | default: '#FFB3C3' }} 0%, {{ section.settings.gradient_bottom | default: '#FF819B' }} 100%);"
   >
-    <div 
+    <div
       class="chunk-footer-inner"
       style="
         padding-top: {{ section.settings.footer_top_padding | default: 20 }}px;
@@ -41,21 +43,24 @@
           style="width: {{ section.settings.logo_width | default: 250 }}px; height: auto;"
           alt="{{ section.settings.footer_logo.alt | default: 'Footer Logo' }}"
           class="chunk-footer-logo"
-        />
+        >
       {% endif %}
 
       {% for block in section.blocks %}
         {% case block.type %}
           {% when 'footer_nav' %}
-            <nav class="footer-nav" style="
-              color: {{ block.settings.nav_color | default: '#FFFFFF' }};
-              font-size: {{ block.settings.nav_font_size | default: 15 }}px;
-              line-height: {{ block.settings.nav_line_height | default: 1.4 }};
-              letter-spacing: {{ block.settings.nav_letter_spacing | default: 1 }}px;
-              font-weight: {{ block.settings.nav_font_weight | default: '600' }};
-              text-transform: {{ block.settings.nav_transform | default: 'uppercase' }};
-              font-family: {{ block.settings.nav_font | default: "'True North Black', 'Arial Black', Impact, sans-serif" }};
-            ">
+            <nav
+              class="footer-nav"
+              style="
+                color: {{ block.settings.nav_color | default: '#FFFFFF' }};
+                font-size: {{ block.settings.nav_font_size | default: 15 }}px;
+                line-height: {{ block.settings.nav_line_height | default: 1.4 }};
+                letter-spacing: {{ block.settings.nav_letter_spacing | default: 1 }}px;
+                font-weight: {{ block.settings.nav_font_weight | default: '600' }};
+                text-transform: {{ block.settings.nav_transform | default: 'uppercase' }};
+                font-family: {{ block.settings.nav_font | default: "'True North Black', 'Arial Black', Impact, sans-serif" }};
+              "
+            >
               <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/collections/all">Shop</a></li>
@@ -74,28 +79,31 @@
         {% for block in section.blocks %}
           {% if block.type == 'footer_link' %}
             <a href="{{ block.settings.link_url }}" target="_blank" class="footer-link" {{ block.shopify_attributes }}>
-              <img 
-                src="{{ block.settings.link_image | image_url: width: 30 }}" 
+              <img
+                src="{{ block.settings.link_image | image_url: width: 30 }}"
                 alt="{{ block.settings.link_image.alt | default: 'Footer Icon' }}"
-                width="{{ block.settings.link_image.width | default: 30 }}" 
-                height="{{ block.settings.link_image.height | default: 30 }}"  
-              />
+                width="{{ block.settings.link_image.width | default: 30 }}"
+                height="{{ block.settings.link_image.height | default: 30 }}"
+              >
             </a>
           {% endif %}
         {% endfor %}
       </div>
 
       <!-- Footer Text -->
-      <p class="chunk-footer-copy"
+      <p
+        class="chunk-footer-copy"
         style="
           color: {{ section.settings.copy_color | default: '#FFFFFF' }};
           font-size: {{ section.settings.copy_font_size | default: 16 }}px;
           font-family: {{ section.settings.copy_font | default: 'Open Sauce Sans, sans-serif' }};
-        ">
+        "
+      >
         {% if section.settings.footer_text != blank %}
           {{ section.settings.footer_text }}
         {% else %}
-          © {{ 'now' | date: "%Y" }} {{ shop.name }} | All Rights Reserved
+          © {{ 'now' | date: '%Y' }}
+          {{ shop.name }} | All Rights Reserved
         {% endif %}
       </p>
     </div>
@@ -103,95 +111,95 @@
 </section>
 
 {% stylesheet %}
-.chunk-footer-section {
-  position: relative;
-  width: 100%;
-  background-color: #FFFCF4;
-}
+  .chunk-footer-section {
+    position: relative;
+    width: 100%;
+    background-color: #fffcf4;
+  }
 
-.chunk-wave {
-  position: relative;
-  width: 100%;
-  height: 80px;
-  overflow: hidden;
-  line-height: 0;
-}
+  .chunk-wave {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+    line-height: 0;
+  }
 
-.chunk-wave svg {
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 100%;
-}
+  .chunk-wave svg {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
 
-.chunk-footer {
-  margin-top: -6px;
-}
+  .chunk-footer {
+    margin-top: -6px;
+  }
 
-.chunk-footer-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
-}
+  .chunk-footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
 
-.chunk-footer-logo {
-  margin-bottom: -20px;
-  height: auto;
-}
+  .chunk-footer-logo {
+    margin-bottom: -20px;
+    height: auto;
+  }
 
-/* --- footer nav --- */
-.footer-nav ul {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  flex-wrap: wrap;
-}
+  /* --- footer nav --- */
+  .footer-nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    flex-wrap: wrap;
+  }
 
-.footer-nav a {
-  color: inherit;
-  text-decoration: none;
-  transition: opacity 0.2s ease;
-}
+  .footer-nav a {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
 
-.footer-nav a:hover {
-  opacity: 0.8;
-}
+  .footer-nav a:hover {
+    opacity: 0.8;
+  }
 
-/* --- social/footer link icons --- */
-.footer-links {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-  margin-top: 4px;
-  margin-bottom: -4px;
-}
+  /* --- social/footer link icons --- */
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-top: 4px;
+    margin-bottom: -4px;
+  }
 
-.footer-link img {
-  width: 28px;
-  height: auto;
-  filter: brightness(0) invert(1);
-  opacity: 0.9;
-  transition: opacity 0.2s ease;
-  display: inline-block;
-}
+  .footer-link img {
+    width: 28px;
+    height: auto;
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+    display: inline-block;
+  }
 
-.footer-link img:hover {
-  opacity: 1;
-}
+  .footer-link img:hover {
+    opacity: 1;
+  }
 
-.chunk-footer-copy {
-  font-weight: 500;
-  letter-spacing: 0%;
-  line-height: 160%;
-  margin: 0;
-}
+  .chunk-footer-copy {
+    font-weight: 500;
+    letter-spacing: 0%;
+    line-height: 160%;
+    margin: 0;
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -249,7 +257,7 @@
       "type": "text",
       "id": "footer_text",
       "label": "Footer Text",
-      "default": "© 2025 Hamster Haven | All Rights Reserved"
+      "default": "© 2025 Chunk Nibbles | All Rights Reserved"
     },
     {
       "type": "range",
