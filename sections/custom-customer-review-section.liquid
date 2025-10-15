@@ -187,6 +187,7 @@
   -ms-overflow-style: none;
   width: 100%;
   cursor: default;
+  justify-content: center;
 }
 
 .review-slider::-webkit-scrollbar {
@@ -201,6 +202,7 @@
   background: #FEF3F3;
   border-radius: 12px;
   box-shadow: 0 10px 10px rgba(0,0,0,0.05);
+  transform-origin: center center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   scroll-snap-align: center;
   position: relative;
@@ -213,9 +215,15 @@
 }
 
 .review-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-  z-index: 5;
+  transform: scale(1.03) rotate(0deg) !important;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+  z-index: 10;
+}
+
+.review-card.clone:hover {
+  transform: scale(1.03) rotate(0deg) !important;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+  z-index: 10;
 }
 
 /* Alternate Card Tild */
@@ -591,13 +599,13 @@
       "type": "text",
       "id": "chip_4_size",
       "label": "Chip 4 Size",
-      "default": "120px"
+      "default": "200px"
     },
     {
       "type": "text",
       "id": "chip_4_rotate",
       "label": "Chip 4 Rotation (e.g. 15deg or -10deg)",
-      "default": "0deg"
+      "default": "30deg"
     },
     {
       "type": "color",

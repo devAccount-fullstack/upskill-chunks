@@ -5,34 +5,45 @@ document.addEventListener("DOMContentLoaded", () => {
   const cards = Array.from(slider.children);
   if (cards.length === 0) return;
 
-  // Clone once for seamless looping
-  const clones = cards.map(card => {
+  if (cards.length <= 4) {
+    slider.style.justifyContent = "center";
+    slider.style.overflowX = "hidden";
+    return;
+  }
+
+  cards.forEach(card => {
     const clone = card.cloneNode(true);
     clone.classList.add("clone");
     slider.appendChild(clone);
-    return clone;
   });
 
-  let originalWidth = 0;
-  let isDragging = false;
+  let totalWidth = 0;
   let isHovered = false;
-  let isDown = false;
+  let isDragging = false;
   let startX, scrollLeft;
-  let autoScrollSpeed = 0.5; // px per frame
   let rafId;
+  const autoScrollSpeed = 0.5;
+
+  function updateWidth() {
+    totalWidth = slider.scrollWidth / 2;
+  }
 
   window.addEventListener("load", () => {
-    originalWidth = slider.scrollWidth / 2;
+    updateWidth();
     startAutoScroll();
   });
+
+  window.addEventListener("resize", updateWidth);
 
   function autoScroll() {
     if (!isHovered && !isDragging) {
       slider.scrollLeft += autoScrollSpeed;
-      if (slider.scrollLeft >= originalWidth) {
+
+      if (slider.scrollLeft >= totalWidth) {
         slider.scrollLeft = 0;
       }
     }
+
     rafId = requestAnimationFrame(autoScroll);
   }
 
@@ -45,40 +56,25 @@ document.addEventListener("DOMContentLoaded", () => {
     cancelAnimationFrame(rafId);
   }
 
-  slider.addEventListener("mouseenter", () => { isHovered = true; });
-  slider.addEventListener("mouseleave", () => { isHovered = false; });
+  // ✅ Hover behavior: stop scrolling or jump to start
+  function handleHoverOrTouch() {
+    isHovered = true;
 
-  slider.addEventListener("mousedown", (e) => {
-    isDown = true;
-    isDragging = true;
-    startX = e.pageX - slider.offsetLeft;
-    scrollLeft = slider.scrollLeft;
+    // When you hover, reset and keep looping from start
+    slider.scrollLeft = 0;
     stopAutoScroll();
-  });
-
-  slider.addEventListener("mouseleave", () => {
-    isDown = false;
-    isDragging = false;
     startAutoScroll();
-  });
+  }
 
-  slider.addEventListener("mouseup", () => {
-    isDown = false;
-    isDragging = false;
+  function handleLeave() {
+    isHovered = false;
     startAutoScroll();
-  });
+  }
 
-  slider.addEventListener("mousemove", (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - slider.offsetLeft;
-    const walk = (x - startX) * 1.2;
-    slider.scrollLeft = scrollLeft - walk;
-    if (slider.scrollLeft >= originalWidth) slider.scrollLeft = 0;
-    else if (slider.scrollLeft <= 0) slider.scrollLeft = originalWidth;
-  });
+  slider.addEventListener("mouseenter", handleHoverOrTouch);
+  slider.addEventListener("mouseleave", handleLeave);
 
-  // Touch support
+  // ✅ Touch Events for Phones
   slider.addEventListener("touchstart", (e) => {
     isDragging = true;
     isHovered = true;
@@ -87,18 +83,19 @@ document.addEventListener("DOMContentLoaded", () => {
     stopAutoScroll();
   });
 
-  slider.addEventListener("touchend", () => {
-    isDragging = false;
-    isHovered = false;
-    startAutoScroll();
-  });
-
   slider.addEventListener("touchmove", (e) => {
     if (!isDragging) return;
     const x = e.touches[0].pageX - slider.offsetLeft;
     const walk = (x - startX) * 1.2;
     slider.scrollLeft = scrollLeft - walk;
-    if (slider.scrollLeft >= originalWidth) slider.scrollLeft = 0;
-    else if (slider.scrollLeft <= 0) slider.scrollLeft = originalWidth;
+
+    if (slider.scrollLeft >= totalWidth) slider.scrollLeft = 0;
+    else if (slider.scrollLeft <= 0) slider.scrollLeft = totalWidth;
+  });
+
+  slider.addEventListener("touchend", () => {
+    isDragging = false;
+    isHovered = false;
+    startAutoScroll();
   });
 });
