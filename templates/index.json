@@ -386,6 +386,56 @@
         "title_color": "#9b3462"
       }
     },
+    "testimonial_7RcaFk": {
+      "type": "testimonial",
+      "blocks": {
+        "testimonial_item_hGwiEe": {
+          "type": "testimonial_item",
+          "settings": {
+            "background_image": "shopify://shop_images/a9e2c08d7b4553913f0cabdc58978646a58184e5.jpg",
+            "customer_name": "Gendron C.",
+            "testimonial_text": "Love all the products y'all sell. Has the best taste of all that I have ever had. You have my business for ever!!! I haven't even eaten all that I have, but this was a deal I couldn't pass 😋"
+          }
+        },
+        "video_item_YFQnDV": {
+          "type": "video_item",
+          "settings": {
+            "video_image": "shopify://shop_images/3fc7822471f226264d9fb636248efa55bf35dc08.jpg",
+            "video_url": ""
+          }
+        },
+        "video_item_JTFCQa": {
+          "type": "video_item",
+          "settings": {
+            "video_image": "shopify://shop_images/2d8e287b7d9da7da6ee3e6c837ab6532caaa2586.jpg",
+            "video_url": ""
+          }
+        },
+        "video_item_c6erix": {
+          "type": "video_item",
+          "settings": {
+            "video_image": "shopify://shop_images/637318cb06b9bcb450605723fa7c6191a842a591.jpg",
+            "video_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_item_hGwiEe",
+        "video_item_YFQnDV",
+        "video_item_JTFCQa",
+        "video_item_c6erix"
+      ],
+      "name": "Testimonial Gallery",
+      "settings": {
+        "section_title": "Time to stop missing out. Join the Sweet & Salty Society.",
+        "bg_gradient_start": "#fef3f3",
+        "bg_gradient_end": "#fed2d7",
+        "title_color": "#9b3462",
+        "text_color": "#9b3462",
+        "testimonial_bg_color": "#fde8e6",
+        "content_bg_color": "#fef3f3"
+      }
+    },
     "cta_story_JcEJB4": {
       "type": "cta-story",
       "name": "Story Section",
@@ -503,6 +553,7 @@
   },
   "order": [
     "ingredients_section_ibg89T",
+    "testimonial_7RcaFk",
     "cta_story_JcEJB4",
     "product_bundles_G6yDni"
   ]
