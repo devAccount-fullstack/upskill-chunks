@@ -1,0 +1,117 @@
+<div class="custom-announcement-bar-section">
+  <div class="custom-announcement-bar-wrapper">
+        <div class="custom-announcement-bar-content">
+            <div class="custom-announcement-bar-content marquee">
+                {% for i in (1..section.settings.repeat) %}
+                    {% for block in section.blocks %}
+                        {% if block.type == 'custom_icon' %}
+                        <img 
+                            src="{{ block.settings.logo | image_url }}" 
+                            alt="{{ block.settings.logo.alt | escape }}" 
+                            class="custom-announcement-bar-logo"
+                            height="30"
+                            width="30"
+                        >
+                        {% endif %}
+                    {% endfor %}
+                {%  endfor %}
+            </div>
+            <div class="custom-announcement-bar-content marquee">
+                {% for i in (1..section.settings.repeat) %}
+                    {% for block in section.blocks %}
+                        {% if block.type == 'custom_icon' %}
+                        <img 
+                            src="{{ block.settings.logo | image_url }}" 
+                            alt="{{ block.settings.logo.alt | escape }}" 
+                            class="custom-announcement-bar-logo"
+                            height="30"
+                            width="30"
+                        >
+                        {% endif %}
+                    {% endfor %}
+                {%  endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% stylesheet %}
+.custom-announcement-bar-section {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #FDE8E6;
+  background-color: #FCDCDA;
+  overflow: hidden;
+  position: relative;
+  height: 60px;
+}
+
+.custom-announcement-bar-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.custom-announcement-bar-content {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  white-space: nowrap;
+  animation: marquee 50s linear infinite;
+}
+
+.custom-announcement-bar-logo {
+  height: 30px;
+  width: 30px;
+}
+
+.custom-announcement-bar-text {
+  font-size: 18px;
+  line-height: 90%;
+  color: #9B3462;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Custom Marquee",
+  "tag": "header",
+  "class": "custom-marquee",
+  "settings": [
+    {
+        "type": "number",
+        "id": "repeat",
+        "label": "Repeater",
+    }
+  ],
+  "blocks": [
+    {
+      "type": "custom_icon",
+      "name": "Custom Icon",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Default Marquee"
+    }
+  ]
+}
+{% endschema %}
