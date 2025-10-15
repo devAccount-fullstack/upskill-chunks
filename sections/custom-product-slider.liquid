@@ -1,178 +1,372 @@
 <div class="custom-product-slider-section">
-    <div class="custom-product-slider">
-        <h2 class="product-slider-bg-heading">
-            BITE SIZE CLUSTERS 
-            <br/>
-            SUPERSIZE FLAVORS   
-        </h2>
-        <button class="custom-product-slider-prev custom-product-slider-nav" aria-label="Previous slide">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-            </svg>
-        </button>
-        
-        <div class="custom-product-slider-track">
-            {% for i in (1..7) %}
-                {% capture img_key %}product{{ i }}_image{% endcapture %}
-                {% capture scatter_img_key %}product{{ i }}_scattered_image{% endcapture %}
-                {% capture title_key %}product{{ i }}_title{% endcapture %}
-                {% capture description_key %}product{{ i }}_description{% endcapture %}
-                {% capture url_key %}product{{ i }}_url{% endcapture %}
-                {% assign img = section.settings[img_key] %}
-                {% assign scatter_img = section.settings[scatter_img_key] %}
-                <div class="custom-product-slider-container">
-                    <div class="custom-product-slider-item" data-index="{{ i }}">
-                        <img src="{{ img | img_url: 'medium' }}" alt="sad" width="auto" height="400px">
-                    </div>
-                    <img src="{{ scatter_img | img_url: 'medium' }}" alt="scattered" width="70px" height="auto" class="custom-product-scatter-image-left">
-                    <img src="{{ scatter_img | img_url: 'medium' }}" alt="scattered" width="100px" height="auto" class="custom-product-scatter-image-right">
-                    <div class="custom-product-slider-item-container">
-                        <div class="custom-product-slider-item-content">
-                            <h2>{{ section.settings[title_key] }}</h2>
-                            <p>{{ section.settings[description_key] }}</p>
-                            <a href="{{ section.settings[url_key] }}" class="custom-product-slider-link">Shop Now</a>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
+  <div class="custom-product-slider">
+    <h2 class="product-slider-bg-heading">
+      BITE SIZE CLUSTERS
+      <br>
+      SUPERSIZE FLAVORS
+    </h2>
+    <button class="custom-product-slider-prev custom-product-slider-nav" aria-label="Previous slide">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </button>
+
+    <div class="custom-product-slider-track">
+      {% for i in (1..7) %}
+        {% capture img_key %}product{{ i }}_image{% endcapture %}
+        {% capture scatter_img_key %}product{{ i }}_scattered_image{% endcapture %}
+        {% capture title_key %}product{{ i }}_title{% endcapture %}
+        {% capture description_key %}product{{ i }}_description{% endcapture %}
+        {% capture url_key %}product{{ i }}_url{% endcapture %}
+        {% assign img = section.settings[img_key] %}
+        {% assign scatter_img = section.settings[scatter_img_key] %}
+        <div class="custom-product-slider-container">
+          <div class="custom-product-slider-item" data-index="{{ i }}">
+            <img src="{{ img | img_url: 'medium' }}" alt="sad" width="auto" height="400px">
+          </div>
+          <img
+            src="{{ scatter_img | img_url: 'medium' }}"
+            alt="scattered"
+            width="70px"
+            height="auto"
+            class="custom-product-scatter-image-left"
+          >
+          <img
+            src="{{ scatter_img | img_url: 'medium' }}"
+            alt="scattered"
+            width="100px"
+            height="auto"
+            class="custom-product-scatter-image-right"
+          >
+          <div class="custom-product-slider-item-container">
+            <div class="custom-product-slider-item-content">
+              <h2>{{ section.settings[title_key] }}</h2>
+              <p>{{ section.settings[description_key] }}</p>
+              <a href="{{ section.settings[url_key] }}" class="custom-product-slider-link">Shop Now</a>
+            </div>
+          </div>
         </div>
-        <button class="custom-product-slider-next custom-product-slider-nav" aria-label="Next slide">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
-      </button>
+      {% endfor %}
     </div>
+    <button class="custom-product-slider-next custom-product-slider-nav" aria-label="Next slide">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </button>
+  </div>
 </div>
 
 {% javascript %}
+  class CustomProductSlider {
+    constructor() {
+      this.slides = Array.from(document.querySelectorAll('.custom-product-slider-container'));
+      this.currentIndex = 0;
+      this.totalSlides = this.slides.length;
+
+      this.prevButton = document.querySelector('.custom-product-slider-prev');
+      this.nextButton = document.querySelector('.custom-product-slider-next');
+
+      this.initializeSlider();
+      this.bindEvents();
+    }
+
+    initializeSlider() {
+      this.updateSlides();
+    }
+
+    bindEvents() {
+      this.prevButton.addEventListener('click', () => this.goToPrevSlide());
+      this.nextButton.addEventListener('click', () => this.goToNextSlide());
+    }
+
+    updateSlides() {
+      this.slides.forEach((slide, index) => {
+        const container = slide.querySelector('.custom-product-slider-item-container');
+
+        // Remove all state classes
+        slide.classList.remove('active', 'prev', 'next', 'slider-hidden');
+        container.classList.remove('active', 'inactive');
+
+        if (index === this.currentIndex) {
+          // Active slide
+          slide.classList.add('active');
+          container.classList.add('active');
+        } else if (index === (this.currentIndex - 1 + this.totalSlides) % this.totalSlides) {
+          // Previous slide
+          slide.classList.add('prev');
+          container.classList.add('inactive');
+        } else if (index === (this.currentIndex + 1) % this.totalSlides) {
+          // Next slide
+          slide.classList.add('next');
+          container.classList.add('inactive');
+        } else {
+          // Hidden slides
+          slide.classList.add('slider-hidden');
+          container.classList.add('inactive');
+        }
+      });
+    }
+
+    goToPrevSlide() {
+      this.currentIndex = (this.currentIndex - 1 + this.totalSlides) % this.totalSlides;
+      this.updateSlides();
+    }
+
+    goToNextSlide() {
+      this.currentIndex = (this.currentIndex + 1) % this.totalSlides;
+      this.updateSlides();
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => new CustomProductSlider());
 {% endjavascript %}
+
 {% stylesheet %}
-.custom-product-slider-section {
+  .custom-product-slider-section {
     background-color: #fde8e6;
     width: 100%;
-}
-.custom-product-slider {
+  }
+  .custom-product-slider {
     position: relative;
     padding: 128px 120px 140px 120px;
     gap: 64px;
-    max-width: 1440px;
-}
+    margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
 
-.product-slider-bg-heading {
+  .slider-hidden {
+    display: none !important;
+    opacity: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    .custom-product-slider {
+      padding: 64px 20px 70px 20px;
+    }
+  }
+
+  .product-slider-bg-heading {
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'Arial', sans-serif;
+    transform: translate(-50%, -30%);
     font-weight: 700;
-    font-size: 70px;
-    line-height: 90px;
+    font-size: 170px;
+    line-height: 120px;
     text-align: center;
-    color: #FFFFFF;
-}
+    color: #ffffff;
+    width: 100%;
+  }
 
-.custom-product-slider-track {
-}
+  .custom-product-slider-track {
+    position: relative;
+    width: 100%;
+    height: 800px;
+    overflow: visible !important;
+    padding: 20px;
+  }
 
-.custom-product-slider-item-container{
-    background: linear-gradient(109deg, rgba(254,210,215,1) 0%, rgba(234,67,53,1) 100%);
+  .custom-product-slider-item-container {
     width: min(520px, 74vw);
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     z-index: 1;
     transform: translateY(-30%);
-}
+  }
+  .custom-product-slider-item-container.active {
+    background: linear-gradient(109deg, rgba(254, 210, 215, 1) 0%, rgba(234, 67, 53, 1) 100%);
+  }
+  .custom-product-slider-item-container.inactive h1,
+  p {
+    color: #9b3462;
+  }
 
-.custom-product-slider-container {
-    position: relative;
+  .custom-product-slider-item-container.inactive a {
+    display: none;
+  }
+
+  .custom-product-slider-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 520px;
     z-index: 2;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
     padding: 20px;
-    margin: 0 auto;
-}
+    opacity: 0;
+  }
 
-.custom-product-slider-item-content {
+  .custom-product-slider-container {
+    transition: all 0.6s ease;
+  }
+  .custom-product-slider-container.next {
+    position: absolute;
+    max-width: 520px;
+    z-index: 2;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .custom-product-slider-container.prev {
+    opacity: 0.8;
+    display: flex;
+    z-index: 2;
+  }
+  .custom-product-slider-container.next {
+    opacity: 0.8;
+    display: flex;
+    z-index: 2;
+  }
+
+  .custom-product-slider-container.prev,
+  .custom-product-slider-container.next {
+    display: flex;
+    opacity: 0.5;
+    z-index: 2;
+  }
+
+  .custom-product-slider-container.prev .custom-product-scatter-image-right,
+  .custom-product-slider-container.prev .custom-product-scatter-image-left,
+  .custom-product-slider-container.next .custom-product-scatter-image-right,
+  .custom-product-slider-container.next .custom-product-scatter-image-left {
+    display: none;
+  }
+  .custom-product-slider-container.prev {
+    transform: translate(-155%);
+    overflow: visible !important;
+  }
+
+  .custom-product-slider-container.next {
+    transform: translate(50%);
+    overflow: visible !important;
+  }
+
+  .custom-product-slider-container.active {
+    opacity: 1;
+    display: flex;
+    z-index: 3;
+  }
+
+  .custom-product-slider-container.hidden {
+    display: none;
+    opacity: 0;
+    z-index: 1;
+  }
+
+  .custom-product-slider-item-content {
     position: absolute;
     top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
     text-align: center;
     gap: 24px;
-}
+  }
 
-.custom-product-slider-item-content h2 {
+  .custom-product-slider-item-content h2 {
     font-size: 40px;
     line-height: 90%;
     letter-spacing: -2%;
     text-transform: uppercase;
-    color: #FEF3F3;
-}
+  }
 
-.custom-product-slider-item-content p {
+  .custom-product-slider-item-content p {
     font-size: 18px;
     line-height: 140%;
     letter-spacing: 0%;
     font-weight: 500;
-    color: #FEF3F3;
-}
+  }
 
-.custom-product-slider-link {
+  .custom-product-slider-link {
     padding: 14px 32px;
     gap: 10px;
-    border: 1px solid #FEF3F3;
+    border: 1px solid #fef3f3;
     border-radius: 50px;
     font-size: 14px;
     line-height: 100%;
     text-align: center;
     text-decoration: none;
-    color: #9B3462;
-    background-color: #FEF3F3;
+    color: #9b3462;
+    background-color: #fef3f3;
     letter-spacing: -2%;
-}
+  }
 
-.custom-product-slider-item {
+  .custom-product-slider-item {
     z-index: 5;
-}
+  }
 
-.custom-product-scatter-image-left {
+  .custom-product-scatter-image-left {
     position: absolute;
     top: 10%;
-    left: 25%;
+    left: 0;
     z-index: 5;
-}
-.custom-product-scatter-image-right {
+  }
+  .custom-product-scatter-image-right {
     position: absolute;
     top: 15%;
-    right: 25%;
+    right: 0;
     z-index: 5;
-}
+  }
 
-.custom-product-slider-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #fff;
-  color: #9b3462;
-  border: 0;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 10;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 1 !important;
-  pointer-events: all !important;
-  box-shadow: 0 6px 18px rgba(0,0,0,.08);
-}
+  .custom-product-slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #fff;
+    color: #9b3462;
+    border: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1 !important;
+    pointer-events: all !important;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    z-index: 5;
+  }
 
+  .custom-product-slider-nav:hover {
+    background-color: #9b3462;
+    color: #fff;
+    transition: all 0.5s ease;
+  }
 
+  .custom-product-slider-prev {
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translateY(-50%);
+  }
+
+  .custom-product-slider-next {
+    position: absolute;
+    top: 50%;
+    right: 25%;
+    transform: translateY(-50%);
+  }
+
+  @media screen and (max-width: 768px) {
+    .custom-product-slider-prev {
+      left: 10px;
+    }
+    .custom-product-slider-next {
+      right: 10px;
+    }
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -184,46 +378,79 @@
     { "type": "image_picker", "id": "product1_image", "label": "Product 1 Image" },
     { "type": "image_picker", "id": "product1_scattered_image", "label": "Product 1 Scattered Image" },
     { "type": "text", "id": "product1_title", "label": "Product 1 Title", "default": "Sample Product 1 Title" },
-    { "type": "text", "id": "product1_description", "label": "Product 1 Description", "default": "Sample Product 1 Description" },
+    {
+      "type": "text",
+      "id": "product1_description",
+      "label": "Product 1 Description",
+      "default": "Sample Product 1 Description"
+    },
     { "type": "url", "id": "product1_url", "label": "Product 1 URL" },
 
     { "type": "image_picker", "id": "product2_image", "label": "Product 2 Image" },
     { "type": "image_picker", "id": "product2_scattered_image", "label": "Product 2 Scattered Image" },
     { "type": "text", "id": "product2_title", "label": "Product 2 Title", "default": "Sample Product 2 Title" },
-    { "type": "text", "id": "product2_description", "label": "Product 2 Description", "default": "Sample Product 2 Description" },
+    {
+      "type": "text",
+      "id": "product2_description",
+      "label": "Product 2 Description",
+      "default": "Sample Product 2 Description"
+    },
     { "type": "url", "id": "product2_url", "label": "Product 2 URL" },
 
     { "type": "image_picker", "id": "product3_image", "label": "Product 3 Image" },
     { "type": "image_picker", "id": "product3_scattered_image", "label": "Product 3 Scattered Image" },
     { "type": "text", "id": "product3_title", "label": "Product 3 Title", "default": "Sample Product 3 Title" },
-    { "type": "text", "id": "product3_description", "label": "Product 3 Description", "default": "Sample Product 3 Description" },
+    {
+      "type": "text",
+      "id": "product3_description",
+      "label": "Product 3 Description",
+      "default": "Sample Product 3 Description"
+    },
     { "type": "url", "id": "product3_url", "label": "Product 3 URL" },
 
     { "type": "image_picker", "id": "product4_image", "label": "Product 4 Image" },
     { "type": "image_picker", "id": "product4_scattered_image", "label": "Product 4 Scattered Image" },
     { "type": "text", "id": "product4_title", "label": "Product 4 Title", "default": "Sample Product 4 Title" },
-    { "type": "text", "id": "product4_description", "label": "Product 4 Description", "default": "Sample Product 4 Description" },
+    {
+      "type": "text",
+      "id": "product4_description",
+      "label": "Product 4 Description",
+      "default": "Sample Product 4 Description"
+    },
     { "type": "url", "id": "product4_url", "label": "Product 4 URL" },
 
     { "type": "image_picker", "id": "product5_image", "label": "Product 5 Image" },
     { "type": "image_picker", "id": "product5_scattered_image", "label": "Product 5 Scattered Image" },
     { "type": "text", "id": "product5_title", "label": "Product 5 Title", "default": "Sample Product 5 Title" },
-    { "type": "text", "id": "product5_description", "label": "Product 5 Description", "default": "Sample Product 5 Description" },
+    {
+      "type": "text",
+      "id": "product5_description",
+      "label": "Product 5 Description",
+      "default": "Sample Product 5 Description"
+    },
     { "type": "url", "id": "product5_url", "label": "Product 5 URL" },
 
     { "type": "image_picker", "id": "product6_image", "label": "Product 6 Image" },
     { "type": "image_picker", "id": "product6_scattered_image", "label": "Product 6 Scattered Image" },
     { "type": "text", "id": "product6_title", "label": "Product 6 Title", "default": "Sample Product 6 Title" },
-    { "type": "text", "id": "product6_description", "label": "Product 6 Description", "default": "Sample Product 6 Description" },
+    {
+      "type": "text",
+      "id": "product6_description",
+      "label": "Product 6 Description",
+      "default": "Sample Product 6 Description"
+    },
     { "type": "url", "id": "product6_url", "label": "Product 6 URL" },
 
     { "type": "image_picker", "id": "product7_image", "label": "Product 7 Image" },
     { "type": "image_picker", "id": "product7_scattered_image", "label": "Product 7 Scattered Image" },
     { "type": "text", "id": "product7_title", "label": "Product 7 Title", "default": "Sample Product 7 Title" },
-    { "type": "text", "id": "product7_description", "label": "Product 7 Description", "default": "Sample Product 7 Description" },
-    { "type": "url", "id": "product7_url", "label": "Product 7 URL" },
-
-
+    {
+      "type": "text",
+      "id": "product7_description",
+      "label": "Product 7 Description",
+      "default": "Sample Product 7 Description"
+    },
+    { "type": "url", "id": "product7_url", "label": "Product 7 URL" }
   ],
   "presets": [{ "name": "Default Custom Product Slider" }]
 }
