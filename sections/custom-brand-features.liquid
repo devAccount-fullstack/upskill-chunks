@@ -1,0 +1,67 @@
+{% assign block1 = section.blocks[0] %}
+{% assign block2 = section.blocks[1] %}
+{% assign block3 = section.blocks[2] %}
+{% assign block4 = section.blocks[3] %}
+{% assign block5 = section.blocks[4] %}
+
+<section class="custom-brand-features-section">
+  <div class="custom-brand-features">
+    <div class="custom-brand-features-container"></div>
+    <div class="custom-brand-features-content">
+      <img
+        src="{{ block3.settings.feature_image | image_url }}"
+        alt="{{ block3.settings.feature_image.alt | escape }}"
+        class="custom-brand-features-image"
+        loading="lazy"
+        width="auto"
+        height="auto"
+      >
+      <div class="custom-brand-features-text">
+        <h2 class="custom-brand-features-title">{{ block3.settings.feature_title }}</h2>
+        <p class="custom-brand-features-description">{{ block3.settings.feature_description }}</p>
+      </div>
+    </div>
+    <div class="custom-brand-features-container"></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Brand Features",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "feature_card",
+      "name": "Feature Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "feature_image",
+          "label": "Feature Image"
+        },
+        {
+          "type": "text",
+          "id": "feature_title",
+          "label": "Feature Title"
+        },
+        {
+          "type": "text",
+          "id": "feature_alt",
+          "label": "Feature alt"
+        },
+        {
+          "type": "textarea",
+          "id": "feature_description",
+          "label": "Feature Description"
+        }
+      ],
+      "limit": 5
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Brand Features"
+    }
+  ]
+}
+{% endschema %}

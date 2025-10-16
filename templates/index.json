@@ -85,11 +85,11 @@
       "settings": {
         "title": "Bite-size Clusters, Supersized taste",
         "floating_button_text": "FIND STORE",
-        "floating_button_url": "shopify://collections/all",
+        "floating_button_url": "",
         "floating_button_image": "shopify://shop_images/Star_7.png",
         "product_image": "shopify://shop_images/Group_21.png",
         "button1_text": "SHOP NOW",
-        "button1_url": "shopify://collections/all",
+        "button1_url": "",
         "button2_text": "SHOP BUNDLE",
         "button2_url": ""
       }
@@ -154,7 +154,7 @@
         "product1_scattered_image": "shopify://shop_images/ChatGPT_Image_Jul_30_2025_09_36_45_PM_2.png",
         "product1_title": "Strawberry Pouch",
         "product1_description": "This irresistible snack combines freeze-dried strawberries, crunchy pretzels, and corn squares all coated to perfection.",
-        "product1_url": "shopify://products/strawberry",
+        "product1_url": "",
         "custom_bg_color_1": "linear-gradient(0deg, rgba(234, 67, 53, 1), rgba(254, 210, 215, 1) 100%)",
         "product2_image": "shopify://shop_images/Variant_Toffee.png",
         "product2_scattered_image": "shopify://shop_images/ChatGPT_Image_Jul_30_2025_09_55_17_PM_4.png",
