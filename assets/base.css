@@ -2834,6 +2834,7 @@ details[open] > .header__submenu {
 }
 
 .header__menu-item {
+  font-family: 'Open Sauce Sans', sans-serif;
   font-weight: bolder;
   padding: 1.2rem;
   text-decoration: none;
@@ -2845,6 +2846,7 @@ details[open] > .header__submenu {
 }
 
 .header__menu-item span {
+  font-family: 'Open Sauce Sans', sans-serif;
   transition: text-decoration var(--duration-short) ease;
 }
 

@@ -9,7 +9,7 @@ To start developing:
 ```bash
 
 # Live theme synch develop
-shopify theme dev -s upskill-chunks.myshopify.com -t 169891364887 --theme-editor-sync
+shopify theme dev -s upskill-chunks.myshopify.com -t 170033971223 --theme-editor-sync
 
 ## To check theme name and ID
 shopify theme list --store=upskill-chunks.myshopify.com
