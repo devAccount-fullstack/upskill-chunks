@@ -1,16 +1,17 @@
-<div class="custom-announcement-bar-section">
+<div class="custom-announcement-bar-section" role="region" aria-label="Announcement">
   <div class="custom-announcement-bar-wrapper">
-    <div class="custom-announcement-bar-content">
-      <div class="custom-announcement-bar-content marquee">
+    <div class="custom-announcement-track" aria-hidden="false">
+      <div class="custom-announcement-group">
         {% for i in (1..section.settings.repeat) %}
           {% for block in section.blocks %}
-            {% if block.type == 'custom_icon' %}
+            {% if block.type == 'custom_icon' and block.settings.logo %}
               <img
                 src="{{ block.settings.logo | image_url }}"
                 alt="{{ block.settings.logo.alt | escape }}"
                 class="custom-announcement-bar-logo"
                 height="30"
                 width="30"
+                loading="lazy"
               >
             {% endif %}
           {% endfor %}
@@ -19,21 +20,23 @@
           </h2>
         {% endfor %}
       </div>
-      <div class="custom-announcement-bar-content marquee">
+
+      <div class="custom-announcement-group" aria-hidden="true">
         {% for i in (1..section.settings.repeat) %}
           {% for block in section.blocks %}
-            {% if block.type == 'custom_icon' %}
+            {% if block.type == 'custom_icon' and block.settings.logo %}
               <img
                 src="{{ block.settings.logo | image_url }}"
                 alt="{{ block.settings.logo.alt | escape }}"
                 class="custom-announcement-bar-logo"
                 height="30"
                 width="30"
+                loading="lazy"
               >
             {% endif %}
           {% endfor %}
           <h2 class="custom-announcement-bar-text">
-            <span>{{ section.settings.text }}</span>
+            <span aria-hidden="true">{{ section.settings.text }}</span>
           </h2>
         {% endfor %}
       </div>
@@ -53,22 +56,30 @@
   }
 
   .custom-announcement-bar-wrapper {
-    width: 100%;
     overflow: hidden;
     position: relative;
+    width: 100%;
   }
 
-  .custom-announcement-bar-content {
+  .custom-announcement-track {
     display: flex;
+    gap: 48px;
     align-items: center;
-    gap: 32px;
     white-space: nowrap;
-    animation: marquee 50s linear infinite;
+    will-change: transform;
+    animation: marquee 30s linear infinite;
+  }
+
+  .custom-announcement-group {
+    display: inline-flex;
+    gap: 32px;
+    align-items: center;
   }
 
   .custom-announcement-bar-logo {
     height: 30px;
     width: 30px;
+    flex: 0 0 auto;
   }
 
   .custom-announcement-bar-text {
@@ -78,6 +89,18 @@
     color: #9b3462;
     text-transform: uppercase;
     font-weight: bold;
+    margin: 0;
+    flex: 0 0 auto;
+  }
+
+  .custom-announcement-bar-section:hover .custom-announcement-track,
+  .custom-announcement-bar-section:focus-within .custom-announcement-track {
+    animation-play-state: paused;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .custom-announcement-track {
+      animation: none;
+    }
   }
 
   @keyframes marquee {
