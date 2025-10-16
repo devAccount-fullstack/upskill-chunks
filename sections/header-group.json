@@ -11,52 +11,47 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
-    "announcement-bar": {
-      "type": "announcement-bar",
+    "custom_announcement_DCw6zn": {
+      "type": "custom-announcement",
       "blocks": {
-        "announcement-bar-0": {
-          "type": "announcement",
+        "custom_icon_HCiY9L": {
+          "type": "custom_icon",
           "settings": {
-            "text": "Welcome to our store",
-            "link": ""
+            "logo": "shopify://shop_images/Layer_2.png"
           }
         }
       },
       "block_order": [
-        "announcement-bar-0"
+        "custom_icon_HCiY9L"
       ],
+      "name": "Default Custom Announcement",
       "settings": {
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "color_scheme": "scheme-1",
-        "show_line_separator": true,
-        "show_social": false,
-        "enable_country_selector": false,
-        "enable_language_selector": false
+        "text": "Free Shipping Over $50",
+        "repeat": 20
       }
     },
     "header": {
       "type": "header",
       "settings": {
-        "logo_position": "middle-left",
+        "logo_position": "middle-center",
         "mobile_logo_position": "center",
-        "menu": "main-menu",
+        "menu": "menu",
         "menu_type_desktop": "dropdown",
         "sticky_header_type": "on-scroll-up",
         "show_line_separator": true,
-        "color_scheme": "scheme-1",
-        "menu_color_scheme": "scheme-1",
+        "color_scheme": "scheme-9232c220-6536-483c-a0a9-08ce24732f23",
+        "menu_color_scheme": "scheme-9232c220-6536-483c-a0a9-08ce24732f23",
         "enable_country_selector": true,
         "enable_language_selector": true,
         "enable_customer_avatar": true,
         "margin_bottom": 0,
-        "padding_top": 20,
-        "padding_bottom": 20
+        "padding_top": 8,
+        "padding_bottom": 0
       }
     }
   },
   "order": [
-    "announcement-bar",
+    "custom_announcement_DCw6zn",
     "header"
   ]
 }
