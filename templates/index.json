@@ -9,6 +9,53 @@
  */
 {
   "sections": {
+    "custom_hero_X8xJzY": {
+      "type": "custom-hero",
+      "name": "Default Custom Hero",
+      "settings": {
+        "title": "Sample Title",
+        "floating_button_text": "Sample Floating Button Text",
+        "floating_button_url": "",
+        "button1_text": "Sample Button 1 Text",
+        "button1_url": "",
+        "button2_text": "Sample Button 2 Text",
+        "button2_url": ""
+      }
+    },
+    "custom_product_slider_hTAyDq": {
+      "type": "custom-product-slider",
+      "name": "Default Custom Product Slider",
+      "settings": {
+        "product1_title": "Sample Product 1 Title",
+        "product1_description": "Sample Product 1 Description",
+        "product1_url": "",
+        "custom_bg_color_1": "",
+        "product2_title": "Sample Product 2 Title",
+        "product2_description": "Sample Product 2 Description",
+        "product2_url": "",
+        "custom_bg_color_2": "",
+        "product3_title": "Sample Product 3 Title",
+        "product3_description": "Sample Product 3 Description",
+        "product3_url": "",
+        "custom_bg_color_3": "",
+        "product4_title": "Sample Product 4 Title",
+        "product4_description": "Sample Product 4 Description",
+        "product4_url": "",
+        "custom_bg_color_4": "",
+        "product5_title": "Sample Product 5 Title",
+        "product5_description": "Sample Product 5 Description",
+        "product5_url": "",
+        "custom_bg_color_5": "",
+        "product6_title": "Sample Product 6 Title",
+        "product6_description": "Sample Product 6 Description",
+        "product6_url": "",
+        "custom_bg_color_6": "",
+        "product7_title": "Sample Product 7 Title",
+        "product7_description": "Sample Product 7 Description",
+        "product7_url": "",
+        "custom_bg_color_7": ""
+      }
+    },
     "custom_marquee_section_7gM9w7": {
       "type": "custom-marquee-section",
       "blocks": {
@@ -733,6 +780,8 @@
     }
   },
   "order": [
+    "custom_hero_X8xJzY",
+    "custom_product_slider_hTAyDq",
     "custom_marquee_section_7gM9w7",
     "ingredients_section_ibg89T",
     "testimonial_7RcaFk",
