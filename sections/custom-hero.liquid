@@ -4,37 +4,53 @@
       <div class="hero-content">
         <h1 class="hero-title">{{ section.settings.title }}</h1>
         <div class="custom_button-container">
-            <a 
-                href="{{ section.settings.button1_url }}" 
-                class="custom_button custom_button--primary"
-              >
-                {{ section.settings.button1_text }}
-            </a>
-            <a 
-                href="{{ section.settings.button2_url }}" 
-                class="custom_button custom_button--secondary"
-              >
-                {{ section.settings.button2_text }}
-            </a>
+          <a
+            href="{{ section.settings.button1_url }}"
+            class="custom_button custom_button--primary"
+          >
+            {{ section.settings.button1_text }}
+          </a>
+          <a
+            href="{{ section.settings.button2_url }}"
+            class="custom_button custom_button--secondary"
+          >
+            {{ section.settings.button2_text }}
+          </a>
         </div>
       </div>
     </div>
     <div class="hero-main-image">
       <div class="floating-button-container">
-        <a href="{{ section.settings.floating_button_url }}" 
-          style="width:124px;height:124px;background-image:url({{ section.settings.floating_button_image | image_url }});background-size:cover;background-position:center;border-radius:50%;border:none;display:flex;justify-content:center;align-items:center;text-decoration:none;z-index:10;">
+        <a
+          href="{{ section.settings.floating_button_url }}"
+          style="width:124px;height:124px;background-image:url({{ section.settings.floating_button_image | image_url }});background-size:cover;background-position:center;border-radius:50%;border:none;display:flex;justify-content:center;align-items:center;text-decoration:none;z-index:10;"
+        >
           <span class="floating-button-text">{{ section.settings.floating_button_text }}</span>
         </a>
       </div>
-      <img src="{{ section.settings.product_image | image_url }}" alt="product image" class="hero-main-img" height="100%" width="100%">
+      <img
+        src="{{ section.settings.product_image | image_url }}"
+        alt="product image"
+        class="hero-main-img"
+        height="100%"
+        width="100%"
+      >
     </div>
   </div>
   <div class="scattered-image">
     {% for block in section.blocks %}
       {% if block.type == 'custom_scattered_image' %}
-        <div class="scattered-image-item" 
-          style="top:{{ block.settings.top_image }}%;left:{{ block.settings.left_image }}%;transform:rotate({{ block.settings.rotation_image }}deg);height:{{ block.settings.item_size }}px;width:{{ block.settings.item_size }}px;z-index:1;">
-          <img src="{{ block.settings.image | image_url }}" alt="scattered image" style="display:block;" height="{{ block.settings.item_size }}px" width="{{ block.settings.item_size }}px;z-index:1;">
+        <div
+          class="scattered-image-item"
+          style="top:{{ block.settings.top_image }}%;left:{{ block.settings.left_image }}%;transform:rotate({{ block.settings.rotation_image }}deg);height:{{ block.settings.item_size }}px;width:{{ block.settings.item_size }}px;z-index:1;"
+        >
+          <img
+            src="{{ block.settings.image | image_url }}"
+            alt="scattered image"
+            style="display:block;"
+            height="{{ block.settings.item_size }}px"
+            width="{{ block.settings.item_size }}px;z-index:1;"
+          >
         </div>
       {% endif %}
     {% endfor %}
@@ -42,181 +58,216 @@
 </section>
 
 {% stylesheet %}
-.custom-hero-section {
-  background: linear-gradient(190deg, rgba(255,179,195,1) 0%, rgba(255,129,155,1) 100%);
-  padding: 48px 0 72px 0;
-  height: 900px;
-  min-height: 600px;
-  position: relative;
-  overflow: hidden;
-  padding: 60px 20px 20px;
-}
-
-.hero-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 72px;
-  max-width: 1022px;
-  margin: 0 auto;
-  padding: 0 20px;
-  z-index: 10;
-}
-
-.custom-hero-section-container {
-  max-width: 1440px;
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  justify-content: center;
-  gap: 32px;
-}
-
-.hero-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-  text-align: center;
-}
-
-.hero-title {
-  font-size: 92px;
-  line-height: 90%;
-  color: #FEF3F3;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.custom_button-container {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.hero-content .custom_button--primary {
-  background-color: #FEF3F3;
-  color: #9B3462;
-  border: none;
-  border-radius: 50px;
-  padding: 14px 32px;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-decoration: none;
-  cursor: pointer;
-  outline: none;
-  box-shadow: none;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.hero-content .custom_button--primary:hover {
-  background-color: #FDE8E6;
-}
-
-.hero-content .custom_button--secondary {
-  background-color: transparent;
-  border: 1px solid #FEF3F3;
-  color: #FEF3F3;
-  border-radius: 50px;
-  padding: 14px 32px;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-decoration: none;
-  cursor: pointer;
-  outline: none;
-  box-shadow: none;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.hero-content .custom_button--secondary:hover {
-  background-color: #FEF3F3;
-  color: #9B3462;
-}
-
-.custom_button--primary:focus,
-.custom_button--secondary:focus {
-  outline: none;
-  box-shadow: none;
-}
-
-.floating-button-container {
-  z-index: 2;
-  pointer-events: all;
-  position: absolute;
-  left: 60%;
-}
-
-.floating-button-text {
-  font-size: 16px;
-  color: #9B3462;
-  line-height: 100%;
-  text-transform: uppercase;
-  font-weight: 400;
-  rotate: 15deg;
-  padding: 32px;
-  text-align: center;
-}
-
-.hero-main-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  z-index: 10;
-}
-
-.scattered-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.scattered-image-item {
-  position: absolute;
-  z-index: 1;
-  pointer-events: none;
-}
-
-@media (max-width: 768px) {
   .custom-hero-section {
-    height: auto;
+    background: linear-gradient(190deg, rgba(255, 179, 195, 1) 0%, rgba(255, 129, 155, 1) 100%);
+    padding: 48px 0 72px 0;
+    height: 1000px;
+    min-height: 600px;
+    position: relative;
+    padding: 60px 20px 20px;
+    overflow: hidden;
+  }
+
+  .hero-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 72px;
+    max-width: 1022px;
+    margin: 0 auto;
+    padding: 0 20px;
+    z-index: 3;
+  }
+
+  .custom-hero-section-container {
+    max-width: 1440px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    justify-content: center;
+    gap: 32px;
+  }
+
+  .hero-main-image {
+    z-index: 2;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    text-align: center;
   }
 
   .hero-title {
-    font-size: 48px;
+    font-size: 92px;
+    line-height: 90%;
+    color: #fef3f3;
+    font-weight: bold;
+    text-transform: uppercase;
   }
 
   .custom_button-container {
-    gap: 8px;
-    align-items: center;
-    width: 100%;
-    justify-content: center;
-    flex-direction: column;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
   }
 
-  .custom_button-container a {
-    width: 100%;
+  .hero-content .custom_button--primary {
+    background-color: #fef3f3;
+    color: #9b3462;
+    border: none;
+    border-radius: 50px;
+    padding: 14px 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+    box-shadow: none;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .hero-content .custom_button--primary:hover {
+    background-color: #9b3462;
+    color: #fef3f3;
+  }
+
+  .hero-content .custom_button--secondary {
+    background-color: transparent;
+    border: 1px solid #fef3f3;
+    color: #fef3f3;
+    border-radius: 50px;
+    padding: 14px 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+    box-shadow: none;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .hero-content .custom_button--secondary:hover {
+    background-color: #fef3f3;
+    color: rgba(255, 129, 155, 1);
+  }
+
+  .custom_button--primary:focus,
+  .custom_button--secondary:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  .floating-button-container {
+    z-index: 2;
+    pointer-events: all;
+    position: absolute;
+    left: 60%;
+  }
+
+  .floating-button-container:hover {
+    scale: 1.3;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .floating-button-text {
+    font-size: 16px;
+    color: #9b3462;
+    line-height: 100%;
+    text-transform: uppercase;
+    font-weight: 400;
+    rotate: 15deg;
+    padding: 32px;
+    text-align: center;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0), scale(1);
+    }
+    50% {
+      transform: translateY(-40px), scale(1.5);
+    }
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 
   .hero-main-img {
-        margin-top: 16px;
-        transform: scale(1.4);
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    z-index: 10;
+    animation: float 3s ease-in-out;
+  }
+
+  .scattered-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    animation: float 3s ease-in-out;
+  }
+
+  .scattered-image-item {
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .scattered-image-item img {
+    animation: rotate 3s ease-in-out infinite;
+  }
+
+  @media (max-width: 768px) {
+    .scattered-image-item img {
+      width: 50%;
+      height: 50%;
+    }
+    .custom-hero-section {
+      height: auto;
+    }
+
+    .hero-title {
+      font-size: 48px;
+    }
+
+    .custom_button-container {
+      gap: 8px;
+      align-items: center;
+      width: 100%;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .custom_button-container a {
+      width: 100%;
+    }
+
+    .hero-main-img {
+      margin-top: 16px;
+      transform: scale(1.4);
     }
 
     .floating-button-container {
-        transform: scale(0.6);
-        transform: translateY(-20%);
+      transform: scale(0.6);
+      transform: translateY(-20%);
     }
-    
-
-
-}
-
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -253,27 +304,27 @@
       "label": "Product Image"
     },
     {
-        "type": "text",
-        "id": "button1_text",
-        "label": "Button 1 Text",
-        "default": "Sample Button 1 Text"
+      "type": "text",
+      "id": "button1_text",
+      "label": "Button 1 Text",
+      "default": "Sample Button 1 Text"
     },
     {
-          "type": "url",
-          "id": "button1_url",
-          "label": "Button 1 URL"
+      "type": "url",
+      "id": "button1_url",
+      "label": "Button 1 URL"
     },
     {
-        "type": "text",
-        "id": "button2_text",
-        "label": "Button 2 Text",
-        "default": "Sample Button 2 Text"
+      "type": "text",
+      "id": "button2_text",
+      "label": "Button 2 Text",
+      "default": "Sample Button 2 Text"
     },
     {
-          "type": "url",
-          "id": "button2_url",
-          "label": "Button 2 URL"
-    },
+      "type": "url",
+      "id": "button2_url",
+      "label": "Button 2 URL"
+    }
   ],
   "blocks": [
     {

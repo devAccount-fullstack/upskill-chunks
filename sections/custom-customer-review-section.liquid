@@ -1,0 +1,670 @@
+<section
+  class="customer-review-section"
+  style="
+    {% if section.settings.use_gradient %}
+      background: linear-gradient(to bottom, {{ section.settings.gradient_top | default: '#FEF3F3' }}, {{ section.settings.gradient_bottom | default: '#FFB1BB' }});
+    {% else %}
+      background-color: {{ section.settings.background_color | default: '#FEF3F3' }};
+    {% endif %}
+  "
+>
+  <!-- Background Floating Chips  -->
+  {% for i in (1..4) %}
+    {% assign img_key = 'chip_' | append: i | append: '_image' %}
+    {% assign chip_image = section.settings[img_key] %}
+    {% assign size_key = 'chip_' | append: i | append: '_size' %}
+    {% assign pos_top_key = 'chip_' | append: i | append: '_top' %}
+    {% assign pos_left_key = 'chip_' | append: i | append: '_left' %}
+    {% assign pos_right_key = 'chip_' | append: i | append: '_right' %}
+    {% assign pos_bottom_key = 'chip_' | append: i | append: '_bottom' %}
+
+    {% if chip_image != blank %}
+      {% assign raw_size = section.settings[size_key] | default: '120px' %}
+      {% assign size_num = raw_size | remove: 'px' | remove: ' ' %}
+      {% if size_num == '' %}
+        {% assign size_num = '120' %}
+      {% endif %}
+
+      {% assign rotate_key = 'chip_' | append: i | append: '_rotate' %}
+      {% assign rotate_value = section.settings[rotate_key] | default: '0deg' %}
+
+      <img 
+        src="{{ chip_image | image_url: width: size_num | default: chip_image }}" 
+        alt="Decorative Chip {{ i }}" 
+        class="floating-chip chip-{{ i }}"
+        width="{{ size_num }}"
+        height="{{ size_num }}"
+        style="
+          {% if section.settings[pos_top_key] != blank %}top: {{ section.settings[pos_top_key] }};{% endif %}
+          {% if section.settings[pos_left_key] != blank %}left: {{ section.settings[pos_left_key] }};{% endif %}
+          {% if section.settings[pos_right_key] != blank %}right: {{ section.settings[pos_right_key] }};{% endif %}
+          {% if section.settings[pos_bottom_key] != blank %}bottom: {{ section.settings[pos_bottom_key] }};{% endif %}
+          width: {{ raw_size }};
+          transform: rotate({{ rotate_value }});
+        "
+      >
+    {% endif %}
+  {% endfor %}
+
+  <div class="customer-review-header">
+    <h2 class="review-title">{{ section.settings.title_text }}</h2>
+  </div>
+
+  <!-- Customer Review Content Card -->
+  <div class="review-slider">
+    {% for block in section.blocks %}
+      <div 
+        class="review-card" 
+        {{ block.shopify_attributes }}
+        style="background: {{ section.settings.card_background_color | default: '#FEF3F3' }};"
+      >
+        {% if block.settings.reviewer_image != blank %}
+          <div class="image-wrapper">
+            <img 
+              src="{{ block.settings.reviewer_image | image_url: width: 330 }}" 
+              alt="{{ block.settings.reviewer_name }}" 
+              class="reviewer-img"
+              width="330"
+              height="367"
+            >
+            <div class="review-stars">
+              {% for i in (1..block.settings.star_count) %}
+                ★
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
+        <div class="card-wave" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 1000 100"
+              preserveAspectRatio="none"
+              width="100%"
+              height="50">
+            <path
+              fill="{{ section.settings.wave_color | default: '#FFB1BB' }}"
+              d="M0 100
+                V40
+                c9 0 18 3 25 10
+                13 14 36 14 50 0s36-14 50 0c13 14 36 14 50 0s36-14 50 0c13 14 36 14 50 0s36-14 50 0
+                c13 14 36 14 50 0s36-14 50 0c13 14 36 14 50 0s36-14 50 0c13 14 36 14 50 0s36-14 50 0
+                c13 14 36 14 50 0s36-14 50 0c13 14 36 14 50 0s36-14 50 0c13 14 36 14 50 0s36-14 50 0
+                c13 14 36 14 50 0s37-13 50 0c14 14 37 14 50 0
+                c7-7 16-10 25-10
+                V100
+                Z" />
+          </svg>
+        </div>
+
+        <div class="review-text-section">
+          <div class="reviewer-info">
+            <p class="reviewer-name"
+              style="
+                color: {{ section.settings.review_name_color | default: '#9B3462' }};
+                font-size: {{ section.settings.review_name_size | default: '20px' }};
+              ">
+              {{ block.settings.reviewer_name }}
+            </p>
+            {% if block.settings.show_badge %}
+              <div class="verified-badge">
+                <div class="badge-circle"
+                    style="background-color: {{ section.settings.badge_color | default: '#9B3462' }};">
+                  <span class="badge-check">✓</span>
+                </div>
+              </div>
+            {% endif %}
+          </div>
+
+          <p class="review-content"
+            style="
+              color: {{ section.settings.review_text_color | default: '#9B3462' }};
+              font-size: {{ section.settings.review_text_size | default: '18px' }};
+            ">
+            {{ block.settings.review_text }}
+          </p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Button -->
+  {% if section.settings.button_text != blank %}
+    <div class="review-btn-wrapper">
+      <a href="{{ section.settings.button_link }}" class="review-btn">
+        {{ section.settings.button_text }}
+      </a>
+    </div>
+  {% endif %}
+</section>
+
+{% stylesheet %}
+/* Header or Top Part of the Customer Review Section*/
+.customer-review-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 80px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #FEF3F3;
+}
+
+.customer-review-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.review-title {
+  font-family: "True North Black", sans-serif;
+  font-size: 43px;
+  color: #9B3462;
+  margin-bottom: 2px;
+  letter-spacing: -4%;
+  line-height: 90%;
+  text-transform: uppercase;
+}
+
+/* Floating Chips on the Background */
+.floating-chip {
+  position: absolute;
+  z-index: 0;
+  opacity: 0.95;
+  pointer-events: none;
+}
+
+/* Review Slider */
+.review-slider {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 48px;
+  overflow-x: scroll;
+  overflow-y: visible;
+  scroll-behavior: smooth;
+  padding: 20px 60px 40px 60px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  width: 100%;
+  cursor: default;
+  justify-content: center;
+}
+
+.review-slider::-webkit-scrollbar {
+  display: none;
+}
+
+/* Review Card */
+.review-card {
+  flex: 0 0 auto;
+  width: 330px;
+  height: 587px;
+  background: #FEF3F3;
+  border-radius: 12px;
+  box-shadow: 0 10px 10px rgba(0,0,0,0.05);
+  transform-origin: center center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  scroll-snap-align: center;
+  position: relative;
+  text-align: left;
+  z-index: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.review-card:hover {
+  transform: scale(1.03) rotate(0deg) !important;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+  z-index: 10;
+}
+
+.review-card.clone:hover {
+  transform: scale(1.03) rotate(0deg) !important;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+  z-index: 10;
+}
+
+/* Alternate Card Tild */
+.review-card:nth-child(odd) {
+  transform: rotate(-2deg);
+}
+
+.review-card:nth-child(even) {
+  transform: rotate(2deg);
+}
+
+/* Customer's Image */
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 376px;
+  overflow: hidden;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.reviewer-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+/* Stars */
+.review-stars {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff; 
+  font-size: 16px;
+  gap: 6.49px;
+  z-index: 2;
+}
+
+/* Wave Divider for Image and Content */
+.card-wave {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  line-height: 0;
+  overflow: hidden;
+  margin-bottom: 10px;
+  z-index: 2;
+  margin-top: -28px;
+}
+
+.card-wave svg {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Customer Ratings Description */
+.reviewer-info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  margin: 0px 20px 5px 20px;
+  text-align: left;
+  width: calc(100% - 40px); 
+}
+
+.reviewer-name {
+  font-weight: bold;
+  font-size: 20px;
+  color: #9B3462;
+  line-height: 22px;
+  font-family: "Open Sauce Sans";
+  margin: 0;
+  text-align: left;
+}
+
+.verified-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge-circle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #9B3462;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge-check {
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.review-content {
+  font-size: 18px;
+  line-height: 150%;
+  color: #9B3462;
+  margin: 0px 20px 20px 20px;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.review-text-section {
+  height: 211px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0;
+}
+
+/* Button CSS */
+.review-btn-wrapper {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.review-btn {
+  display: inline-block;
+  padding: 15px 40px;
+  background-color: #9B3462;
+  color: #FEF3F3;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  font-family: "True North Black", sans-serif;
+  line-height: 100%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.review-btn:hover {
+  background-color: #6d234e;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .review-slider {
+    gap: 20px;
+    padding: 20px;
+  }
+  .review-card {
+    flex: 0 0 80%;
+  }
+  .review-title {
+    font-size: 30px;
+  }
+}
+{% endstylesheet %}
+
+<script src="{{ 'custom-customer-review-slider.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Custom Review Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_gradient",
+      "label": "Use Gradient Background",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#FEF3F3"
+    },
+    {
+      "type": "color",
+      "id": "gradient_top",
+      "label": "Gradient Top Color",
+      "default": "#FEF3F3"
+    },
+    {
+      "type": "color",
+      "id": "gradient_bottom",
+      "label": "Gradient Bottom Color",
+      "default": "#FFB1BB"
+    },
+
+    {
+      "type": "header",
+      "content": "Review Card Styling"
+    },
+    {
+      "type": "color",
+      "id": "review_name_color",
+      "label": "Reviewer Name Color",
+      "default": "#9B3462"
+    },
+    {
+      "type": "range",
+      "id": "review_name_size",
+      "label": "Reviewer Name Font Size",
+      "default": 20,
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "review_text_color",
+      "label": "Review Text Color",
+      "default": "#9B3462"
+    },
+    {
+      "type": "range",
+      "id": "review_text_size",
+      "label": "Review Text Font Size",
+      "default": 18,
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "badge_color",
+      "label": "Verified Badge Color",
+      "default": "#9B3462"
+    },
+
+    {
+      "type": "header",
+      "content": "Main Content"
+    },
+    {
+      "type": "text",
+      "id": "title_text",
+      "label": "Section Title",
+      "default": "What Our Customers Say"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Floating Chips (Background)"
+    },
+    {
+      "type": "image_picker",
+      "id": "chip_1_image",
+      "label": "Chip 1 Image"
+    },
+    {
+      "type": "text",
+      "id": "chip_1_top",
+      "label": "Chip 1 Top Position (px)",
+      "default": "200px"
+    },
+    {
+      "type": "text",
+      "id": "chip_1_left",
+      "label": "Chip 1 Left Position (px)",
+      "default": "0"
+    },
+    {
+      "type": "text",
+      "id": "chip_1_size",
+      "label": "Chip 1 Size (px)",
+      "default": "120px"
+    },
+    {
+      "type": "text",
+      "id": "chip_1_rotate",
+      "label": "Chip 1 Rotation (deg)",
+      "default": "0deg"
+    },
+    {
+      "type": "image_picker",
+      "id": "chip_2_image",
+      "label": "Chip 2 Image"
+    },
+    {
+      "type": "text",
+      "id": "chip_2_top",
+      "label": "Chip 2 Top Position",
+      "default": "90px"
+    },
+    {
+      "type": "text",
+      "id": "chip_2_right",
+      "label": "Chip 2 Right Position",
+      "default": "120px"
+    },
+    {
+      "type": "text",
+      "id": "chip_2_size",
+      "label": "Chip 2 Size",
+      "default": "120px"
+    },
+    {
+      "type": "text",
+      "id": "chip_2_rotate",
+      "label": "Chip 2 Rotation",
+      "default": "0deg"
+    },
+    {
+      "type": "image_picker",
+      "id": "chip_3_image",
+      "label": "Chip 3 Image"
+    },
+    {
+      "type": "text",
+      "id": "chip_3_bottom",
+      "label": "Chip 3 Bottom Position",
+      "default": "70px"
+    },
+    {
+      "type": "text",
+      "id": "chip_3_left",
+      "label": "Chip 3 Left Position",
+      "default": "150px"
+    },
+    {
+      "type": "text",
+      "id": "chip_3_size",
+      "label": "Chip 3 Size",
+      "default": "120px"
+    },
+    {
+      "type": "text",
+      "id": "chip_3_rotate",
+      "label": "Chip 3 Rotation",
+      "default": "0deg"
+    },
+    {
+      "type": "image_picker",
+      "id": "chip_4_image",
+      "label": "Chip 4 Image"
+    },
+    {
+      "type": "text",
+      "id": "chip_4_bottom",
+      "label": "Chip 4 Bottom Position",
+      "default": "20px"
+    },
+    {
+      "type": "text",
+      "id": "chip_4_right",
+      "label": "Chip 4 Right Position",
+      "default": "-10px"
+    },
+    {
+      "type": "text",
+      "id": "chip_4_size",
+      "label": "Chip 4 Size",
+      "default": "200px"
+    },
+    {
+      "type": "text",
+      "id": "chip_4_rotate",
+      "label": "Chip 4 Rotation (e.g. 15deg or -10deg)",
+      "default": "30deg"
+    },
+    {
+      "type": "color",
+      "id": "wave_color",
+      "label": "Wave Divider Color",
+      "default": "#FEF3F3"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Card Background Color",
+      "default": "#FEF3F3"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Customer Review",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "reviewer_image",
+          "label": "Reviewer Image"
+        },
+        {
+          "type": "text",
+          "id": "review_text",
+          "label": "Review Content",
+          "default": "This is an amazing product! I highly recommend it."
+        },
+        {
+          "type": "text",
+          "id": "reviewer_name",
+          "label": "Reviewer Name",
+          "default": "Jane Doe"
+        },
+        {
+          "type": "range",
+          "id": "star_count",
+          "label": "Star Rating",
+          "default": 5,
+          "min": 1,
+          "max": 5,
+          "step": 1
+        },
+        {
+          "type": "checkbox",
+          "id": "show_badge",
+          "label": "Show Verified Badge",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Customer Review Section",
+      "category": "Testimonials"
+    }
+  ]
+}
+{% endschema %}
