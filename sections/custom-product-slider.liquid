@@ -18,6 +18,7 @@
         {% capture title_key %}product{{ i }}_title{% endcapture %}
         {% capture description_key %}product{{ i }}_description{% endcapture %}
         {% capture url_key %}product{{ i }}_url{% endcapture %}
+        {% capture bg_color_key %}custom_bg_color_{{ i }}{% endcapture %}
         {% assign img = section.settings[img_key] %}
         {% assign scatter_img = section.settings[scatter_img_key] %}
         <div class="custom-product-slider-container">
@@ -38,7 +39,7 @@
             height="auto"
             class="custom-product-scatter-image-right"
           >
-          <div class="custom-product-slider-item-container">
+          <div class="custom-product-slider-item-container" style="--custom-bg: {{ section.settings[bg_color_key] }}">
             <div class="custom-product-slider-item-content">
               <h2>{{ section.settings[title_key] }}</h2>
               <p>{{ section.settings[description_key] }}</p>
@@ -141,12 +142,6 @@
     opacity: 0;
   }
 
-  @media screen and (max-width: 768px) {
-    .custom-product-slider {
-      padding: 64px 20px 70px 20px;
-    }
-  }
-
   .product-slider-bg-heading {
     position: absolute;
     top: 30%;
@@ -163,24 +158,36 @@
   .custom-product-slider-track {
     position: relative;
     width: 100%;
+    max-width: 1440px;
     height: 800px;
     overflow: visible !important;
     padding: 20px;
+    margin: auto;
   }
 
   .custom-product-slider-item-container {
-    width: min(520px, 74vw);
+    width: min(520px, 90vw);
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     z-index: 1;
     transform: translateY(-30%);
   }
-  .custom-product-slider-item-container.active {
-    background: linear-gradient(109deg, rgba(254, 210, 215, 1) 0%, rgba(234, 67, 53, 1) 100%);
+
+  .custom-product-slider-item-container h2 {
+    font-weight: bold;
   }
-  .custom-product-slider-item-container.inactive h1,
-  p {
+
+  .custom-product-slider-item-container.active {
+    background: var(--custom-bg);
+  }
+  .custom-product-slider-item-container.inactive p,
+  .custom-product-slider-item-container.inactive h2 {
     color: #9b3462;
+  }
+
+  .custom-product-slider-item-container.active p,
+  .custom-product-slider-item-container.active h2 {
+    color: #fef3f3;
   }
 
   .custom-product-slider-item-container.inactive a {
@@ -190,8 +197,6 @@
   .custom-product-slider-container {
     position: absolute;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
     width: 100%;
     max-width: 520px;
     z-index: 2;
@@ -204,9 +209,6 @@
     opacity: 0;
   }
 
-  .custom-product-slider-container {
-    transition: all 0.6s ease;
-  }
   .custom-product-slider-container.next {
     position: absolute;
     max-width: 520px;
@@ -216,17 +218,15 @@
     justify-content: center;
     text-align: center;
     padding: 20px;
+    left: 100%;
   }
 
-  .custom-product-slider-container.prev {
-    opacity: 0.8;
-    display: flex;
-    z-index: 2;
-  }
-  .custom-product-slider-container.next {
-    opacity: 0.8;
-    display: flex;
-    z-index: 2;
+  .custom-product-slider-container.slider-hidden {
+    display: block !important;
+    opacity: 0;
+    z-index: 1;
+    left: 50%;
+    transform: translate(-50%);
   }
 
   .custom-product-slider-container.prev,
@@ -243,25 +243,24 @@
     display: none;
   }
   .custom-product-slider-container.prev {
-    transform: translate(-155%);
+    transform: translate(-50%);
     overflow: visible !important;
   }
 
   .custom-product-slider-container.next {
-    transform: translate(50%);
+    transform: translate(-50%);
     overflow: visible !important;
   }
 
   .custom-product-slider-container.active {
     opacity: 1;
     display: flex;
+    left: 50%;
     z-index: 3;
-  }
-
-  .custom-product-slider-container.hidden {
-    display: none;
-    opacity: 0;
-    z-index: 1;
+    opacity: 1;
+    z-index: 3;
+    transform: translate(-50%);
+    transition: transform 1s ease, opacity 1s ease;
   }
 
   .custom-product-slider-item-content {
@@ -336,7 +335,7 @@
     opacity: 1 !important;
     pointer-events: all !important;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-    z-index: 4;
+    z-index: 5;
   }
 
   .custom-product-slider-nav:hover {
@@ -348,23 +347,83 @@
   .custom-product-slider-prev {
     position: absolute;
     top: 50%;
-    left: 25%;
+    left: 30%;
     transform: translateY(-50%);
   }
 
   .custom-product-slider-next {
     position: absolute;
     top: 50%;
-    right: 25%;
+    right: 30%;
     transform: translateY(-50%);
   }
 
   @media screen and (max-width: 768px) {
+    .custom-product-slider-container.next {
+      display: none;
+    }
+    .custom-product-slider-container.prev {
+      display: none;
+    }
     .custom-product-slider-prev {
       left: 10px;
     }
     .custom-product-slider-next {
       right: 10px;
+    }
+
+    .custom-product-slider-prev,
+    .custom-product-slider-next {
+      top: 50%;
+    }
+
+    .custom-product-slider-item-content p {
+      font-size: 12px;
+      line-height: 100%;
+      color: #fef3f3;
+    }
+    .custom-product-slider-item-content h2 {
+      margin-top: 32px;
+      font-size: 16px;
+      line-height: 80%;
+      color: #fef3f3;
+    }
+    .custom-product-slider-link {
+      padding: 6px 12px;
+      font-size: 10px;
+    }
+    .custom-product-slider-item-container {
+      width: min(520px, 75vw);
+      transform: translateY(-20%);
+    }
+    .custom-product-slider-item img {
+      height: 200px;
+    }
+    .custom-product-scatter-image-right {
+      width: 50px;
+    }
+    .custom-product-scatter-image-left {
+      width: 40px;
+      left: 0;
+    }
+    .custom-product-slider-nav {
+      width: 25px;
+      height: 25px;
+    }
+    .custom-product-slider {
+      padding: 64px 20px 70px 20px;
+    }
+
+    .product-slider-bg-heading {
+      font-size: 32px;
+    }
+    .custom-product-slider-track {
+      height: 700px;
+    }
+  }
+  @media screen and (max-width: 425px) {
+    .custom-product-slider-track {
+      height: 500px;
     }
   }
 {% endstylesheet %}
@@ -385,6 +444,7 @@
       "default": "Sample Product 1 Description"
     },
     { "type": "url", "id": "product1_url", "label": "Product 1 URL" },
+    { "type": "color_background", "id": "custom_bg_color_1", "label": "Product Background 1" },
 
     { "type": "image_picker", "id": "product2_image", "label": "Product 2 Image" },
     { "type": "image_picker", "id": "product2_scattered_image", "label": "Product 2 Scattered Image" },
@@ -396,6 +456,7 @@
       "default": "Sample Product 2 Description"
     },
     { "type": "url", "id": "product2_url", "label": "Product 2 URL" },
+    { "type": "color_background", "id": "custom_bg_color_2", "label": "Product Background 2" },
 
     { "type": "image_picker", "id": "product3_image", "label": "Product 3 Image" },
     { "type": "image_picker", "id": "product3_scattered_image", "label": "Product 3 Scattered Image" },
@@ -407,6 +468,7 @@
       "default": "Sample Product 3 Description"
     },
     { "type": "url", "id": "product3_url", "label": "Product 3 URL" },
+    { "type": "color_background", "id": "custom_bg_color_3", "label": "Product Background 3" },
 
     { "type": "image_picker", "id": "product4_image", "label": "Product 4 Image" },
     { "type": "image_picker", "id": "product4_scattered_image", "label": "Product 4 Scattered Image" },
@@ -418,6 +480,7 @@
       "default": "Sample Product 4 Description"
     },
     { "type": "url", "id": "product4_url", "label": "Product 4 URL" },
+    { "type": "color_background", "id": "custom_bg_color_4", "label": "Product Background 4" },
 
     { "type": "image_picker", "id": "product5_image", "label": "Product 5 Image" },
     { "type": "image_picker", "id": "product5_scattered_image", "label": "Product 5 Scattered Image" },
@@ -429,6 +492,7 @@
       "default": "Sample Product 5 Description"
     },
     { "type": "url", "id": "product5_url", "label": "Product 5 URL" },
+    { "type": "color_background", "id": "custom_bg_color_5", "label": "Product Background 5" },
 
     { "type": "image_picker", "id": "product6_image", "label": "Product 6 Image" },
     { "type": "image_picker", "id": "product6_scattered_image", "label": "Product 6 Scattered Image" },
@@ -440,6 +504,7 @@
       "default": "Sample Product 6 Description"
     },
     { "type": "url", "id": "product6_url", "label": "Product 6 URL" },
+    { "type": "color_background", "id": "custom_bg_color_6", "label": "Product Background 6" },
 
     { "type": "image_picker", "id": "product7_image", "label": "Product 7 Image" },
     { "type": "image_picker", "id": "product7_scattered_image", "label": "Product 7 Scattered Image" },
@@ -450,7 +515,8 @@
       "label": "Product 7 Description",
       "default": "Sample Product 7 Description"
     },
-    { "type": "url", "id": "product7_url", "label": "Product 7 URL" }
+    { "type": "url", "id": "product7_url", "label": "Product 7 URL" },
+    { "type": "color_background", "id": "custom_bg_color_7", "label": "Product Background 7" }
   ],
   "presets": [{ "name": "Default Custom Product Slider" }]
 }
