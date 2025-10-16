@@ -99,10 +99,87 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "custom_promotional_banner_89MjUY": {
+      "type": "custom-promotional-banner",
+      "blocks": {
+        "image_rXHR7y": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Variant_Vanilla.png",
+            "alt_text": "Promotional Image",
+            "custom_promo_image_rotate": -8,
+            "custom_promo_image_top": 31
+          }
+        },
+        "image_4bURRT": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Variant_PB_Chocolate.png",
+            "alt_text": "Promotional Image",
+            "custom_promo_image_rotate": 8,
+            "custom_promo_image_top": 0
+          }
+        },
+        "image_KTpdBA": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Variant_Strawberry.png",
+            "alt_text": "Promotional Image",
+            "custom_promo_image_rotate": -8,
+            "custom_promo_image_top": 30
+          }
+        },
+        "image_9DNCpD": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Variant_Apple_cinnamon.png",
+            "alt_text": "Promotional Image",
+            "custom_promo_image_rotate": 8,
+            "custom_promo_image_top": 0
+          }
+        },
+        "image_hKP9LQ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Variant_S_mores.png",
+            "alt_text": "Promotional Image",
+            "custom_promo_image_rotate": -8,
+            "custom_promo_image_top": 30
+          }
+        },
+        "image_bKzjnd": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Variant_Toffee.png",
+            "alt_text": "Promotional Image",
+            "custom_promo_image_rotate": 8,
+            "custom_promo_image_top": 0
+          }
+        }
+      },
+      "block_order": [
+        "image_rXHR7y",
+        "image_4bURRT",
+        "image_KTpdBA",
+        "image_9DNCpD",
+        "image_hKP9LQ",
+        "image_bKzjnd"
+      ],
+      "name": "Custom Promotional Banner",
+      "settings": {
+        "custom_banner_title": "build-your-own<br>bundle pack now!",
+        "custom_banner_description": "Your small-mediums size subheading goes here.",
+        "custom_banner_button_text": "BUILD MY BOX",
+        "custom_banner_button_link": "",
+        "text_color": "#9b3462",
+        "background_color": "#ffff"
+      }
     }
   },
   "order": [
     "main",
-    "related-products"
+    "related-products",
+    "custom_promotional_banner_89MjUY"
   ]
 }

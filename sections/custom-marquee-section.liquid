@@ -3,86 +3,88 @@
   <div class="marquee">
     <div class="marquee-content">
       <div class="marquee-content-logo">
-            {% for i in (1..section.settings.repeat) %}
-                {% for block in section.blocks %}
-                {% if block.settings.logo %}
-                    <img
-                    src="{{ block.settings.logo | image_url: width: 200 }}"
-                    alt="{{ block.settings.alt_text | escape }}"
-                    loading="lazy"
-                    />
-                {% endif %}
-                {% endfor %}
-            {% endfor %}
+        {% for i in (1..section.settings.repeat) %}
+          {% for block in section.blocks %}
+            {% if block.settings.logo %}
+              <img
+                src="{{ block.settings.logo | image_url: width: 200 }}"
+                alt="{{ block.settings.alt_text | escape }}"
+                loading="lazy"
+                width="auto"
+                height="auto"
+              >
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
       </div>
     </div>
   </div>
 </section>
 
 {% stylesheet %}
-.media-marquee {
-  background-color: #fff;
-  text-align: center;
-  padding: 3rem 0;
-  overflow: hidden;
-}
-
-.marquee-title {
-  font-size: 18px;
-  letter-spacing: 0%;
-  line-height: 100%;
-  margin-bottom: 1rem;
-  color: #9B3462;
-  text-transform: uppercase;
-  font-family: "True North Black", sans-serif;
-}
-
-.marquee {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  padding-top: 8px;
-}
-
-.marquee-content {
-  display: flex;
-  animation: marquee 50s linear infinite;
-  align-items: center;
-  width: max-content;
-}
-
-.marquee-content-logo {
-  display: flex;
-  gap: 6rem;
-}
-
-.marquee:hover .marquee-content {
-  animation-play-state: paused;
-}
-
-.marquee-content img {
-  width: 100px;
-  height: auto;
-  object-fit: contain;
-  transition: opacity 0.3s ease;
-  user-select: none;
-  pointer-events: auto;
-  opacity: 0.8;
-}
-
-.marquee-content img:hover {
-  opacity: 1;
-  cursor: pointer;
-}
-
-@keyframes marquee {
-  0% {
-    transform: translateX(0, 0, 0);
+  .media-marquee {
+    background-color: #fff;
+    text-align: center;
+    padding: 3rem 0;
+    overflow: hidden;
   }
-  100% {
-    transform: translateX(-50%);
+
+  .marquee-title {
+    font-size: 18px;
+    letter-spacing: 0%;
+    line-height: 100%;
+    margin-bottom: 1rem;
+    color: #9b3462;
+    text-transform: uppercase;
+    font-family: 'True North Black', sans-serif;
   }
-}
+
+  .marquee {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding-top: 8px;
+  }
+
+  .marquee-content {
+    display: flex;
+    animation: marquee 50s linear infinite;
+    align-items: center;
+    width: max-content;
+  }
+
+  .marquee-content-logo {
+    display: flex;
+    gap: 6rem;
+  }
+
+  .marquee:hover .marquee-content {
+    animation-play-state: paused;
+  }
+
+  .marquee-content img {
+    width: 100px;
+    height: auto;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+    user-select: none;
+    pointer-events: auto;
+    opacity: 0.8;
+  }
+
+  .marquee-content img:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0, 0, 0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -126,13 +128,7 @@
     {
       "name": "As Seen In",
       "category": "Custom",
-      "blocks": [
-        { "type": "logo" },
-        { "type": "logo" },
-        { "type": "logo" },
-        { "type": "logo" },
-        { "type": "logo" }
-      ]
+      "blocks": [{ "type": "logo" }, { "type": "logo" }, { "type": "logo" }, { "type": "logo" }, { "type": "logo" }]
     }
   ]
 }
