@@ -43,7 +43,7 @@
             <div class="custom-product-slider-item-content">
               <h2>{{ section.settings[title_key] }}</h2>
               <p>{{ section.settings[description_key] }}</p>
-              <a href="{{ section.settings[url_key] }}" class="custom-product-slider-link">Shop Now</a>
+              <a href="{{ section.settings[url_key] }}" class="custom-product-slider-link" style="">Shop Now</a>
             </div>
           </div>
         </div>
@@ -289,7 +289,6 @@
   .custom-product-slider-link {
     padding: 14px 32px;
     gap: 10px;
-    border: 1px solid #fef3f3;
     border-radius: 50px;
     font-size: 14px;
     line-height: 100%;
@@ -298,6 +297,13 @@
     color: #9b3462;
     background-color: #fef3f3;
     letter-spacing: -2%;
+    text-transform: uppercase;
+  }
+
+  .custom-product-slider-link:hover {
+    background-color: #9b3462;
+    color: #fef3f3;
+    transition: all 0.5s ease;
   }
 
   .custom-product-slider-item {
