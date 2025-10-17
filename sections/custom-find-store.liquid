@@ -1,0 +1,717 @@
+<section
+  class="find-store"
+  style="background-color: {{ section.settings.bg_color }};"
+>
+  <!-- Background Title Text-->
+  {% if section.settings.bg_title_text != blank %}
+    <div
+      class="find-store__bgtitle"
+      style="
+        color: {{ section.settings.bg_title_color }};
+        font-size: {{ section.settings.bg_title_size | default: 200}};
+        opacity: {{ section.settings.bg_title_opacity }};
+        letter-spacing: {{ section.settings.bg_title_letter_spacing | default: '-4%' }};
+      "
+    >
+      {{ section.settings.bg_title_text }}
+    </div>
+  {% endif %}
+
+  <div class="find-store__container">
+    <!-- LEFT SIDE CONTENT -->
+    <div class="find-store__left">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'heading' %}
+            <h1
+              class="find-store__heading"
+              style="
+                font-size: {{ block.settings.heading_font_size }};
+                line-height: {{ block.settings.heading_line_height }};
+                letter-spacing: {{ block.settings.heading_letter_spacing | default: -4 }}px;
+                padding: {{ block.settings.padding_top }} {{ block.settings.padding_right }} {{ block.settings.padding_bottom }} {{ block.settings.padding_left }};
+                margin: {{ block.settings.margin_top }} {{ block.settings.margin_right }} {{ block.settings.margin_bottom }} {{ block.settings.margin_left }};
+              "
+            >
+              <span class="heading-first" style="color: {{ block.settings.heading_first_color }};">
+                {{ block.settings.heading_first }}
+              </span>
+              <span class="heading-second" style="color: {{ block.settings.heading_second_color }};">
+                {{ block.settings.heading_second }}
+              </span>
+            </h1>
+
+          {% when 'subtext' %}
+            <p
+              class="find-store__subtext"
+              style="
+                font-size: {{ block.settings.subtext_font_size }};
+                line-height: {{ block.settings.subtext_line_height }};
+                letter-spacing: {{ block.settings.subtext_letter_spacing | default: 0 }}px;
+                color: {{ block.settings.subtext_color }};
+                padding: {{ block.settings.padding_top }} {{ block.settings.padding_right }} {{ block.settings.padding_bottom }} {{ block.settings.padding_left }};
+                margin: {{ block.settings.margin_top }} {{ block.settings.margin_right }} {{ block.settings.margin_bottom }} {{ block.settings.margin_left }};
+              "
+            >
+              {{ block.settings.content }}
+            </p>
+        {% endcase %}
+      {% endfor %}
+
+      {% assign button_blocks = section.blocks | where: 'type', 'button' %}
+      {% if button_blocks.size > 0 %}
+        <div class="find-store__buttons">
+          {% for block in button_blocks %}
+            {% assign button_style = block.settings.button_style %}
+            <a
+              href="{{ block.settings.button_link }}"
+              class="btn {% if button_style == 'outline' %}btn-outline{% else %}btn-solid{% endif %}"
+              style="
+                padding: {{ block.settings.padding_top }} {{ block.settings.padding_right }} {{ block.settings.padding_bottom }} {{ block.settings.padding_left }};
+                margin: {{ block.settings.margin_top }} {{ block.settings.margin_right }} {{ block.settings.margin_bottom }} {{ block.settings.margin_left }};
+                {% if button_style == 'outline' %}
+                  border: 2px solid {{ block.settings.button_outline_color }};
+                  color: {{ block.settings.button_text_color }};
+                  background-color: transparent;
+                {% else %}
+                  background-color: {{ block.settings.button_background_color }};
+                  color: #fff;
+                  border: 2px solid transparent;
+                {% endif %}
+              "
+            >
+              {{ block.settings.button_text }}
+            </a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- RIGHT SIDE IMAGE -->
+    {% if section.settings.banner_image != blank %}
+      <div 
+        class="find-store__right"
+        style="
+          top: {{ section.settings.image_top }};
+          right: {{ section.settings.image_right }};
+          transform: translate({{ section.settings.image_translate_x }}, {{ section.settings.image_translate_y }});
+          width: {{ section.settings.image_width | default: 600}}px;
+          height: {{ section.settings.image_height | default: 780}}px;
+        "
+      >
+        <img
+          src="{{ section.settings.banner_image | img_url: 'master' }}"
+          alt="Find Store Banner Image"
+          width="1227"
+          height="780"
+        >
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- Bottom Wave Divider -->
+  <div class="find-store__wave">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1000 100"
+      preserveAspectRatio="none"
+      width="100%"
+      height="80"
+    >
+      <path
+        fill="#FED2D7"
+        d="M0 100
+           V40
+           c9 0 18 3 25 10
+           13 14 36 14 50 0s36-14 50 0c13 14 36 14 50 0s36-14 50 0c13 14 36 14 50 0s36-14 50 0
+           c13 14 36 14 50 0s36-14 50 0c13 14 36 14 50 0s36-14 50 0c13 14 36 14 50 0s36-14 50 0
+           c13 14 36 14 50 0s36-14 50 0c13 14 36 14 50 0s36-14 50 0c13 14 36 14 50 0s36-14 50 0
+           c13 14 36 14 50 0s37-13 50 0c14 14 37 14 50 0
+           c7-7 16-10 25-10
+           V100
+           Z"
+      ></path>
+    </svg>
+  </div>
+</section>
+
+{% stylesheet %}
+  .find-store {
+    width: 100%;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    padding: 128px;
+  }
+
+  .find-store__container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .find-store__bgtitle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2245.5px;
+    text-align: center;
+    z-index: 1;
+    pointer-events: none;
+    line-height: 90%;
+    margin: 0;
+    padding: 0;
+    white-space: normal;
+    word-break: break-word;
+    font-family: 'True North Black', 'Arial Black', sans-serif;
+    text-transform: uppercase;
+  }
+
+  /* LEFT SIDE */
+  .find-store__left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+    width: 568px;
+    position: relative;
+    z-index: 2;
+    margin-left: 40px;
+  }
+
+  .find-store__heading {
+    font-family: 'True North Black', sans-serif;
+    margin: 0;
+    text-transform: uppercase;
+    line-height: 1.1;
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  .heading-first,
+  .heading-second {
+    display: inline;
+    white-space: normal;
+    vertical-align: baseline;
+  }
+
+  /* SUBTEXT */
+  .find-store__subtext {
+    font-family: 'Open Sauce Sans', sans-serif;
+    max-width: 500px;
+    font-weight: 500;
+    font-style: medium;
+  }
+
+  /* BUTTONS */
+  .find-store__buttons {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    max-width: 568px;
+  }
+
+  /* BUTTON FIX */
+  .find-store__left .find-store__buttons a.btn {
+    flex: 0 0 auto;
+    text-align: center;
+    font-family: 'Open Sauce Sans', sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+    height: 42px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    box-sizing: border-box;
+    padding: 14px 32px;
+    text-transform: uppercase;
+  }
+
+  /* STATIC COLORS */
+  .btn-outline {
+    border: 2px solid #9b3462;
+    color: #9b3462;
+    background-color: transparent;
+  }
+
+  .btn-outline:hover {
+    background-color: #9b3462;
+    color: #fff;
+  }
+
+  .btn-solid {
+    background-color: #9b3462;
+    color: #fff;
+    border: 2px solid transparent;
+  }
+
+  .btn-solid:hover {
+    opacity: 0.85;
+  }
+
+  /* RIGHT SIDE IMAGE - FIXED TO RIGHT EDGE */
+  .find-store__right {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .find-store__right img {
+    object-fit: contain;
+    display: block;
+    max-width: none;
+  }
+
+  .find-store__wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    z-index: 3; /* ✅ makes sure the wave is ABOVE the image */
+  }
+
+  .find-store__wave svg {
+    display: block;
+    width: 100%;
+    height: 80px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .find-store {
+      padding: 80px 24px;
+      height: auto;
+    }
+
+    .find-store__left {
+      width: 100%;
+      align-items: center;
+      text-align: center;
+    }
+
+    .find-store__heading {
+      font-size: 48px !important;
+    }
+
+    .find-store__buttons {
+      justify-content: center;
+    }
+
+    .find-store__right {
+      position: static;
+      transform: none;
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .find-store__right img {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Custom Find Store Section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFB1BB"
+    },
+    {
+      "type": "header",
+      "content": "BACKGROUND TITLE TEXT"
+    },
+    {
+      "type": "text",
+      "id": "bg_title_text",
+      "label": "Background Title Text",
+      "default": "Background Text"
+    },
+    {
+      "type": "color",
+      "id": "bg_title_color",
+      "label": "Background Title Color",
+      "default": "#FDE8E6"
+    },
+    {
+      "type": "text",
+      "id": "bg_title_size",
+      "label": "Background Title Size (e.g. 180px)",
+      "default": "200px"
+    },
+    {
+      "type": "text",
+      "id": "bg_title_opacity",
+      "label": "Background Title Opacity (0–1)",
+      "default": "0.25"
+    },
+    {
+      "type": "text",
+      "id": "bg_title_letter_spacing",
+      "label": "Background Title Letter Spacing (e.g. -4%)",
+      "default": "-4%"
+    },
+    { 
+      "type": "header", 
+      "content": "Image Settings" 
+  },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Right Side Image"
+    },
+    {
+      "type": "text",
+      "id": "image_translate_x",
+      "label": "Image Translate X",
+      "default": "-10%"
+    },
+    {
+      "type": "text",
+      "id": "image_translate_y",
+      "label": "Image Translate Y",
+      "default": "-50%"
+    },
+    {
+      "type": "text",
+      "id": "image_width",
+      "label": "Image Width",
+      "default": "600"
+    },
+    {
+      "type": "text",
+      "id": "image_height",
+      "label": "Image Height",
+      "default": "780"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        { 
+          "type": "text", 
+          "id": "heading_first", 
+          "label": "First Part", 
+          "default": "THE CHUNK NIBBLES" 
+        },
+        { 
+          "type": "color", 
+          "id": "heading_first_color", 
+          "label": "First Color", 
+          "default": "#9B3462" 
+        },
+        { 
+          "type": "text", 
+          "id": "heading_second", 
+          "label": "Second Part", 
+          "default": "TASTY GUARANTEE" 
+        },
+        { 
+          "type": "color", 
+          "id": "heading_second_color", 
+          "label": "Second Color", 
+          "default": "#FFFFFF" 
+        },
+        {
+          "type": "text",
+          "id": "heading_font_size",
+          "label": "Font Size (include px)",
+          "default": "72px"
+        },
+        {
+          "type": "text",
+          "id": "heading_line_height",
+          "label": "Line Height (include % or px)",
+          "default": "90%"
+        },
+        {
+          "type": "text",
+          "id": "heading_letter_spacing",
+          "label": "Letter Spacing (px)",
+          "default": "-4"
+        },
+        {
+          "type": "header",
+          "content": "Padding"
+        },
+        {
+          "type": "text",
+          "id": "padding_top",
+          "label": "Top",
+          "default": "0px"
+        },
+        {
+          "type": "text",
+          "id": "padding_right",
+          "label": "Right",
+          "default": "0px"
+        },
+        {
+          "type": "text",
+          "id": "padding_bottom",
+          "label": "Bottom",
+          "default": "0px"
+        },
+        {
+          "type": "text",
+          "id": "padding_left",
+          "label": "Left",
+          "default": "0px"
+        },
+        {
+          "type": "header",
+          "content": "Margin"
+        },
+        {
+          "type": "text",
+          "id": "margin_top",
+          "label": "Top",
+          "default": "0px"
+        },
+        {
+          "type": "text",
+          "id": "margin_right",
+          "label": "Right",
+          "default": "0px"
+        },
+        {
+          "type": "text",
+          "id": "margin_bottom",
+          "label": "Bottom",
+          "default": "0px"
+        },
+        {
+          "type": "text",
+          "id": "margin_left",
+          "label": "Left",
+          "default": "0px"
+        }
+      ]
+    },
+    {
+      "type": "subtext",
+      "name": "Subtext",
+      "settings": [
+        {
+          "type": "text",
+          "id": "content",
+          "label": "Subtext Content",
+          "default": "Add your subtext here."
+        },
+        {
+          "type": "color",
+          "id": "subtext_color",
+          "label": "Subtext Color",
+          "default": "#9B3462"
+        },
+        {
+          "type": "text",
+          "id": "subtext_font_size",
+          "label": "Font Size (include px)",
+          "default": "18px"
+        },
+        {
+          "type": "text",
+          "id": "subtext_line_height",
+          "label": "Line Height (include % or px)",
+          "default": "160%"
+        },
+        {
+          "type": "text",
+          "id": "subtext_letter_spacing",
+          "label": "Letter Spacing (px)",
+          "default": "0"
+        },
+        {
+          "type": "header",
+          "content": "Padding"
+        },
+        {
+          "type": "text",
+          "id": "padding_top",
+          "label": "Top",
+          "default": "0px"
+        },
+        {
+          "type": "text",
+          "id": "padding_right",
+          "label": "Right",
+          "default": "0px"
+        },
+        {
+          "type": "text",
+          "id": "padding_bottom",
+          "label": "Bottom",
+          "default": "0px"
+        },
+        {
+          "type": "text",
+          "id": "padding_left",
+          "label": "Left",
+          "default": "0px"
+        },
+        {
+          "type": "header",
+          "content": "Margin"
+        },
+        {
+          "type": "text",
+          "id": "margin_top",
+          "label": "Top",
+          "default": "0px"
+        },
+        {
+          "type": "text",
+          "id": "margin_right",
+          "label": "Right",
+          "default": "0px"
+        },
+        {
+          "type": "text",
+          "id": "margin_bottom",
+          "label": "Bottom",
+          "default": "0px"
+        },
+        {
+          "type": "text",
+          "id": "margin_left",
+          "label": "Left",
+          "default": "0px"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        { 
+          "type": "text", 
+          "id": "button_text", 
+          "label": "Button Text", 
+          "default": "Button Name" 
+        },
+        { 
+          "type": "url", 
+          "id": "button_link", 
+          "label": "Button Link" 
+        },
+        {
+          "type": "select",
+          "id": "button_style",
+          "label": "Button Style",
+          "default": "solid",
+          "options": [
+            { "value": "solid", "label": "Solid" },
+            { "value": "outline", "label": "Outline" }
+          ]
+        },
+        {
+          "type": "color",
+          "id": "button_outline_color",
+          "label": "Outline Color",
+          "default": "#9B3462"
+        },
+        {
+          "type": "color",
+          "id": "button_background_color",
+          "label": "Background Color",
+          "default": "#9B3462"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Text Color",
+          "default": "#9B3462"
+        },
+        {
+          "type": "header",
+          "content": "Padding"
+        },
+        {
+          "type": "text",
+          "id": "padding_top",
+          "label": "Top",
+          "default": "14px"
+        },
+        {
+          "type": "text",
+          "id": "padding_right",
+          "label": "Right",
+          "default": "32px"
+        },
+        {
+          "type": "text",
+          "id": "padding_bottom",
+          "label": "Bottom",
+          "default": "14px"
+        },
+        {
+          "type": "text",
+          "id": "padding_left",
+          "label": "Left",
+          "default": "32px"
+        },
+        {
+          "type": "header",
+          "content": "Margin"
+        },
+        {
+          "type": "text",
+          "id": "margin_top",
+          "label": "Top",
+          "default": "0px"
+        },
+        {
+          "type": "text",
+          "id": "margin_right",
+          "label": "Right",
+          "default": "0px"
+        },
+        {
+          "type": "text",
+          "id": "margin_bottom",
+          "label": "Bottom",
+          "default": "0px"
+        },
+        {
+          "type": "text",
+          "id": "margin_left",
+          "label": "Left",
+          "default": "0px"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Find Store Section",
+      "blocks": [{ "type": "heading" }, { "type": "subtext" }, { "type": "button" }]
+    }
+  ]
+}
+{% endschema %}

@@ -9,76 +9,109 @@
  */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "custom_find_store_jipy9G": {
+      "type": "custom-find-store",
       "blocks": {
-        "heading": {
+        "heading_z3Ve4n": {
           "type": "heading",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "heading_first": "THE CHUNK NIBBLES",
+            "heading_first_color": "#9b3462",
+            "heading_second": "TASTY GUARANTEE",
+            "heading_second_color": "#ffffff",
+            "heading_font_size": "72px",
+            "heading_line_height": "90%",
+            "heading_letter_spacing": "-4",
+            "padding_top": "0px",
+            "padding_right": "0px",
+            "padding_bottom": "0px",
+            "padding_left": "0px",
+            "margin_top": "0px",
+            "margin_right": "0px",
+            "margin_bottom": "0px",
+            "margin_left": "0px"
           }
         },
-        "button": {
-          "type": "buttons",
+        "subtext_wxXHQh": {
+          "type": "subtext",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "content": "Handcrafted flavors, quality ingredients, and the perfect balance of sweet and salty. Satisfaction isn’t optional, it’s baked into every cluster we make.",
+            "subtext_color": "#9b3462",
+            "subtext_font_size": "18px",
+            "subtext_line_height": "160%",
+            "subtext_letter_spacing": "0%",
+            "padding_top": "0px",
+            "padding_right": "0px",
+            "padding_bottom": "0px",
+            "padding_left": "0px",
+            "margin_top": "0px",
+            "margin_right": "0px",
+            "margin_bottom": "0px",
+            "margin_left": "0px"
+          }
+        },
+        "button_ccQQ7H": {
+          "type": "button",
+          "settings": {
+            "button_text": "Find Stores",
+            "button_link": "",
+            "button_style": "outline",
+            "button_outline_color": "#9b3462",
+            "button_background_color": "#9b3462",
+            "button_text_color": "#9b3462",
+            "padding_top": "14px",
+            "padding_right": "32px",
+            "padding_bottom": "14px",
+            "padding_left": "32px",
+            "margin_top": "0px",
+            "margin_right": "0px",
+            "margin_bottom": "0px",
+            "margin_left": "0px"
+          }
+        },
+        "button_VzTT6P": {
+          "type": "button",
+          "settings": {
+            "button_text": "Shop Now",
+            "button_link": "",
+            "button_style": "solid",
+            "button_outline_color": "#9b3462",
+            "button_background_color": "#9b3462",
+            "button_text_color": "#9b3462",
+            "padding_top": "14px",
+            "padding_right": "32px",
+            "padding_bottom": "14px",
+            "padding_left": "32px",
+            "margin_top": "0px",
+            "margin_right": "0px",
+            "margin_bottom": "0px",
+            "margin_left": "0px"
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "heading_z3Ve4n",
+        "subtext_wxXHQh",
+        "button_ccQQ7H",
+        "button_VzTT6P"
       ],
+      "name": "Custom Find Store Section",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
-      }
-    },
-    "featured_collection": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "bg_color": "#ffb1bb",
+        "bg_title_text": "behind every great recipe, there’s a grandmother",
+        "bg_title_color": "#fde8e6",
+        "bg_title_size": "200px",
+        "bg_title_opacity": "0.4",
+        "bg_title_letter_spacing": "-4%",
+        "banner_image": "shopify://shop_images/2a1195337b4ce2876140894966299ac007effa72_7f7bf277-c480-48ba-85c4-79b3f61636db.png",
+        "image_translate_x": "-10%",
+        "image_translate_y": "-50%",
+        "image_width": "600",
+        "image_height": "830"
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "custom_find_store_jipy9G"
   ]
 }
