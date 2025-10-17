@@ -100,36 +100,46 @@
         "logo_ARnYdq": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/hsn-logo.png",
-            "alt_text": "Media Logo"
+            "logo": "shopify://shop_images/4980f1b2078459d1b0577c7639e0e076a6c20b9d-removebg-preview.png",
+            "alt_text": "Media Logo",
+            "logo_width": 100,
+            "logo_height": 100
           }
         },
         "logo_83hTLb": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/seen-logo.png",
-            "alt_text": "Media Logo"
+            "logo": "shopify://shop_images/c718b551b018645be39f409232d2dfeaf8197804-removebg-preview.png",
+            "alt_text": "Media Logo",
+            "logo_width": 100,
+            "logo_height": 100
           }
         },
         "logo_hWF9ef": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/nbc-logo.png",
-            "alt_text": "Media Logo"
+            "logo": "shopify://shop_images/557cb6e8b736d4d20301920910dc90cf20574468-removebg-preview.png",
+            "alt_text": "Media Logo",
+            "logo_width": 100,
+            "logo_height": 100
           }
         },
         "logo_ddBtaA": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/abc-logo.png",
-            "alt_text": "Media Logo"
+            "logo": "shopify://shop_images/55b75d7ea9f3133f6a4b134375a6e940cf50b547-removebg-preview.png",
+            "alt_text": "Media Logo",
+            "logo_width": 100,
+            "logo_height": 100
           }
         },
         "logo_PrBXLT": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/clickon-logo.png",
-            "alt_text": "Media Logo"
+            "logo": "shopify://shop_images/ce6622ed6ee636defd6b3303392a570b72cb4eba-removebg-preview.png",
+            "alt_text": "Media Logo",
+            "logo_width": 100,
+            "logo_height": 100
           }
         }
       },
@@ -143,7 +153,17 @@
       "name": "As Seen In",
       "settings": {
         "heading": "AS SEEN IN",
-        "repeat": 5
+        "repeat": 5,
+        "bg_color": "#fef3f3",
+        "logo_gap": 96,
+        "title_font_size": 18,
+        "title_line_height": "1.2",
+        "title_letter_spacing": 0,
+        "title_margin_top": 0,
+        "title_margin_right": 0,
+        "title_margin_bottom": 16,
+        "title_margin_left": 0,
+        "title_color": "#9b3462"
       }
     },
     "custom_product_slider_hTAyDq": {
@@ -850,11 +870,11 @@
         "title_font": "True North Black, sans-serif",
         "title_line_height": 90,
         "title_letter_spacing": -1,
-        "title_width": 450,
+        "footer_bg": "#ffb1bb",
+        "section_margin": 150,
         "icon_color": "#9b3462",
         "input_text_color": "#9b3462",
         "input_font_size": 14,
-        "input_width": 100,
         "button_bg": "#9b3462",
         "button_text_color": "#ffffff",
         "button_font_size": 14,

@@ -1,18 +1,39 @@
-<section class="media-marquee">
-  <div class="marquee-title">{{ section.settings.heading }}</div>
+<section 
+  class="media-marquee" 
+  style="background-color: {{ section.settings.bg_color }};"
+>
+  <div 
+    class="marquee-title"
+    style="
+      font-size: {{ section.settings.title_font_size }}px;
+      line-height: {{ section.settings.title_line_height }};
+      letter-spacing: {{ section.settings.title_letter_spacing }}px;
+      margin-top: {{ section.settings.title_margin_top }}px;
+      margin-right: {{ section.settings.title_margin_right }}px;
+      margin-bottom: {{ section.settings.title_margin_bottom }}px;
+      margin-left: {{ section.settings.title_margin_left }}px;
+      color: {{ section.settings.title_color }};
+    "
+  >
+    {{ section.settings.heading }}
+  </div>
+
   <div class="marquee">
     <div class="marquee-content">
-      <div class="marquee-content-logo">
+      <div 
+        class="marquee-content-logo" 
+        style="gap: {{ section.settings.logo_gap }}px;"
+      >
         {% for i in (1..section.settings.repeat) %}
           {% for block in section.blocks %}
             {% if block.settings.logo %}
               <img
-                src="{{ block.settings.logo | image_url: width: 200 }}"
+                src="{{ block.settings.logo | image_url: width: block.settings.logo_width | default: 200 }}"
                 alt="{{ block.settings.alt_text | escape }}"
                 loading="lazy"
-                width="auto"
-                height="auto"
-              >
+                style="width: {{ block.settings.logo_width }}px; height: {{ block.settings.logo_height }}px; object-fit: contain;"
+                width = "" height = ""
+              />
             {% endif %}
           {% endfor %}
         {% endfor %}
@@ -22,45 +43,46 @@
 </section>
 
 {% stylesheet %}
-  .media-marquee {
-    background-color: #fff;
-    text-align: center;
-    padding: 3rem 0;
-    overflow: hidden;
-  }
+.media-marquee {
+  text-align: center;
+  padding: 3rem 0;
+  overflow: hidden;
+}
 
-  .marquee-title {
-    font-size: 18px;
-    letter-spacing: 0%;
-    line-height: 100%;
-    margin-bottom: 1rem;
-    color: #9b3462;
-    text-transform: uppercase;
-    font-family: 'True North Black', sans-serif;
-  }
+.marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-top: 8px;
+}
 
-  .marquee {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    padding-top: 8px;
-  }
+.marquee-title {
+  text-transform: uppercase;
+  font-family: "True North Black", sans-serif;
+}
 
-  .marquee-content {
-    display: flex;
-    animation: marquee 50s linear infinite;
-    align-items: center;
-    width: max-content;
-  }
+.marquee-content {
+  display: flex;
+  animation: marquee 50s linear infinite;
+  align-items: center;
+  width: max-content;
+}
+
+.marquee-content-logo {
+  display: flex;
+}
 
   .marquee-content-logo {
     display: flex;
     gap: 6rem;
   }
 
-  .marquee:hover .marquee-content {
-    animation-play-state: paused;
-  }
+.marquee-content img {
+  transition: opacity 0.3s ease;
+  user-select: none;
+  pointer-events: auto;
+  opacity: 0.8;
+}
 
   .marquee-content img {
     width: 100px;
@@ -103,7 +125,101 @@
       "id": "repeat",
       "label": "Repeat Logos (for smooth scroll)",
       "default": 5
-    }
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FEF3F3"
+    },
+    {
+      "type": "range",
+      "id": "logo_gap",
+      "label": "Gap Between Logos (px)",
+      "default": 96,
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px"
+    },
+
+    /* ---------- TITLE STYLE CONTROLS ---------- */
+    {
+      "type": "header",
+      "content": "Title Styling"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "label": "Font Size (px)",
+      "default": 18,
+      "min": 10,
+      "max": 80,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "text",
+      "id": "title_line_height",
+      "label": "Line Height",
+      "default": "1.2"
+    },
+    {
+      "type": "range",
+      "id": "title_letter_spacing",
+      "label": "Letter Spacing (px)",
+      "default": 0,
+      "min": 0,
+      "max": 10,
+      "step": 0.1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "title_margin_top",
+      "label": "Margin Top (px)",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "title_margin_right",
+      "label": "Margin Right (px)",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "title_margin_bottom",
+      "label": "Margin Bottom (px)",
+      "default": 16,
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "title_margin_left",
+      "label": "Margin Left (px)",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Text Color",
+      "default": "#9B3462"
+    },
   ],
   "blocks": [
     {
@@ -120,6 +236,26 @@
           "id": "alt_text",
           "label": "Alt Text",
           "default": "Media Logo"
+        },
+        {
+          "type": "range",
+          "id": "logo_width",
+          "label": "Logo Width (px)",
+          "default": 100,
+          "min": 50,
+          "max": 400,
+          "step": 10,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "logo_height",
+          "label": "Logo Height (px)",
+          "default": 100,
+          "min": 50,
+          "max": 400,
+          "step": 10,
+          "unit": "px"
         }
       ]
     }
