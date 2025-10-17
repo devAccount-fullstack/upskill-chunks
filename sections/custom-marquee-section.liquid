@@ -72,9 +72,10 @@
   display: flex;
 }
 
-.marquee:hover .marquee-content {
-  animation-play-state: paused;
-}
+  .marquee-content-logo {
+    display: flex;
+    gap: 6rem;
+  }
 
 .marquee-content img {
   transition: opacity 0.3s ease;
@@ -83,19 +84,29 @@
   opacity: 0.8;
 }
 
-.marquee-content img:hover {
-  opacity: 1;
-  cursor: pointer;
-}
+  .marquee-content img {
+    width: 100px;
+    height: auto;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+    user-select: none;
+    pointer-events: auto;
+    opacity: 0.8;
+  }
 
-@keyframes marquee {
-  0% {
-    transform: translateX(0, 0, 0);
+  .marquee-content img:hover {
+    opacity: 1;
+    cursor: pointer;
   }
-  100% {
-    transform: translateX(-50%);
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0, 0, 0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
   }
-}
 {% endstylesheet %}
 
 {% schema %}
@@ -253,13 +264,7 @@
     {
       "name": "As Seen In",
       "category": "Custom",
-      "blocks": [
-        { "type": "logo" },
-        { "type": "logo" },
-        { "type": "logo" },
-        { "type": "logo" },
-        { "type": "logo" }
-      ]
+      "blocks": [{ "type": "logo" }, { "type": "logo" }, { "type": "logo" }, { "type": "logo" }, { "type": "logo" }]
     }
   ]
 }
