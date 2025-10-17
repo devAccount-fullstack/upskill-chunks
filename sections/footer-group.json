@@ -11,55 +11,6 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
-    "custom_footer_section_yGGhrm": {
-      "type": "custom-footer-section",
-      "blocks": {
-        "footer_link_GT7bMt": {
-          "type": "footer_link",
-          "settings": {
-            "link_image": "shopify://shop_images/instagram.png",
-            "link_url": "https://www.instagram.com/chunknibbles/"
-          }
-        },
-        "footer_link_MJhBJL": {
-          "type": "footer_link",
-          "settings": {
-            "link_image": "shopify://shop_images/whatsapp.png",
-            "link_url": ""
-          }
-        },
-        "footer_nav_wEePqP": {
-          "type": "footer_nav",
-          "settings": {
-            "nav_color": "#ffffff",
-            "nav_font_size": 15,
-            "nav_line_height": 1.4,
-            "nav_letter_spacing": 1,
-            "nav_font_weight": "600",
-            "nav_transform": "uppercase",
-            "nav_font": "'True North Black', 'Arial Black', Impact, sans-serif"
-          }
-        }
-      },
-      "block_order": [
-        "footer_link_GT7bMt",
-        "footer_link_MJhBJL",
-        "footer_nav_wEePqP"
-      ],
-      "name": "Custom Footer",
-      "settings": {
-        "footer_logo": "shopify://shop_images/59f8ff33759efb80773febd22e90dceb11e875f4_d8cf5653-f23a-44da-a5f9-11525233468c.png",
-        "logo_width": 250,
-        "wave_color": "#ffb1bb",
-        "gradient_top": "#ffb3c3",
-        "gradient_bottom": "#ff819b",
-        "copy_color": "#ffffff",
-        "copy_font_size": 16,
-        "footer_text": "© 2025 Chunk Nibbles | All Rights Reserved",
-        "footer_top_padding": 20,
-        "footer_padding": 44
-      }
-    },
     "footer": {
       "type": "footer",
       "disabled": true,
@@ -80,7 +31,6 @@
     }
   },
   "order": [
-    "custom_footer_section_yGGhrm",
     "footer"
   ]
 }
