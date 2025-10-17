@@ -622,10 +622,115 @@
         "content_bg_color": "#fef3f3"
       }
     },
+    "custom_customer_review_section_FXXNjt": {
+      "type": "custom-customer-review-section",
+      "blocks": {
+        "review_q6T4T4": {
+          "type": "review",
+          "settings": {
+            "reviewer_image": "shopify://shop_images/0afa7ca600bf557def14dc57f4820435ebd66945.png",
+            "review_text": "“When you try Chunk Nibbles for the first time and it changes your life! Such a yummy snack! Thanks so much for sharing this sweet family recipe!",
+            "reviewer_name": "Jessica W.",
+            "star_count": 5,
+            "show_badge": true
+          }
+        },
+        "review_aJbXTq": {
+          "type": "review",
+          "settings": {
+            "reviewer_image": "shopify://shop_images/1de5206b7783747873d2ed8f84a57f31de0d04c1.jpg",
+            "review_text": "“This is the most delicious homemade snack in convenient pouches of all time. I love the variety of yummy flavors and they are always super fresh!”",
+            "reviewer_name": "Kimberly Handley",
+            "star_count": 5,
+            "show_badge": true
+          }
+        },
+        "review_bik3Gr": {
+          "type": "review",
+          "settings": {
+            "reviewer_image": "shopify://shop_images/e64545f156034d4725ec79d26e11b23a950a00f7.jpg",
+            "review_text": "“This is the second time ordering and I'll keep ordering. Absolutely amazing product. Very tasteful very fulfilling fast service A+ in my book”",
+            "reviewer_name": "Michele Newhouse",
+            "star_count": 5,
+            "show_badge": true
+          }
+        },
+        "review_aggQ7C": {
+          "type": "review",
+          "settings": {
+            "reviewer_image": "shopify://shop_images/5c7165c9415b767524791827449513ef8a04929e.jpg",
+            "review_text": "“When you try Chunk Nibbles for the first time and it changes your life! Such a yummy snack! Thanks so much for sharing this sweet family recipe!",
+            "reviewer_name": "Jessica W.",
+            "star_count": 5,
+            "show_badge": true
+          }
+        },
+        "review_fPRG9E": {
+          "type": "review",
+          "settings": {
+            "reviewer_image": "shopify://shop_images/5e824b56358ea1b91e51465e599233c63faa2db2.jpg",
+            "review_text": "“Ordered about 2 weeks ago, got it before expected date. Ate them a little fast so ordered another order just today. A must try if you haven't treated yourself lately”",
+            "reviewer_name": "Penny Ruth",
+            "star_count": 5,
+            "show_badge": true
+          }
+        }
+      },
+      "block_order": [
+        "review_q6T4T4",
+        "review_aJbXTq",
+        "review_bik3Gr",
+        "review_aggQ7C",
+        "review_fPRG9E"
+      ],
+      "name": "Custom Customer Review Section",
+      "settings": {
+        "use_gradient": false,
+        "background_color": "#fef3f3",
+        "gradient_top": "#fef3f3",
+        "gradient_bottom": "#ffb1bb",
+        "review_name_color": "#9b3462",
+        "review_name_size": 20,
+        "review_text_color": "#9b3462",
+        "review_text_size": 18,
+        "badge_color": "#9b3462",
+        "title_text": "What Our Customers Say",
+        "button_text": "Shop Now",
+        "button_link": "",
+        "chip_1_image": "shopify://shop_images/bb9922cc2826062708f90ab276a109e568c53929.png",
+        "chip_1_top": "180px",
+        "chip_1_left": "0",
+        "chip_1_size": "120px",
+        "chip_1_rotate": "0deg",
+        "chip_2_image": "shopify://shop_images/f4d2afb6c5c1ea5bffaf4a60b0105d089bd7b949.png",
+        "chip_2_top": "90px",
+        "chip_2_right": "120px",
+        "chip_2_size": "120px",
+        "chip_2_rotate": "0deg",
+        "chip_3_image": "shopify://shop_images/0890c5e788b1ce8a5d50b4c2e508bd6dd5007f8b.png",
+        "chip_3_bottom": "70px",
+        "chip_3_left": "150px",
+        "chip_3_size": "120px",
+        "chip_3_rotate": "0deg",
+        "chip_4_image": "shopify://shop_images/61efb559812eaf138f019ee0ab00884bc02a5173.png",
+        "chip_4_bottom": "20px",
+        "chip_4_right": "-10px",
+        "chip_4_size": "200px",
+        "chip_4_rotate": "30deg",
+        "wave_color": "#fef3f3",
+        "card_background_color": "#fef3f3"
+      }
+    },
     "custom_subscribe_section_JWXkGK": {
       "type": "custom-subscribe-section",
       "name": "Custom Subscribe Section",
       "settings": {
+        "bg_color": "#fef3f3",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "section_margin": 150,
+        "footer_bg": "#ffb1bb",
+        "frame_width": 90,
         "title_text": "STAY UP TO DATE ABOUT OUR LATEST OFFERS",
         "title_color": "#9b3462",
         "title_font_size": 32,
@@ -640,8 +745,10 @@
         "button_bg": "#9b3462",
         "button_text_color": "#ffffff",
         "button_font_size": 14,
+        "button_width": 25,
         "button_text": "SUBSCRIBE",
-        "form_action_url": "/subscribe"
+        "form_action_url": "/subscribe",
+        "form_width": 46
       }
     }
   },
@@ -651,6 +758,7 @@
     "testimonial_7RcaFk",
     "cta_story_JcEJB4",
     "product_bundles_G6yDni",
+    "custom_customer_review_section_FXXNjt",
     "custom_subscribe_section_JWXkGK"
   ]
 }
